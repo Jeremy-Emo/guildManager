@@ -1,0 +1,22 @@
+/* ==================================
+              Colors
+================================== */
+$white : #fff;
+
+/* ==================================
+              Fonts
+================================== */
+@font-face {
+  font-family: 'title-font';
+  font-display: swap;
+  src: url(../webfonts/OpenSans-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'txt-font';
+  font-display: swap;
+  src: url(../webfonts/OpenSans-Regular.ttf) format('truetype');
+}
+
+$title-font: 'title-font';
+$txt-font: 'txt-font';
