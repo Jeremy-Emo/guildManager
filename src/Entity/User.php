@@ -60,6 +60,11 @@ class User implements UserInterface
      */
     private $events;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastVisitAt;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -220,6 +225,18 @@ class User implements UserInterface
             $this->events->removeElement($event);
             $event->removeInscrit($this);
         }
+
+        return $this;
+    }
+
+    public function getLastVisitAt(): ?\DateTimeInterface
+    {
+        return $this->lastVisitAt;
+    }
+
+    public function setLastVisitAt(?\DateTimeInterface $lastVisitAt): self
+    {
+        $this->lastVisitAt = $lastVisitAt;
 
         return $this;
     }

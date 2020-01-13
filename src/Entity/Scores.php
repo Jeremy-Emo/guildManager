@@ -57,6 +57,16 @@ class Scores
      */
     private $r5;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbSixStars;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $minSpeed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +164,30 @@ class Scores
     public function setR5(bool $r5): self
     {
         $this->r5 = $r5;
+
+        return $this;
+    }
+
+    public function getNbSixStars(): ?int
+    {
+        return $this->nbSixStars;
+    }
+
+    public function setNbSixStars(?int $nbSixStars): self
+    {
+        $this->nbSixStars = $nbSixStars;
+
+        return $this;
+    }
+
+    public function getMinSpeed(): ?int
+    {
+        return $this->minSpeed;
+    }
+
+    public function setMinSpeed(?int $minSpeed): self
+    {
+        $this->minSpeed = $minSpeed;
 
         return $this;
     }

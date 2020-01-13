@@ -38,6 +38,11 @@ class Guild
      */
     private $members;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $message;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -111,6 +116,18 @@ class Guild
                 $member->setGuild(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
 
         return $this;
     }
