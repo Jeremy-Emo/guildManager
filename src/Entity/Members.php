@@ -5,12 +5,34 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembersRepository")
+ * @HasLifecycleCallbacks
  */
 class Members
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if ($this->getIsFired() === null) {
+            $this->setIsFired(false);
+        }
+        if ($this->getIsInGvG() === null) {
+            $this->setIsInGvG(false);
+        }
+        if ($this->getIsInGvO() === null) {
+            $this->setIsInGvO(false);
+        }
+        if ($this->getIsLeader() === null) {
+            $this->setIsLeader(false);
+        }
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
