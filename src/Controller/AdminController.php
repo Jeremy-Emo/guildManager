@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Members;
 use App\Entity\User;
 use App\Form\Type\NewUserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,6 +17,7 @@ class AdminController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/admin/comptes", name="admin_accounts", methods={"GET", "POST"})
      * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
