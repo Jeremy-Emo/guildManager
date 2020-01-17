@@ -1,2 +1,286 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
+
+/* =====================================================================================================================
+                                              General CSS
+===================================================================================================================== */
+
+html {
+  height : 100%;
+}
+
+body {
+  background-color: $lightGray;
+  min-height: 100%;
+  font-family: $txt-font;
+}
+
+h1 {
+  font-size : 22px;
+}
+
+/* =====================================================================================================================
+                                              Bootstrap erasures
+===================================================================================================================== */
+.row {
+  margin : 0;
+}
+
+/* =====================================================================================================================
+                                              General classes
+===================================================================================================================== */
+.pa-5 {
+  padding : 5px;
+}
+
+.pa-10 {
+  padding : 10px;
+}
+
+.pa-15 {
+  padding : 15px;
+}
+
+.pa-20 {
+  padding : 20px;
+}
+
+.pa-25 {
+  padding : 25px;
+}
+
+.ma-5 {
+  margin : 5px;
+}
+
+.ma-10 {
+  margin : 10px;
+}
+
+.ma-15 {
+  margin : 15px;
+}
+
+.ma-20 {
+  margin : 20px;
+}
+
+.ma-25 {
+  margin : 25px;
+}
+
+.pa-5-top {
+  padding-top : 5px;
+}
+
+.pa-5-right {
+  padding-right : 5px;
+}
+
+.pa-5-bottom {
+  padding-bottom : 5px;
+}
+
+.pa-5-left {
+  padding-left : 5px;
+}
+
+.pa-10-top {
+  padding-top : 10px;
+}
+
+.pa-10-right {
+  padding-right : 10px;
+}
+
+.pa-10-bottom {
+  padding-bottom : 10px;
+}
+
+.pa-10-left {
+  padding-left : 10px;
+}
+
+.pa-15-top {
+  padding-top : 15px;
+}
+
+.pa-15-right {
+  padding-right : 15px;
+}
+
+.pa-15-bottom {
+  padding-bottom : 15px;
+}
+
+.pa-15-left {
+  padding-left : 15px;
+}
+
+.pa-20-top {
+  padding-top : 20px;
+}
+
+.pa-20-right {
+  padding-right : 20px;
+}
+
+.pa-20-bottom {
+  padding-bottom : 20px;
+}
+
+.pa-20-left {
+  padding-left : 20px;
+}
+
+.pa-25-top {
+  padding-top : 25px;
+}
+
+.pa-25-right {
+  padding-right : 25px;
+}
+
+.pa-25-bottom {
+  padding-bottom : 25px;
+}
+
+.pa-25-left {
+  padding-left : 25px;
+}
+
+.ma-5-top {
+  margin-top : 5px;
+}
+
+.ma-5-right {
+  margin-right : 5px;
+}
+
+.ma-5-bottom {
+  margin-bottom : 5px;
+}
+
+.ma-5-left {
+  margin-left : 5px;
+}
+
+.ma-10-top {
+  margin-top : 10px;
+}
+
+.ma-10-right {
+  margin-right : 10px;
+}
+
+.ma-10-bottom {
+  margin-bottom : 10px;
+}
+
+.ma-10-left {
+  margin-left : 10px;
+}
+
+.ma-15-top {
+  margin-top : 15px;
+}
+
+.ma-15-right {
+  margin-right : 15px;
+}
+
+.ma-15-bottom {
+  margin-bottom : 15px;
+}
+
+.ma-15-left {
+  margin-left : 15px;
+}
+
+.ma-20-top {
+  margin-top : 20px;
+}
+
+.ma-20-right {
+  margin-right : 20px;
+}
+
+.ma-20-bottom {
+  margin-bottom : 20px;
+}
+
+.ma-20-left {
+  margin-left : 20px;
+}
+
+.ma-25-top {
+  margin-top : 25px;
+}
+
+.ma-25-right {
+  margin-right : 25px;
+}
+
+.ma-25-bottom {
+  margin-bottom : 25px;
+}
+
+.ma-25-left {
+  margin-left : 25px;
+}
+
+.bg-white {
+  background-color : $lightWhite;
+}
+
+.flex {
+  display : flex;
+}
+
+.block {
+  display : block;
+}
+
+.none {
+  display : none;
+}
+
+.center {
+  display : flex;
+  text-align : center;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-top-blue {
+  top : 1px solid $lightBlue;
+}
+
+.border-right-blue {
+  border-right : 1px solid $lightBlue;
+}
+
+.border-bot-blue {
+  border-bottom : 1px solid $lightBlue;
+}
+
+.border-left-blue {
+  border-left : 1px solid $lightBlue;
+}
+
+.border-blue {
+  border : 1px solid $lightBlue;
+}
+
+.bg-white {
+  background-color: $lightWhite !important;
+}
+
+.full-height {
+  height : 100%;
+}
+
+.full-width {
+  width : 100%;
+}
+
