@@ -78,6 +78,11 @@ class User implements UserInterface
      */
     private $lastVisitAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Buildings", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $buildings;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -250,6 +255,24 @@ class User implements UserInterface
     public function setLastVisitAt(?\DateTimeInterface $lastVisitAt): self
     {
         $this->lastVisitAt = $lastVisitAt;
+
+        return $this;
+    }
+
+    public function getBuildings(): ?Buildings
+    {
+        return $this->buildings;
+    }
+
+    public function setBuildings(?Buildings $buildings): self
+    {
+        $this->buildings = $buildings;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $buildings ? null : $this;
+        if ($buildings->getUser() !== $newUser) {
+            $buildings->setUser($newUser);
+        }
 
         return $this;
     }
