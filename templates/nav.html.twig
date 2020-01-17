@@ -2,5 +2,10 @@
     <i class="fas fa-bars" id="burger"></i>
 </nav>
 <div id="menuDisplayed">
-    <a href="{{ path('index') }}" {% if isDashboard %}class="active"{% endif %}>Accueil</a>
+    <a href="{{ path('index') }}" {% if isDashboard is defined %}class="active"{% endif %}>Accueil</a>
+    <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
+    {% if app.user.isAdmin %}
+
+    {% endif %}
+    <a href="{{ path('app_logout') }}">Déconnexion</a>
 </div>

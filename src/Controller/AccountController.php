@@ -43,6 +43,7 @@ class AccountController extends AbstractController
 
         return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
+            'isMyAccount' => true,
         ]);
     }
 }

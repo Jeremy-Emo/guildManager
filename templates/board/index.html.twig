@@ -9,10 +9,10 @@
                 <div class="pa-20 bg-white">
                 {% if memberInfos %}
                     {{ form_start(formGuild) }}
-                    <div class="row">
-                        <p class="col-md-6">{{ form_label(formGuild.isInGvG) }} : {{ form_widget(formGuild.isInGvG) }}</p>
-                        <p class="col-md-6">{{ form_label(formGuild.isInGvO) }} : {{ form_widget(formGuild.isInGvO) }}</p>
-                        <p class="col"><input type="submit" value="Modifier"></p>
+                    <div class="column">
+                        <p>{{ form_widget(formGuild.isInGvG) }}</p>
+                        <p>{{ form_widget(formGuild.isInGvO) }}</p>
+                        <p><input type="submit" value="Modifier"></p>
                     </div>
                     {{ form_end(formGuild) }}
                 {% else %}
