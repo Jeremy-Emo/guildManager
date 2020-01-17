@@ -6,10 +6,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                <h2 class="ma-15-bottom">Changer de mot de passe : </h2>
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 <input type="submit" value="Enregistrer">
                 {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                <h2 class="ma-15-bottom">Mes records : </h2>
+                {{ form_start(formRecords) }}
+                {{ form_widget(formRecords) }}
+                <input type="submit" value="Enregistrer">
+                {{ form_end(formRecords) }}
             </div>
         </div>
     </div>

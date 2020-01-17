@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Scores;
 use App\Form\Type\EditAccountType;
+use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,9 +42,26 @@ class AccountController extends AbstractController
 
             return $this->redirectToRoute('index');
         }
+        if($user->getScores() === null) {
+            $records = new Scores();
+            $records->setUser($user);
+        } else {
+            $records = $user->getScores();
+        }
+        $formRecords = $this->createForm(RecordsType::class, $records);
+        $formRecords->handleRequest($request);
+
+        if ($formRecords->isSubmitted() && $formRecords->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($records);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index');
+        }
 
         return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
+            'formRecords' => $formRecords->createView(),
             'isMyAccount' => true,
         ]);
     }
