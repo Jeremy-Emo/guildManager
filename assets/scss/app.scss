@@ -1,5 +1,5 @@
-@import "variables";
 @import "~bootstrap/scss/bootstrap";
+@import "variables";
 
 /* =====================================================================================================================
                                               General CSS
@@ -284,3 +284,6 @@ h1 {
   width : 100%;
 }
 
+.bold {
+  font-weight: bold;
+}
