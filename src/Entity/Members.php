@@ -19,9 +19,6 @@ class Members
      */
     public function setDefaults(): void
     {
-        if ($this->getIsFired() === null) {
-            $this->setIsFired(false);
-        }
         if ($this->getIsInGvG() === null) {
             $this->setIsInGvG(false);
         }
@@ -56,11 +53,6 @@ class Members
      * @ORM\JoinColumn(nullable=false)
      */
     private $guild;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isFired;
 
     /**
      * @ORM\Column(type="boolean")
@@ -119,18 +111,6 @@ class Members
     public function setGuild(?Guild $guild): self
     {
         $this->guild = $guild;
-
-        return $this;
-    }
-
-    public function getIsFired(): ?bool
-    {
-        return $this->isFired;
-    }
-
-    public function setIsFired(bool $isFired): self
-    {
-        $this->isFired = $isFired;
 
         return $this;
     }
