@@ -3,5 +3,21 @@
 {% block page_title %}Tableau de bord{% endblock %}
 
 {% block body %}
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top pa-20 bg-white">
+            {% if memberInfos %}
+                {{ form_start(formGuild) }}
+                    {{ form_label(formGuild.isInGvO) }}
+                    {{ form_widget(formGuild.isInGvO) }}
+                    {{ form_label(formGuild.isInGvG) }}
+                    {{ form_widget(formGuild.isInGvG) }}
+                    <input type="submit" value="Modifier">
+                {{ form_end(formGuild) }}
+            {% else %}
+                <p>Vous ne faites pas partie d'une guilde de l'alliance.</p>
+            {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
