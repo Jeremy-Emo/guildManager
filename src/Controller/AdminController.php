@@ -38,7 +38,7 @@ class AdminController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->redirectToRoute('admin_accounts');
+            return $this->redirectToRoute('admin_accounts');
         }
 
         return $this->render('admin/index.html.twig', [
