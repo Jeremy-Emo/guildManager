@@ -5,10 +5,36 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <input type="submit" value="Créer">
-        {{ form_end(form) }}
+        <div class="col-md-3 ma-25-top">
+            <div class="pa-20 bg-white">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Créer">
+            {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-md-9 ma-25-top">
+            <div class="pa-20 bg-white">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Niveau</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{% if user.scores %}{{ user.scores.calcScores() }}{% else %}Aucun score{% endif %}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

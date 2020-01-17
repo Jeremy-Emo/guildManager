@@ -46,9 +46,14 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_accounts');
         }
 
+        $users = $this->getDoctrine()->getRepository(User::class)->findBy([], [
+            'lastVisitAt' => 'DESC'
+        ]);
+
         return $this->render('admin/index.html.twig', [
             'form' => $form->createView(),
             'isAdminAccounts' => true,
+            'users' => $users,
         ]);
     }
 }

@@ -4,8 +4,14 @@
 <div id="menuDisplayed">
     <a href="{{ path('index') }}" {% if isDashboard is defined %}class="active"{% endif %}>Accueil</a>
     <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
+
+    {% if app.user.member and app.user.member.isLeader %}
+
+    {% endif %}
+
     {% if app.user.isAdmin %}
         <a href="{{ path('admin_accounts') }}" {% if isAdminAccounts is defined %}class="active"{% endif %}>Admin - Comptes</a>
     {% endif %}
+
     <a href="{{ path('app_logout') }}">Déconnexion</a>
 </div>
