@@ -9,6 +9,90 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Scores
 {
+    public function calcScores() : string
+    {
+        $score = 0;
+        if($this->gb10 !== null){
+            $score += 1;
+            if($this->gb10 < 90) {
+                $score += 1;
+            }
+            if($this->gb10 < 60) {
+                $score += 1;
+            }
+            if($this->gb10 < 30) {
+                $score += 1;
+            }
+        }
+        if($this->db10 !== null){
+            $score += 1;
+            if($this->db10 < 90) {
+                $score += 1;
+            }
+            if($this->db10 < 60) {
+                $score += 1;
+            }
+            if($this->db10 < 30) {
+                $score += 1;
+            }
+        }
+        if($this->nb10 !== null){
+            $score += 1;
+            if($this->nb10 < 90) {
+                $score += 1;
+            }
+            if($this->nb10 < 60) {
+                $score += 1;
+            }
+            if($this->nb10 < 30) {
+                $score += 1;
+            }
+        }
+        if($this->toa !== null) {
+            if($this->toa >= 70) {
+                $score += 1;
+            }
+            if($this->toa === 100) {
+                $score += 1;
+            }
+        }
+        if($this->toah !== null) {
+            if($this->toah >= 70) {
+                $score += 1;
+            }
+            if($this->toah === 100) {
+                $score += 1;
+            }
+        }
+        if($this->r4) {
+            $score += 1;
+        }
+        if($this->r5) {
+            $score += 2;
+        }
+
+        if($score >= 17) {
+            return "Late +";
+        }
+        if($score >= 14) {
+            return "Late -";
+        }
+        if($score >= 9) {
+            return "Mid +";
+        }
+        if($score >= 5) {
+            return "Mid -";
+        }
+        if($score >= 2) {
+            return "Early +";
+        }
+        if($score >= 1) {
+            return "Early -";
+        }
+
+        return "Aucun score";
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

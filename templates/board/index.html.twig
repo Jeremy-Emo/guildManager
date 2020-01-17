@@ -23,19 +23,22 @@
 
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-                {% if guildInfos %}
-                    <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
-                    {% if guildInfos.message %}
-                        <p class="bold">Message de guilde :</p>
-                        <p>{{ guildInfos.message }}</p>
+                    {% if guildInfos %}
+                        <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
+                        {% if guildInfos.message %}
+                            <p class="bold">Message de guilde :</p>
+                            <p>{{ guildInfos.message }}</p>
+                        {% endif %}
+                        {% if guildInfos.websiteLink %}
+                            <p><a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
+                        {% endif %}
+                        {% if guildInfos.discordLink %}
+                            <p><a href="{{ guildInfos.websiteLink }}">Discord</a></p>
+                        {% endif %}
                     {% endif %}
-                    {% if guildInfos.websiteLink %}
-                        <p><a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
+                    {% if app.user.scores %}
+                        <p><span class="bold">Votre niveau</span> : {{ app.user.scores.calcScores() }}</p>
                     {% endif %}
-                    {% if guildInfos.discordLink %}
-                        <p><a href="{{ guildInfos.websiteLink }}">Discord</a></p>
-                    {% endif %}
-                {% endif %}
                 </div>
             </div>
         </div>
