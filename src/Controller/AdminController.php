@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -22,6 +23,10 @@ class AdminController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
+        if(! $this->getUser()->getIsAdmin()) {
+            throw new NotFoundHttpException();
+        }
+
         $user = new User();
         $form = $this->createForm(NewUserType::class, $user);
 
