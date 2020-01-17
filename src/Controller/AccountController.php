@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Buildings;
 use App\Entity\Scores;
+use App\Form\Type\BuildingsType;
 use App\Form\Type\EditAccountType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -40,8 +42,9 @@ class AccountController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('edit_account');
         }
+
         if($user->getScores() === null) {
             $records = new Scores();
             $records->setUser($user);
@@ -56,12 +59,30 @@ class AccountController extends AbstractController
             $entityManager->persist($records);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('edit_account');
+        }
+
+        if($user->getBuildings() === null) {
+            $builds = new Buildings();
+            $builds->setUser($user);
+        } else {
+            $builds = $user->getBuildings();
+        }
+        $formBuilds = $this->createForm(BuildingsType::class, $builds);
+        $formBuilds->handleRequest($request);
+
+        if($formBuilds->isSubmitted() && $formBuilds->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($builds);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('edit_account');
         }
 
         return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
             'formRecords' => $formRecords->createView(),
+            'formBuilds' => $formBuilds->createView(),
             'isMyAccount' => true,
         ]);
     }
