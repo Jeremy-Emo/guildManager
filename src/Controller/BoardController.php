@@ -39,6 +39,7 @@ class BoardController extends AbstractController
             'memberInfos' => $this->getUser()->getMember(),
             'formGuild' => isset($formGuild) ? $formGuild->createView() : null,
             'guildInfos' => $guild ?? null,
+            'isDashboard' => true,
         ]);
     }
 }

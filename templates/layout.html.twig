@@ -6,7 +6,12 @@
 
 {% block body %}
 
-    {% block content %}{% endblock %}
+    {% if app.user %}
+         {% include "nav.html.twig" %}
+    {% endif %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 {% endblock %}
 
 {% block moreJS %}

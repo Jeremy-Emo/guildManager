@@ -12,3 +12,12 @@ require('../scss/_variables.scss');
 require('../scss/app.scss');
 require('../scss/nav.scss');
 require('../scss/my.scss');
+
+
+$(document).ready(function() {
+
+   $('#burger').click(function(){
+      $("#menuDisplayed").toggle();
+   });
+
+});
