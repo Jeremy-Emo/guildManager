@@ -28,7 +28,7 @@ class CreateUserCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Permet la création d\'une guilde')
+            ->setDescription('Permet la création d\'un utilisateur')
             ->addArgument('name', InputArgument::REQUIRED, "Le nom de l'utilisateur")
             ->addArgument('password', InputArgument::REQUIRED, "Le mot de passe de l'utilisateur")
         ;

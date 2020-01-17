@@ -19,6 +19,8 @@ class RecordsType extends AbstractType
             ->add('toah')
             ->add('r4')
             ->add('r5')
+            ->add('bestRTARank')
+            ->add('bestArenaRank')
             ->add('nbSixStars')
             ->add('minSpeed')
         ;

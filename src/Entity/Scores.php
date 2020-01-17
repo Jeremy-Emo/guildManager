@@ -151,6 +151,16 @@ class Scores
      */
     private $minSpeed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rank", inversedBy="rtaRanks")
+     */
+    private $bestRTARank;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rank", inversedBy="arenaRanks")
+     */
+    private $bestArenaRank;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -274,5 +284,34 @@ class Scores
         $this->minSpeed = $minSpeed;
 
         return $this;
+    }
+
+    public function getBestRTARank(): ?Rank
+    {
+        return $this->bestRTARank;
+    }
+
+    public function setBestRTARank(?Rank $bestRTARank): self
+    {
+        $this->bestRTARank = $bestRTARank;
+
+        return $this;
+    }
+
+    public function getBestArenaRank(): ?Rank
+    {
+        return $this->bestArenaRank;
+    }
+
+    public function setBestArenaRank(?Rank $bestArenaRank): self
+    {
+        $this->bestArenaRank = $bestArenaRank;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->calcScores();
     }
 }
