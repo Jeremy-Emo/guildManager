@@ -6,18 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 ma-25-top pa-20 bg-white">
-            {% if memberInfos %}
-                {{ form_start(formGuild) }}
-                    {{ form_label(formGuild.isInGvO) }}
-                    {{ form_widget(formGuild.isInGvO) }}
-                    {{ form_label(formGuild.isInGvG) }}
-                    {{ form_widget(formGuild.isInGvG) }}
-                    <input type="submit" value="Modifier">
-                {{ form_end(formGuild) }}
-            {% else %}
-                <p>Vous ne faites pas partie d'une guilde de l'alliance.</p>
-            {% endif %}
+                {% if memberInfos %}
+                    {{ form_start(formGuild) }}
+                        {{ form_label(formGuild.isInGvO) }}
+                        {{ form_widget(formGuild.isInGvO) }}
+                        {{ form_label(formGuild.isInGvG) }}
+                        {{ form_widget(formGuild.isInGvG) }}
+                        <input type="submit" value="Modifier">
+                    {{ form_end(formGuild) }}
+                {% else %}
+                    <p>Vous ne faites pas partie d'une guilde de l'alliance.</p>
+                {% endif %}
             </div>
+
+            {% if guildInfos %}
+            <div class="col-md-6 ma-25-top pa-20 bg-white">
+                <p>Nom de la guilde : {{ guildInfos.name }}</p>
+                {% if guildInfos.message %}
+                    <p>Message de guilde :</p>
+                    <p>{{ guildInfos.message }}</p>
+                {% endif %}
+                {% if guildInfos.websiteLink %}
+                    <p><a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
+                {% endif %}
+                {% if guildInfos.discordLink %}
+                    <p><a href="{{ guildInfos.websiteLink }}">Discord</a></p>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

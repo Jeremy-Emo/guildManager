@@ -32,10 +32,13 @@ class BoardController extends AbstractController
                 $this->redirectToRoute('index');
             }
 
+            $guild = $this->getUser()->getMember()->getGuild();
+
         }
         return $this->render('board/index.html.twig', [
             'memberInfos' => $this->getUser()->getMember(),
             'formGuild' => isset($formGuild) ? $formGuild->createView() : null,
+            'guildInfos' => $guild ?? null,
         ]);
     }
 }
