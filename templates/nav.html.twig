@@ -6,7 +6,7 @@
     <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
 
     {% if app.user.member and app.user.member.isLeader %}
-
+        <a href="{{ path('guild_management') }}" {% if isGuildManagement is defined %}class="active"{% endif %}>Admin - Comptes</a>
     {% endif %}
 
     {% if app.user.isAdmin %}

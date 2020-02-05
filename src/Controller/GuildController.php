@@ -25,6 +25,7 @@ class GuildController extends AbstractController
 
         return $this->render('guild/index.html.twig', [
             'guild' => $guild,
+            'isGuildManagement' => true,
         ]);
     }
 }
