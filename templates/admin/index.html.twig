@@ -28,7 +28,9 @@
                         <tr>
                             <td>{{ user.username }}</td>
                             <td>{% if user.scores %}{{ user.scores.calcScores() }}{% else %}Aucun score{% endif %}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{ path('admin_edit_account', {'id':user.id}) }}">Modifier</a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

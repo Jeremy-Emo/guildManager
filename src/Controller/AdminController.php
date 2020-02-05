@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Buildings;
+use App\Entity\Scores;
 use App\Entity\User;
+use App\Form\Type\BuildingsType;
 use App\Form\Type\NewUserType;
+use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,6 +58,63 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
             'isAdminAccounts' => true,
             'users' => $users,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/compte/{id}", name="admin_edit_account", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function editAccount(Request $request, int $id) : Response
+    {
+        if(! $this->getUser()->getIsAdmin()) {
+            throw new NotFoundHttpException();
+        }
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        if($user->getScores() === null) {
+            $records = new Scores();
+            $records->setUser($user);
+        } else {
+            $records = $user->getScores();
+        }
+        $formRecords = $this->createForm(RecordsType::class, $records);
+        $formRecords->handleRequest($request);
+
+        if ($formRecords->isSubmitted() && $formRecords->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($records);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_accounts');
+        }
+
+        if($user->getBuildings() === null) {
+            $builds = new Buildings();
+            $builds->setUser($user);
+        } else {
+            $builds = $user->getBuildings();
+        }
+        $formBuilds = $this->createForm(BuildingsType::class, $builds);
+        $formBuilds->handleRequest($request);
+
+        if($formBuilds->isSubmitted() && $formBuilds->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($builds);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_accounts');
+        }
+
+        return $this->render('admin/editAccount.html.twig', [
+            'formRecords' => $formRecords->createView(),
+            'formBuilds' => $formBuilds->createView(),
+            'user' => $user,
+            'isAdminAccounts' => true,
         ]);
     }
 }
