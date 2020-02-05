@@ -117,4 +117,26 @@ class AdminController extends AbstractController
             'isAdminAccounts' => true,
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/supprimer-compte/{id}", name="admin_delete_account", methods={"GET"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function deleteAccount(Request $request, int $id) : Response
+    {
+        if(! $this->getUser()->getIsAdmin()) {
+            throw new NotFoundHttpException();
+        }
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_accounts');
+    }
 }
