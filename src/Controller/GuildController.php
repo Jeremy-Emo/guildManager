@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +24,12 @@ class GuildController extends AbstractController
 
         $guild = $this->getUser()->getMember()->getGuild();
 
+        $members = $this->getDoctrine()->getRepository(User::class)->getMembers($guild);
+
         return $this->render('guild/index.html.twig', [
             'guild' => $guild,
             'isGuildManagement' => true,
+            'members' => $members,
         ]);
     }
 }

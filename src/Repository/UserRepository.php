@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Guild;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -34,6 +35,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    public function getMembers(Guild $guild)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+            ->join('u.member', 'm')
+            ->join('m.guild', 'g')
+            ->orderBy('u.username', 'ASC')
+            ->where('g.id = :id')
+            ->setParameter('id', $guild->getId())
+        ;
+        return $qb->getQuery()->execute();
     }
 
     // /**

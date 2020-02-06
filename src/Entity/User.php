@@ -25,6 +25,11 @@ class User implements UserInterface
         }
     }
 
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

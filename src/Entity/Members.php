@@ -30,6 +30,11 @@ class Members
         }
     }
 
+    public function __toString()
+    {
+        return $this->getUser()->getUsername();
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
