@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Gestion de guilde{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 ma-25-top">
+                <div class="pa-20 bg-white">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Enregistrer">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

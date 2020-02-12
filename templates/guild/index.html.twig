@@ -2,12 +2,20 @@
 
 {% block page_title %}Gestion de guilde{% endblock %}
 
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('guild') }}
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-9 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <a href="{{ path('guild_manage_infos') }}">Modifier les informations de guilde</a>
+                    <a href="{{ path('guild_manage_infos') }}" class="ma-25-top ma-25-bottom block f-right">Modifier les informations de guilde</a>
+                    {% if needScores %}
+                        <a href="{{ path('guild_register_gvg_scores') }}" class="ma-25-top ma-25-bottom block f-left">Enregistrer les scores de GvG</a>
+                    {% endif %}
                     <table class="table">
                         <thead>
                         <tr>

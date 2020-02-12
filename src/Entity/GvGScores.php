@@ -3,12 +3,28 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GvGScoresRepository")
+ * @HasLifecycleCallbacks
  */
 class GvGScores
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if ($this->getYear() === null) {
+            $this->setYear(date("Y"));
+        }
+        if ($this->getSemaine() === null) {
+            $this->setSemaine(date("W"));
+        }
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,7 +38,7 @@ class GvGScores
     private $user;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $semaine;
 
@@ -30,6 +46,11 @@ class GvGScores
      * @ORM\Column(type="integer", nullable=true)
      */
     private $attackNumber;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $year;
 
     public function getId(): ?int
     {
@@ -48,12 +69,12 @@ class GvGScores
         return $this;
     }
 
-    public function getSemaine(): ?\DateTimeInterface
+    public function getSemaine(): ?int
     {
         return $this->semaine;
     }
 
-    public function setSemaine(\DateTimeInterface $semaine): self
+    public function setSemaine(int $semaine): self
     {
         $this->semaine = $semaine;
 
@@ -68,6 +89,18 @@ class GvGScores
     public function setAttackNumber(?int $attackNumber): self
     {
         $this->attackNumber = $attackNumber;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+
+    public function setYear(?int $year): self
+    {
+        $this->year = $year;
 
         return $this;
     }
