@@ -127,4 +127,24 @@ class GuildController extends AbstractController
             'form' => $formFinal->createView(),
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/guilde/membre/{id}", name="guild_member_info", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function viewMember(Request $request, int $id) : Response
+    {
+        if($this->getUser()->getMember() === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $member = $this->getDoctrine()->getRepository(Members::class)->find($id);
+
+        return $this->render('guild/viewMember.html.twig', [
+            'member' => $member
+        ]);
+    }
 }

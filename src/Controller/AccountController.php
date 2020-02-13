@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Buildings;
 use App\Entity\Scores;
 use App\Form\Type\BuildingsType;
-use App\Form\Type\EditAccountType;
+use App\Form\Type\EditAccountInfosType;
+use App\Form\Type\EditPasswordType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,7 @@ class AccountController extends AbstractController
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(EditAccountType::class, $user);
+        $form = $this->createForm(EditPasswordType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -38,6 +39,17 @@ class AccountController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('edit_account');
+        }
+
+        $formAccount = $this->createForm(EditAccountInfosType::class, $user);
+        $formAccount->handleRequest($request);
+
+        if ($formAccount->isSubmitted() && $formAccount->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -81,6 +93,7 @@ class AccountController extends AbstractController
 
         return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
+            'formAccount' => $formAccount->createView(),
             'formRecords' => $formRecords->createView(),
             'formBuilds' => $formBuilds->createView(),
             'isMyAccount' => true,

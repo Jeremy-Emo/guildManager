@@ -27,7 +27,7 @@
                         <tbody>
                         {% for member in members %}
                             <tr>
-                                <td>{{ member.username }}</td>
+                                <td><a href="{{ path('guild_member_info', {'id':member.id}) }}">{{ member.username }}</a></td>
                                 <td>{{ member.member.isInGvG ? 'Oui' : 'Non' }}</td>
                                 <td>{{ member.member.isInGvO ? 'Oui' : 'Non' }}</td>
                             </tr>

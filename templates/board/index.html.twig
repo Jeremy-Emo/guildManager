@@ -30,7 +30,7 @@
                             <p>{{ guildInfos.message }}</p>
                         {% endif %}
                         {% if guildInfos.websiteLink %}
-                            <p><a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
+                            <p>Site web : <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
                         {% endif %}
                         {% if guildInfos.discordLink %}
                             <p><a href="{{ guildInfos.websiteLink }}">Discord</a></p>
@@ -41,10 +41,6 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-
         </div>
     </div>
 {% endblock %}
