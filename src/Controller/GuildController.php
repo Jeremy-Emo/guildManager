@@ -9,6 +9,7 @@ use App\Form\Type\GuildInfosType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -137,14 +138,60 @@ class GuildController extends AbstractController
      */
     public function viewMember(Request $request, int $id) : Response
     {
-        if($this->getUser()->getMember() === null) {
+        $member = $this->getDoctrine()->getRepository(Members::class)->findOneBy([
+            'user' => $this->getDoctrine()->getRepository(User::class)->find($id)
+        ]);
+
+        if($this->getUser()->getMember() === null || $member === null) {
             throw new NotFoundHttpException();
         }
-
-        $member = $this->getDoctrine()->getRepository(Members::class)->find($id);
 
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/guilde/contenu/changer_options", name="guild_member_change_options", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function changeOptions(Request $request) : Response
+    {
+        if($request->isXmlHttpRequest()){
+
+            $id = $request->request->get('id');
+            $type = $request->request->get('type');
+
+            if($id === null || $type === null) {
+                throw new NotFoundHttpException();
+            }
+            $user = $this->getDoctrine()->getRepository(Members::class)->find($id);
+
+            switch($type){
+                case 'gvg':
+                    $user->setIsInGvG(!$user->getIsInGvG());
+                    $text = $user->getIsInGvG() ? 'Oui' : 'Non';
+                    break;
+                case 'gvo':
+                    $user->setIsInGvO(!$user->getIsInGvO());
+                    $text = $user->getIsInGvO() ? 'Oui' : 'Non';
+                    break;
+                default:
+                    throw new NotFoundHttpException();
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return new JsonResponse([
+                "success" => true,
+                "txt" => $text,
+            ]);
+        } else {
+            throw new NotFoundHttpException();
+        }
     }
 }
