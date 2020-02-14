@@ -42,12 +42,47 @@
         <div class="row">
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-
+                    <h2>Bâtiments</h2>
+                    {% if member.user.buildings %}
+                    <p>Arène :</p>
+                    <ul>
+                        <li>ATK : {{ member.user.buildings.atk }} / 10</li>
+                        <li>DEF : {{ member.user.buildings.def }} / 10</li>
+                        <li>VIT : {{ member.user.buildings.spd }} / 10</li>
+                        <li>PV : {{ member.user.buildings.pv }} / 10</li>
+                        <li>DCC : {{ member.user.buildings.dcc }} / 10</li>
+                        <li>Vent : {{ member.user.buildings.wind }} / 10</li>
+                        <li>Feu : {{ member.user.buildings.fire }} / 10</li>
+                        <li>Eau : {{ member.user.buildings.water }} / 10</li>
+                        <li>Light : {{ member.user.buildings.light }} / 10</li>
+                        <li>Dark : {{ member.user.buildings.dark }} / 10</li>
+                    </ul>
+                    <p>Guilde :</p>
+                    <ul>
+                        <li>ATK : {{ member.user.buildings.gvgAtk }} / 10</li>
+                        <li>DEF : {{ member.user.buildings.gvgDef }} / 10</li>
+                        <li>DCC : {{ member.user.buildings.gvgDcc }} / 10</li>
+                        <li>PV : {{ member.user.buildings.gvgPv }} / 10</li>
+                    </ul>
+                    {% else %}
+                    <p>Non renseignés</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-
+                    <h2>Records</h2>
+                    {% if member.user.scores %}
+                    <p class="ma-25-top">GB10 : {{ member.user.scores.gb10 }} s.</p>
+                    <p>DB10 : {{ member.user.scores.db10 }} s.</p>
+                    <p>NB10 : {{ member.user.scores.nb10 }} s.</p>
+                    <p>ToA : {{ member.user.scores.toa }} étage(s)</p>
+                    <p>ToAH : {{ member.user.scores.toah }} étage(s)</p>
+                    <p>R4 : {{ member.user.scores.r4 ? 'Oui' : 'Non' }}</p>
+                    <p>R5 : {{ member.user.scores.r5 ? 'Oui' : 'Non' }}</p>
+                    {% else %}
+                        <p>Non renseignés</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
