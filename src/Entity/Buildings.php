@@ -71,6 +71,26 @@ class Buildings
      */
     private $spd;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvg_pv;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvg_dcc;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvg_def;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvg_atk;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -204,6 +224,54 @@ class Buildings
     public function setSpd(?int $spd): self
     {
         $this->spd = $spd;
+
+        return $this;
+    }
+
+    public function getGvgPv(): ?int
+    {
+        return $this->gvg_pv;
+    }
+
+    public function setGvgPv(?int $gvg_pv): self
+    {
+        $this->gvg_pv = $gvg_pv;
+
+        return $this;
+    }
+
+    public function getGvgDcc(): ?int
+    {
+        return $this->gvg_dcc;
+    }
+
+    public function setGvgDcc(?int $gvg_dcc): self
+    {
+        $this->gvg_dcc = $gvg_dcc;
+
+        return $this;
+    }
+
+    public function getGvgDef(): ?int
+    {
+        return $this->gvg_def;
+    }
+
+    public function setGvgDef(?int $gvg_def): self
+    {
+        $this->gvg_def = $gvg_def;
+
+        return $this;
+    }
+
+    public function getGvgAtk(): ?int
+    {
+        return $this->gvg_atk;
+    }
+
+    public function setGvgAtk(?int $gvg_atk): self
+    {
+        $this->gvg_atk = $gvg_atk;
 
         return $this;
     }

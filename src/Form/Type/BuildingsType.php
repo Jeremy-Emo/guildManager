@@ -63,6 +63,26 @@ class BuildingsType extends AbstractType
                     'max' => 10
                 ]
             ])
+            ->add('gvg_atk', IntegerType::class, [
+                'attr' => [
+                    'max' => 10
+                ]
+            ])
+            ->add('gvg_def', IntegerType::class, [
+                'attr' => [
+                    'max' => 10
+                ]
+            ])
+            ->add('gvg_dcc', IntegerType::class, [
+                'attr' => [
+                    'max' => 10
+                ]
+            ])
+            ->add('gvg_pv', IntegerType::class, [
+                'attr' => [
+                    'max' => 10
+                ]
+            ])
         ;
     }
 
