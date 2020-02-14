@@ -2,6 +2,11 @@
 
 {% block page_title %}Profil de {{ member.user.username }}{% endblock %}
 
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('guild') }}
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -19,9 +24,30 @@
                         {% endif %}
                     </div>
                     <div class="col-md-6 border-left">
-                        <p>GVG : <span class="roll-gvg-txt">{{ member.isInGvG ? 'Oui' : 'Non' }}</span> <i class="fas fa-sync-alt roll-gvg" data-id="{{ member.id }}"></i></p>
-                        <p>GVO : <span class="roll-gvo-txt">{{ member.isInGvO ? 'Oui' : 'Non' }}</span> <i class="fas fa-sync-alt roll-gvo" data-id="{{ member.id }}"></i></p>
+                        <p>GVG : <span class="roll-gvg-txt">{{ member.isInGvG ? 'Oui' : 'Non' }}</span>{% if leader %} <i class="fas fa-sync-alt roll-gvg" data-id="{{ member.id }}"></i>{% endif %}</p>
+                        <p>GVO : <span class="roll-gvo-txt">{{ member.isInGvO ? 'Oui' : 'Non' }}</span>{% if leader %} <i class="fas fa-sync-alt roll-gvo" data-id="{{ member.id }}"></i>{% endif %}</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        {% if leader %}
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+
+                </div>
+            </div>
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+
                 </div>
             </div>
         </div>
