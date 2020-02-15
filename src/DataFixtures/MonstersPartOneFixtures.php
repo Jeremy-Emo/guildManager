@@ -192,11 +192,19 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Zinc',
                 'img' => 'zinc',
             ],
+            [
+                'name' => 'Janssen',
+                'img' => 'janssen',
+            ],
+            [
+                'name' => 'Kumae',
+                'img' => 'kumae',
+            ],
         ];
 
-        foreach ($threeStars as $treeStar) {
+        foreach ($threeStars as $threeStar) {
             $mon = new Monster();
-            $mon->setName($treeStar['name'])->setImage('/img/3nat/'.$treeStar['img'].'.png');
+            $mon->setName($threeStar['name'])->setImage('/img/3nat/'.$threeStar['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -672,6 +680,38 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Emily',
                 'img' => 'emily',
+            ],
+            [
+                'name' => 'Aquila',
+                'img' => 'aquila',
+            ],
+            [
+                'name' => 'Avaris',
+                'img' => 'avaris',
+            ],
+            [
+                'name' => 'Icasha',
+                'img' => 'icasha',
+            ],
+            [
+                'name' => 'Julien',
+                'img' => 'julien',
+            ],
+            [
+                'name' => 'Natalie',
+                'img' => 'natalie',
+            ],
+            [
+                'name' => 'Nisha',
+                'img' => 'nisha',
+            ],
+            [
+                'name' => 'Soha',
+                'img' => 'soha',
+            ],
+            [
+                'name' => 'Tanya',
+                'img' => 'tanya',
             ],
         ];
 
@@ -1181,6 +1221,10 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Xiana',
                 'img' => 'xiana',
+            ],
+            [
+                'name' => 'Thebae',
+                'img' => 'thebae',
             ],
         ];
 
