@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
-
+                    <canvas id="stats"></canvas>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <div class="pa-20 bg-white">
                     <h2>Bâtiments</h2>
                     {% if member.user.buildings %}
-                    <p>Arène :</p>
+                    <p class="ma-25-top">Arène :</p>
                     <ul>
                         <li>ATK : {{ member.user.buildings.atk }} / 10</li>
                         <li>DEF : {{ member.user.buildings.def }} / 10</li>
@@ -65,7 +65,7 @@
                         <li>PV : {{ member.user.buildings.gvgPv }} / 10</li>
                     </ul>
                     {% else %}
-                    <p>Non renseignés</p>
+                    <p class="ma-25-top">Non renseignés</p>
                     {% endif %}
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <p>R4 : {{ member.user.scores.r4 ? 'Oui' : 'Non' }}</p>
                     <p>R5 : {{ member.user.scores.r5 ? 'Oui' : 'Non' }}</p>
                     {% else %}
-                        <p>Non renseignés</p>
+                        <p class="ma-25-top">Non renseignés</p>
                     {% endif %}
                 </div>
             </div>
@@ -92,4 +92,29 @@
 {% block moreJS %}
     {{ parent() }}
     {{ encore_entry_script_tags('guild') }}
+    {% if leader %}
+        <script>
+            let ctx = document.getElementById('stats');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for act in activity %}"Semaine {{ act.semaine }}"{% if not loop.last %}, {% endif %}{% endfor %}],
+                    datasets: [{
+                        label: 'Activité sur les dernières semaines de participation',
+                        data: [{% for act in activity %}{{ act.attackNumber }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    {% endif %}
 {% endblock %}

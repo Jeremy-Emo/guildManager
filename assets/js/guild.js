@@ -1,6 +1,8 @@
 require('../scss/guild.scss');
 const $ = require('jquery');
 
+import Chart from 'chart.js';
+
 let userId;
 
 $(document).ready(function(){
@@ -12,6 +14,7 @@ $(document).ready(function(){
         userId = $(this).attr('data-id');
         roll(false);
     });
+
 });
 
 function roll(isGvG){

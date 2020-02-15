@@ -138,17 +138,26 @@ class GuildController extends AbstractController
      */
     public function viewMember(Request $request, int $id) : Response
     {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $member = $this->getDoctrine()->getRepository(Members::class)->findOneBy([
-            'user' => $this->getDoctrine()->getRepository(User::class)->find($id)
+            'user' => $user
         ]);
 
         if($this->getUser()->getMember() === null || $member === null) {
             throw new NotFoundHttpException();
         }
 
+        $activity = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
+            'user' => $member,
+            'year' => date("Y"),
+        ], [
+            'semaine' => 'DESC'
+        ], 5);
+
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member,
             'leader' => $this->getUser()->getMember()->getIsLeader(),
+            'activity' => $activity,
         ]);
     }
 
