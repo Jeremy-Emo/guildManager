@@ -10,7 +10,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-9 ma-25-top">
+            <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <a href="{{ path('guild_manage_infos') }}" class="ma-25-top ma-25-bottom block f-right">Modifier les informations de guilde</a>
                     {% if needScores %}
@@ -20,6 +20,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Nom</th>
+                            <th scope="col">Niveau</th>
                             <th scope="col">GvG</th>
                             <th scope="col">GvO</th>
                         </tr>
@@ -28,6 +29,7 @@
                         {% for member in members %}
                             <tr>
                                 <td><a href="{{ path('guild_member_info', {'id': member.id}) }}">{{ member.username }}</a></td>
+                                <td>{% if member.scores %}{{ member.scores.calcScores() }}{% else %}Aucun score{% endif %}</td>
                                 <td>{{ member.member.isInGvG ? 'Oui' : 'Non' }}</td>
                                 <td>{{ member.member.isInGvO ? 'Oui' : 'Non' }}</td>
                             </tr>

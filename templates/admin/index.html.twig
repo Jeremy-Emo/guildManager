@@ -19,7 +19,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Nom</th>
-                        <th scope="col">Niveau</th>
+                        <th scope="col">Dernière connexion</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -27,7 +27,7 @@
                     {% for user in users %}
                         <tr>
                             <td><a href="{{ path('guild_member_info', {'id': user.id}) }}">{{ user.username }}</a></td>
-                            <td>{% if user.scores %}{{ user.scores.calcScores() }}{% else %}Aucun score{% endif %}</td>
+                            <td>{{ user.lastVisitAt|date("d/m/Y") }}</td>
                             <td>
                                 <a href="{{ path('admin_edit_account', {'id':user.id}) }}">Modifier</a><br>
                                 <a href="{{ path('admin_delete_account', {'id':user.id}) }}">Supprimer</a>
