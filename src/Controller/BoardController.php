@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Form\Type\GuildContentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,11 +36,15 @@ class BoardController extends AbstractController
             $guild = $this->getUser()->getMember()->getGuild();
 
         }
+
+        $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
+
         return $this->render('board/index.html.twig', [
             'memberInfos' => $this->getUser()->getMember(),
             'formGuild' => isset($formGuild) ? $formGuild->createView() : null,
             'guildInfos' => $guild ?? null,
             'isDashboard' => true,
+            'events' => $events,
         ]);
     }
 }

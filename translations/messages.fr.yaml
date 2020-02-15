@@ -32,3 +32,9 @@ Gvg def : GVG - Défense
 Gvg dcc : GVG - Dégâts critiques
 Gvg pv : GVG - PV
 Lien Swarfarm : Lien Swarfarm
+Name : Nom
+Description : Description
+Begin date : Date de début
+Year : Année
+Month : Mois
+Day : Jour

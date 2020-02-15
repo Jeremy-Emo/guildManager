@@ -42,5 +42,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Evènements en cours :</h2>
+                    {% for event in events %}
+                        <p>- <a href="{{ path('show_event', {'id':event.id}) }}">{{ event.name }}</a></p>
+                    {% endfor %}
+                    <p class="ma-25-top"><a href="{{ path('new_event') }}">Créer un nouvel event</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

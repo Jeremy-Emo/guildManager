@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Event : {{ event.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-10-bottom">Evènement : {{ event.name }}</h2>
+                    <p class="ma-10-bottom">Créé par {{ event.owner.username }}</p>
+                    <p>{{ event.description }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-25-bottom">Inscrits :</h2>
+                    {% for inscrit in event.inscrits %}
+                        <p>- {{ inscrit.username }}</p>
+                    {% endfor %}
+                    {% if app.user not in event.inscrits %}
+                        <p class="ma-25-top"><a href="{{ path('register_event', {'id':event.id}) }}">S'inscrire</a></p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if event.owner == app.user %}
+            <div class="col-md-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <p><a href="{{ path('delete_event', {'id':event.id}) }}">Clôturer l'évènement</a></p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
