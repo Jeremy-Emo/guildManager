@@ -120,6 +120,30 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Tracteur',
                 'img' => 'tracteur',
             ],
+            [
+                'name' => 'Kahli',
+                'img' => 'kahli',
+            ],
+            [
+                'name' => 'Mantura',
+                'img' => 'mantura',
+            ],
+            [
+                'name' => 'Thrain',
+                'img' => 'thrain',
+            ],
+            [
+                'name' => 'Basalt',
+                'img' => 'basalt',
+            ],
+            [
+                'name' => 'Jubelle',
+                'img' => 'jubelle',
+            ],
+            [
+                'name' => 'Teon',
+                'img' => 'teon',
+            ],
         ];
 
         foreach ($threeStars as $treeStar) {
@@ -412,6 +436,58 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Yen',
                 'img' => 'yen',
+            ],
+            [
+                'name' => 'Refroidissement',
+                'img' => 'refroidissement',
+            ],
+            [
+                'name' => 'Covenant',
+                'img' => 'covenant',
+            ],
+            [
+                'name' => 'Deva',
+                'img' => 'deva',
+            ],
+            [
+                'name' => 'Olivia',
+                'img' => 'olivia',
+            ],
+            [
+                'name' => 'Zenobia',
+                'img' => 'zenobia',
+            ],
+            [
+                'name' => 'Izaria',
+                'img' => 'izaria',
+            ],
+            [
+                'name' => 'Julie',
+                'img' => 'julie',
+            ],
+            [
+                'name' => 'Betta',
+                'img' => 'betta',
+            ],
+            [
+                'name' => 'Isael',
+                'img' => 'isael',
+            ],
+            [
+                'name' => 'Kamiya',
+                'img' => 'kamiya',
+            ],
+            [
+                'name' => 'Malite',
+                'img' => 'malite',
+            ],
+            [
+                'name' => 'Molly',
+                'img' => 'molly',
+            ],
+            [
+                'name' => 'Platy',
+                'img' => 'platy',
             ],
         ];
 
@@ -733,6 +809,18 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Bolverk',
                 'img' => 'bolverk',
+            ],
+            [
+                'name' => 'Alicia',
+                'img' => 'alicia',
+            ],
+            [
+                'name' => 'Zeratu',
+                'img' => 'zeratu',
+            ],
+            [
+                'name' => 'Celia',
+                'img' => 'celia',
             ],
         ];
 
