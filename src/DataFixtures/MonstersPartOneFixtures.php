@@ -144,6 +144,22 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Teon',
                 'img' => 'teon',
             ],
+            [
+                'name' => 'Adrian',
+                'img' => 'adrian',
+            ],
+            [
+                'name' => 'Glinodon',
+                'img' => 'glinodon',
+            ],
+            [
+                'name' => 'Hellea',
+                'img' => 'hellea',
+            ],
+            [
+                'name' => 'Kabilla',
+                'img' => 'kabilla',
+            ],
         ];
 
         foreach ($threeStars as $treeStar) {
@@ -489,6 +505,50 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Platy',
                 'img' => 'platy',
             ],
+            [
+                'name' => 'Einheri',
+                'img' => 'einheri',
+            ],
+            [
+                'name' => 'Arang',
+                'img' => 'arang',
+            ],
+            [
+                'name' => 'Borsalino',
+                'img' => 'borsalino',
+            ],
+            [
+                'name' => 'Briand',
+                'img' => 'briand',
+            ],
+            [
+                'name' => 'Emma',
+                'img' => 'emma',
+            ],
+            [
+                'name' => 'Hwahee',
+                'img' => 'hwahee',
+            ],
+            [
+                'name' => 'Isabelle',
+                'img' => 'isabelle',
+            ],
+            [
+                'name' => 'Malaka',
+                'img' => 'malaka',
+            ],
+            [
+                'name' => 'Shihwa',
+                'img' => 'shihwa',
+            ],
+            [
+                'name' => 'Taurus',
+                'img' => 'taurus',
+            ],
+            [
+                'name' => 'Tetra',
+                'img' => 'tetra',
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {
@@ -821,6 +881,14 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Celia',
                 'img' => 'celia',
+            ],
+            [
+                'name' => 'Triton',
+                'img' => 'triton',
+            ],
+            [
+                'name' => 'Sekhmet',
+                'img' => 'sekhmet',
             ],
         ];
 
