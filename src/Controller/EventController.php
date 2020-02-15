@@ -88,4 +88,23 @@ class EventController extends AbstractController
             'id' => $id,
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/desinscription-event/{id}", name="unregister_event", methods={"GET"})
+     * @param int $id
+     * @return Response
+     */
+    public function unregister(int $id) : Response
+    {
+        $event = $this->getDoctrine()->getRepository(Event::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $event->removeInscrit($this->getUser());
+        $em->persist($event);
+        $em->flush();
+
+        return $this->redirectToRoute('show_event', [
+            'id' => $id,
+        ]);
+    }
 }

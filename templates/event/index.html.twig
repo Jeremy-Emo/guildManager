@@ -21,6 +21,8 @@
                     {% endfor %}
                     {% if app.user not in event.inscrits %}
                         <p class="ma-25-top"><a href="{{ path('register_event', {'id':event.id}) }}">S'inscrire</a></p>
+                    {% else %}
+                        <p class="ma-25-top"><a href="{{ path('unregister_event', {'id':event.id}) }}">Se désinscrire</a></p>
                     {% endif %}
                 </div>
             </div>
