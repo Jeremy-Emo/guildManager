@@ -51,7 +51,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($twoStars as $twoStar) {
             $mon = new Monster();
-            $mon->setName($twoStar['name'])->setImage('/img/2nat/'.$twoStar['image'].'.png');
+            $mon->setName($twoStar['name'])->setImage('/img/2nat/'.$twoStar['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -164,7 +164,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($threeStars as $treeStar) {
             $mon = new Monster();
-            $mon->setName($treeStar['name'])->setImage('/img/3nat/'.$treeStar['image'].'.png');
+            $mon->setName($treeStar['name'])->setImage('/img/3nat/'.$treeStar['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -553,7 +553,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($fourStars as $fourStar) {
             $mon = new Monster();
-            $mon->setName($fourStar['name'])->setImage('/img/4nat/'.$fourStar['image'].'.png');
+            $mon->setName($fourStar['name'])->setImage('/img/4nat/'.$fourStar['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -894,7 +894,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($fiveStars as $fiveStar) {
             $mon = new Monster();
-            $mon->setName($fiveStar['name'])->setImage('/img/5nat/'.$fiveStar['image'].'.png');
+            $mon->setName($fiveStar['name'])->setImage('/img/5nat/'.$fiveStar['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -999,7 +999,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($secondAwakes as $secondAwake) {
             $mon = new Monster();
-            $mon->setName($secondAwake['name'].' 2A')->setImage('/img/2a/'.$secondAwake['image'].'.png');
+            $mon->setName($secondAwake['name'].' 2A')->setImage('/img/2a/'.$secondAwake['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -1028,7 +1028,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($homies as $homie) {
             $mon = new Monster();
-            $mon->setName('Homunculus ' . $homie['name'])->setImage('/img/homie/'.$twoStar['image'].'.png');
+            $mon->setName('Homunculus ' . $homie['name'])->setImage('/img/homie/'.$homie['img'].'.png');
             $manager->persist($mon);
         }
 
@@ -1038,6 +1038,6 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['toProd'];
+        return ['toProd', 'monsters'];
     }
 }
