@@ -47,6 +47,10 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Taru',
                 'img' => 'taru',
             ],
+            [
+                'name' => 'Shumar',
+                'img' => 'shumar',
+            ],
         ];
 
         foreach ($twoStars as $twoStar) {
@@ -159,6 +163,34 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Kabilla',
                 'img' => 'kabilla',
+            ],
+            [
+                'name' => 'Wayne',
+                'img' => 'wayne',
+            ],
+            [
+                'name' => 'Randy',
+                'img' => 'randy',
+            ],
+            [
+                'name' => 'Robot',
+                'img' => 'robot',
+            ],
+            [
+                'name' => 'Foreur',
+                'img' => 'foreur',
+            ],
+            [
+                'name' => 'Tien Qin',
+                'img' => 'tienqin',
+            ],
+            [
+                'name' => 'Dona',
+                'img' => 'dona',
+            ],
+            [
+                'name' => 'Zinc',
+                'img' => 'zinc',
             ],
         ];
 
@@ -548,6 +580,86 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Tetra',
                 'img' => 'tetra',
+            ],
+            [
+                'name' => 'Luna',
+                'img' => 'luna',
+            ],
+            [
+                'name' => 'Karl',
+                'img' => 'karl',
+            ],
+            [
+                'name' => 'Sonnet',
+                'img' => 'sonnet',
+            ],
+            [
+                'name' => 'Jean',
+                'img' => 'jean',
+            ],
+            [
+                'name' => 'Brumeux',
+                'img' => 'brumeux',
+            ],
+            [
+                'name' => 'Atenai',
+                'img' => 'atenai',
+            ],
+            [
+                'name' => 'Mihael',
+                'img' => 'mihael',
+            ],
+            [
+                'name' => 'Korona',
+                'img' => 'korona',
+            ],
+            [
+                'name' => 'Ludo',
+                'img' => 'ludo',
+            ],
+            [
+                'name' => 'Guillaume',
+                'img' => 'guillaume',
+            ],
+            [
+                'name' => 'Aschubel',
+                'img' => 'aschubel',
+            ],
+            [
+                'name' => 'Isillen',
+                'img' => 'isillen',
+            ],
+            [
+                'name' => 'Eredas',
+                'img' => 'eredas',
+            ],
+            [
+                'name' => 'Figaro',
+                'img' => 'figaro',
+            ],
+            [
+                'name' => 'Shimitae',
+                'img' => 'shimitae',
+            ],
+            [
+                'name' => 'Raviti',
+                'img' => 'raviti',
+            ],
+            [
+                'name' => 'Orochi',
+                'img' => 'orochi',
+            ],
+            [
+                'name' => 'Ran',
+                'img' => 'ran',
+            ],
+            [
+                'name' => 'Louis',
+                'img' => 'louis',
+            ],
+            [
+                'name' => 'Iunu',
+                'img' => 'iunu',
             ],
         ];
 
