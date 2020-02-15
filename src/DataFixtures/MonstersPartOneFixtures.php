@@ -397,6 +397,22 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Xiao Lin',
                 'img' => 'xiaolin',
             ],
+            [
+                'name' => 'Dias',
+                'img' => 'dias',
+            ],
+            [
+                'name' => 'Clara',
+                'img' => 'clara',
+            ],
+            [
+                'name' => 'Arnold',
+                'img' => 'arnold',
+            ],
+            [
+                'name' => 'Yen',
+                'img' => 'yen',
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {
@@ -710,6 +726,14 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Zaiross',
                 'img' => 'zaiross',
             ],
+            [
+                'name' => 'Wedjat',
+                'img' => 'wedjat',
+            ],
+            [
+                'name' => 'Bolverk',
+                'img' => 'bolverk',
+            ],
         ];
 
         foreach ($fiveStars as $fiveStar) {
@@ -820,6 +844,35 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
         foreach ($secondAwakes as $secondAwake) {
             $mon = new Monster();
             $mon->setName($secondAwake['name'].' 2A')->setImage('/img/2a/'.$secondAwake['image'].'.png');
+            $manager->persist($mon);
+        }
+
+        $homies = [
+            [
+                'name' => 'Eau',
+                'img' => 'water',
+            ],
+            [
+                'name' => 'Feu',
+                'img' => 'fire',
+            ],
+            [
+                'name' => 'Vent',
+                'img' => 'wind',
+            ],
+            [
+                'name' => 'Light',
+                'img' => 'light',
+            ],
+            [
+                'name' => 'Dark',
+                'img' => 'dark',
+            ],
+        ];
+
+        foreach ($homies as $homie) {
+            $mon = new Monster();
+            $mon->setName('Homunculus ' . $homie['name'])->setImage('/img/homie/'.$twoStar['image'].'.png');
             $manager->persist($mon);
         }
 
