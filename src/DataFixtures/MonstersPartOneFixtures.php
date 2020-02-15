@@ -661,6 +661,18 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Iunu',
                 'img' => 'iunu',
             ],
+            [
+                'name' => 'Bailey',
+                'img' => 'bailey',
+            ],
+            [
+                'name' => 'Belita',
+                'img' => 'belita',
+            ],
+            [
+                'name' => 'Emily',
+                'img' => 'emily',
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {
@@ -1049,6 +1061,62 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Zerath',
                 'img' => 'zerath',
+            ],
+            [
+                'name' => 'Xing Zhe',
+                'img' => 'xingzhe',
+            ],
+            [
+                'name' => 'Lucifer',
+                'img' => 'lucifer',
+            ],
+            [
+                'name' => 'Bella',
+                'img' => 'bella',
+            ],
+            [
+                'name' => 'Christina',
+                'img' => 'christina',
+            ],
+            [
+                'name' => 'Bael',
+                'img' => 'bael',
+            ],
+            [
+                'name' => 'Belial',
+                'img' => 'belial',
+            ],
+            [
+                'name' => 'Belzébuth',
+                'img' => 'belzebuth',
+            ],
+            [
+                'name' => 'Abellio',
+                'img' => 'abellio',
+            ],
+            [
+                'name' => 'Artamiel',
+                'img' => 'artamiel',
+            ],
+            [
+                'name' => 'Asima',
+                'img' => 'asima',
+            ],
+            [
+                'name' => 'Craka',
+                'img' => 'craka',
+            ],
+            [
+                'name' => 'Fermion',
+                'img' => 'fermion',
+            ],
+            [
+                'name' => 'Pater',
+                'img' => 'pater',
+            ],
+            [
+                'name' => 'Valantis',
+                'img' => 'valantis',
             ],
         ];
 
