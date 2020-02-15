@@ -13,6 +13,9 @@
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Profil de <strong>{{ member.user.username }}</strong></h2>
+                    {% if app.user.isAdmin %}
+                        <p>Dernière connexion : {{ member.user.lastVisitAt|date("d/m/Y") }}</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-12 ma-25-top">
