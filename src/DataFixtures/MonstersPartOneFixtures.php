@@ -1118,6 +1118,70 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Valantis',
                 'img' => 'valantis',
             ],
+            [
+                'name' => 'Geldnir',
+                'img' => 'geldnir',
+            ],
+            [
+                'name' => 'Giana',
+                'img' => 'giana',
+            ],
+            [
+                'name' => 'Hathor',
+                'img' => 'hathor',
+            ],
+            [
+                'name' => 'Isis',
+                'img' => 'isis',
+            ],
+            [
+                'name' => 'Laima',
+                'img' => 'laima',
+            ],
+            [
+                'name' => 'Mannanan',
+                'img' => 'mannanan',
+            ],
+            [
+                'name' => 'Masha',
+                'img' => 'masha',
+            ],
+            [
+                'name' => 'Narsha',
+                'img' => 'narsha',
+            ],
+            [
+                'name' => 'Nephthys',
+                'img' => 'nephthys',
+            ],
+            [
+                'name' => 'Nigong',
+                'img' => 'nigong',
+            ],
+            [
+                'name' => 'Obéron',
+                'img' => 'oberon',
+            ],
+            [
+                'name' => 'Pontos',
+                'img' => 'pontos',
+            ],
+            [
+                'name' => 'Rahul',
+                'img' => 'rahul',
+            ],
+            [
+                'name' => 'Son Zhang Lao',
+                'img' => 'son_zhang_lao',
+            ],
+            [
+                'name' => 'Vivachel',
+                'img' => 'vivachel',
+            ],
+            [
+                'name' => 'Xiana',
+                'img' => 'xiana',
+            ],
         ];
 
         foreach ($fiveStars as $fiveStar) {
