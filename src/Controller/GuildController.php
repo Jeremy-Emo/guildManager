@@ -156,7 +156,7 @@ class GuildController extends AbstractController
 
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member,
-            'leader' => $this->getUser()->getMember()->getIsLeader(),
+            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
             'activity' => $activity,
         ]);
     }
