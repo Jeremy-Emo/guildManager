@@ -38,6 +38,11 @@ class Event
      */
     private $inscrits;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="myEvents")
+     */
+    private $owner;
+
     public function __construct()
     {
         $this->inscrits = new ArrayCollection();
@@ -106,6 +111,18 @@ class Event
         if ($this->inscrits->contains($inscrit)) {
             $this->inscrits->removeElement($inscrit);
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

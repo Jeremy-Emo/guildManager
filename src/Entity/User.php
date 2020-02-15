@@ -88,9 +88,15 @@ class User implements UserInterface
      */
     private $buildings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="owner")
+     */
+    private $myEvents;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
+        $this->myEvents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -277,6 +283,37 @@ class User implements UserInterface
         $newUser = null === $buildings ? null : $this;
         if ($buildings->getUser() !== $newUser) {
             $buildings->setUser($newUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getMyEvents(): Collection
+    {
+        return $this->myEvents;
+    }
+
+    public function addMyEvent(Event $myEvent): self
+    {
+        if (!$this->myEvents->contains($myEvent)) {
+            $this->myEvents[] = $myEvent;
+            $myEvent->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMyEvent(Event $myEvent): self
+    {
+        if ($this->myEvents->contains($myEvent)) {
+            $this->myEvents->removeElement($myEvent);
+            // set the owning side to null (unless already changed)
+            if ($myEvent->getOwner() === $this) {
+                $myEvent->setOwner(null);
+            }
         }
 
         return $this;
