@@ -212,6 +212,54 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Woonhak',
                 'img' => 'woonhak',
             ],
+            [
+                'name' => 'Jamie',
+                'img' => 'jamie',
+            ],
+            [
+                'name' => 'Walkers',
+                'img' => 'walkers',
+            ],
+            [
+                'name' => 'Roger',
+                'img' => 'roger',
+            ],
+            [
+                'name' => 'Granite',
+                'img' => 'granite',
+            ],
+            [
+                'name' => 'Marbre',
+                'img' => 'marbre',
+            ],
+            [
+                'name' => 'Olivine',
+                'img' => 'olivine',
+            ],
+            [
+                'name' => 'Talc',
+                'img' => 'talc',
+            ],
+            [
+                'name' => 'Ceres',
+                'img' => 'ceres',
+            ],
+            [
+                'name' => 'Ellin',
+                'img' => 'ellin',
+            ],
+            [
+                'name' => 'Hina',
+                'img' => 'hina',
+            ],
+            [
+                'name' => 'Mara',
+                'img' => 'mara',
+            ],
+            [
+                'name' => 'Yaka',
+                'img' => 'yaka',
+            ],
         ];
 
         foreach ($threeStars as $threeStar) {
@@ -740,6 +788,50 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Gildong',
                 'img' => 'gildong',
+            ],
+            [
+                'name' => 'Fria',
+                'img' => 'fria',
+            ],
+            [
+                'name' => 'Jun',
+                'img' => 'jun',
+            ],
+            [
+                'name' => 'Kaito',
+                'img' => 'kaito',
+            ],
+            [
+                'name' => 'Kaz',
+                'img' => 'kaz',
+            ],
+            [
+                'name' => 'Sian',
+                'img' => 'sian',
+            ],
+            [
+                'name' => 'Surtr',
+                'img' => 'surtr',
+            ],
+            [
+                'name' => 'Tosi',
+                'img' => 'tosi',
+            ],
+            [
+                'name' => 'Zibrolta',
+                'img' => 'zibrolta',
+            ],
+            [
+                'name' => 'Jojo',
+                'img' => 'jojo',
+            ],
+            [
+                'name' => 'Logan',
+                'img' => 'logan',
+            ],
+            [
+                'name' => 'Ryan',
+                'img' => 'ryan',
             ],
         ];
 
