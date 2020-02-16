@@ -26,8 +26,7 @@
                     {% if guildInfos %}
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
                         {% if guildInfos.message %}
-                            <p class="bold">Message de guilde :</p>
-                            <p>{{ guildInfos.message }}</p>
+                            <p><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
                         {% endif %}
                         {% if guildInfos.websiteLink %}
                             <p>Site web : <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
