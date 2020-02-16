@@ -14,6 +14,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('guild', './assets/js/guild.js')
     .addEntry('defense', './assets/js/defense.js')
+    .addEntry('bj5', './assets/js/bj5.js')
 
     .splitEntryChunks()
     .enableSingleRuntimeChunk()

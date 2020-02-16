@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Calculateur de dégâts BJ5{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <img src="/img/5nat/baleygr.png" class="f-left ma-10-right">
+                    <h1 class="ma-25-bottom">Calculateur de dégâts pour BJ5</h1>
+                    <p>Afin de calculer les dégâts de manière optimale, pensez à mettre à jour vos bâtiments d'arène sur votre profil.</p>
+                    <p>Actuellement, le calculateur part du principe que le buff atk et le break def sont posés.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <input type="hidden" id="bat_atk" value="{{ app.user.buildings ? app.user.buildings.atk : '0' }}">
+                    <input type="hidden" id="bat_dcc" value="{{ app.user.buildings ? app.user.buildings.dcc : '0' }}">
+                    <input type="hidden" id="bat_fire" value="{{ app.user.buildings ? app.user.buildings.fire : '0' }}">
+                    <p>
+                        <label for="skillups">Bonus de dégâts par les skill-ups :</label>
+                        <select id="skillups">
+                            <option value="0">0 %</option>
+                            <option value="5">5 %</option>
+                            <option value="15">15 %</option>
+                            <option value="30">30 %</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="atk">Atk bonus :</label>
+                        <input id="atk" type="number" min="0">
+                    </p>
+                    <p>
+                        <label for="dcc">DCC total :</label>
+                        <input id="dcc" type="number" min="0">
+                    </p>
+                    <p>
+                        <label for="fightSets">Nombre de sets combat :</label>
+                        <input id="fightSets" type="number" min="0">
+                    </p>
+                    <p>
+                        <label for="atkLead">Leader Skill ATK% :</label>
+                        <input id="atkLead" type="number" min="0">
+                    </p>
+                    <p><button id="calc">Calculer</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Dégâts sur le dernier hit :</h2>
+                    <p class="ma-25-top"><span id="result">0</span> / 32000 requis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('bj5') }}
+{% endblock %}
