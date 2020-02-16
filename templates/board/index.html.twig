@@ -36,7 +36,8 @@
                             <p><a href="{{ guildInfos.websiteLink }}"><i class="fab fa-discord"></i> Discord</a></p>
                         {% endif %}
                     {% endif %}
-                    <p><span class="bold">Votre niveau</span> : {{ app.user.scores ? app.user.scores.calcScores() : ('<a href="'~ path('edit_account') ~'">Renseignez votre profil</a>')|raw }}</p>
+                    <p><span class="bold">Votre niveau</span> : {{ app.user.scores ? app.user.scores.calcScores() : ('<a href="'~ path('edit_account') ~'">Renseignez votre profil</a>')|raw }}<br>
+                    Votre niveau est déterminé selon votre avancée en PVE. Améliorez vos temps pour monter votre niveau.</p>
                 </div>
             </div>
         </div>
@@ -45,7 +46,7 @@
                 <div class="pa-20 bg-white">
                     <h2 class="ma-20-bottom">Evènements en cours :</h2>
                     {% for event in events %}
-                        <p>- <a href="{{ path('show_event', {'id':event.id}) }}">{{ event.name }}</a></p>
+                        <p class="border-bottom pa-10"><a href="{{ path('show_event', {'id':event.id}) }}">{{ event.name }}</a> par {{ event.owner.username }}</p>
                     {% endfor %}
                     <p class="ma-25-top"><a href="{{ path('new_event') }}">Créer un nouvel event</a></p>
                 </div>
