@@ -47,10 +47,6 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Taru',
                 'img' => 'taru',
             ],
-            [
-                'name' => 'Shumar',
-                'img' => 'shumar',
-            ],
         ];
 
         foreach ($twoStars as $twoStar) {
@@ -259,6 +255,18 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Yaku',
                 'img' => 'yaku',
+            ],
+            [
+                'name' => 'Shumar',
+                'img' => 'shumar',
+            ],
+            [
+                'name' => 'Kahn',
+                'img' => 'kahn',
+            ],
+            [
+                'name' => 'Lucien',
+                'img' => 'lucien',
             ],
         ];
 
@@ -832,6 +840,22 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Ryan',
                 'img' => 'ryan',
+            ],
+            [
+                'name' => 'Herne',
+                'img' => 'herne',
+            ],
+            [
+                'name' => 'Hyanes',
+                'img' => 'hyanes',
+            ],
+            [
+                'name' => 'Mellia',
+                'img' => 'mellia',
+            ],
+            [
+                'name' => 'Tablo',
+                'img' => 'tablo',
             ],
         ];
 
