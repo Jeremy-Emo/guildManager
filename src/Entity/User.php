@@ -93,10 +93,16 @@ class User implements UserInterface
      */
     private $myEvents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Defense", mappedBy="owner")
+     */
+    private $defenses;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->myEvents = new ArrayCollection();
+        $this->defenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -313,6 +319,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($myEvent->getOwner() === $this) {
                 $myEvent->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Defense[]
+     */
+    public function getDefenses(): Collection
+    {
+        return $this->defenses;
+    }
+
+    public function addDefense(Defense $defense): self
+    {
+        if (!$this->defenses->contains($defense)) {
+            $this->defenses[] = $defense;
+            $defense->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDefense(Defense $defense): self
+    {
+        if ($this->defenses->contains($defense)) {
+            $this->defenses->removeElement($defense);
+            // set the owning side to null (unless already changed)
+            if ($defense->getOwner() === $this) {
+                $defense->setOwner(null);
             }
         }
 
