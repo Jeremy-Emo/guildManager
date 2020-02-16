@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 ma-25-top">
-                <div class="pa-20 bg-white">
+                <div class="pa-20 bg-white full-height">
                 {% if memberInfos %}
                     {{ form_start(formGuild) }}
                     <div class="column">
@@ -22,7 +22,7 @@
             </div>
 
             <div class="col-md-6 ma-25-top">
-                <div class="pa-20 bg-white">
+                <div class="pa-20 bg-white full-height">
                     {% if guildInfos %}
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
                         {% if guildInfos.message %}
