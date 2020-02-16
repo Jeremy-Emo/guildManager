@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Calculateur de temps d'achat des bâtiments{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h1 class="ma-25-bottom">Calculateur de temps d'achat des bâtiments</h1>
+                    <p>Pensez à mettre à jour vos bâtiments <a href="{{ path('edit_account') }}">sur votre profil</a> afin de bénéficier au mieux de cette fonctionnalité.</p>
+                    <p>Ce calculateur prend en compte le fait que vous achetez le devilmon chaque semaine.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <input type="hidden" id="bat_fire" value="{{ app.user.buildings ? app.user.buildings.fire : '0' }}">
+                    <input type="hidden" id="bat_water" value="{{ app.user.buildings ? app.user.buildings.water : '0' }}">
+                    <input type="hidden" id="bat_wind" value="{{ app.user.buildings ? app.user.buildings.wind : '0' }}">
+                    <input type="hidden" id="bat_light" value="{{ app.user.buildings ? app.user.buildings.light : '0' }}">
+                    <input type="hidden" id="bat_dark" value="{{ app.user.buildings ? app.user.buildings.dark : '0' }}">
+                    <input type="hidden" id="bat_atk" value="{{ app.user.buildings ? app.user.buildings.atk : '0' }}">
+                    <input type="hidden" id="bat_dcc" value="{{ app.user.buildings ? app.user.buildings.dcc : '0' }}">
+                    <input type="hidden" id="bat_def" value="{{ app.user.buildings ? app.user.buildings.def : '0' }}">
+                    <input type="hidden" id="bat_pv" value="{{ app.user.buildings ? app.user.buildings.pv : '0' }}">
+                    <input type="hidden" id="bat_spd" value="{{ app.user.buildings ? app.user.buildings.spd : '0' }}">
+                    <p><label for="nbre_atk">Nombre d'attaques par semaine : </label><input type="number" id="nbre_atk" value="0" min="0"></p>
+                    <p><label for="glory">Moyenne de points de gloire gagnés par combat : </label><input type="number" id="glory" min="0" value="0"></p>
+                    <p><button id="calc">Calculer les résultats</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-25-bottom">Temps restant avant d'achever ses bâtiments :</h2>
+                    <p><span id="result">0</span> semaines</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('buildings') }}
+{% endblock %}

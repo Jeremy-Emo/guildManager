@@ -32,4 +32,16 @@ class ToolboxController extends AbstractController
             'isToolbox' => true,
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/boite-a-outils/batiments", name="toolbox_buildings", methods={"GET"})
+     * @return Response
+     */
+    public function buildings() : Response
+    {
+        return $this->render('toolbox/buildings.html.twig', [
+            'isToolbox' => true,
+        ]);
+    }
 }
