@@ -6,6 +6,7 @@ use App\Entity\Defense;
 use App\Form\Type\DefenseType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,17 +18,32 @@ class DefensesController extends AbstractController
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/defenses-gvo", name="gvo_defs", methods={"GET"})
+     * @param Request $request
      * @return Response
      */
-    public function index() : Response
+    public function index(Request $request) : Response
     {
-        $myDefenses = $this->getDoctrine()->getRepository(Defense::class)->findBy([
+        $defRepo = $this->getDoctrine()->getRepository(Defense::class);
+
+        $myDefenses = $defRepo->findBy([
             'owner' => $this->getUser(),
         ]);
+
+        $form = $this->createFormBuilder()
+            ->setMethod('GET')
+            ->add('search', TextType::class)
+            ->getForm()
+        ;
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $results = $defRepo->getDefensesWhereIsMob($form->get('search')->getData());
+        }
 
         return $this->render('defenses/index.html.twig', [
             'isGVO' => true,
             'myDefenses' => $myDefenses,
+            'form' => $form->createView(),
+            'results' => $results ?? null,
         ]);
     }
 

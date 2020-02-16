@@ -19,6 +19,19 @@ class DefenseRepository extends ServiceEntityRepository
         parent::__construct($registry, Defense::class);
     }
 
+    public function getDefensesWhereIsMob(string $name)
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->join('d.mobLeader', 'ml')
+            ->join('d.mobOne', 'mo')
+            ->join('d.mobTwo', 'mt')
+            ->where('ml.name like :name or mo.name like :name or ml.name like :name')
+            ->setParameter('name', '%'.$name.'%')
+        ;
+
+        return $qb->getQuery()->execute();
+    }
+
     // /**
     //  * @return Defense[] Returns an array of Defense objects
     //  */
