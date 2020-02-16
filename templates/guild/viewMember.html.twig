@@ -97,7 +97,7 @@
                     <h2 class="ma-25-bottom">Défenses GVO :</h2>
                     {% if member.user.defenses|length > 0 %}
                         {% for defense in member.user.defenses %}
-                            <div class="row align-items-center pa-10-bottom ma-25-bottom border-bottom">
+                            <div class="row align-items-center pa-10-bottom pa-10-top ma-25-bottom border-bottom">
                                 <div class="col-4 col-md-3"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
                                 <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                                 <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
