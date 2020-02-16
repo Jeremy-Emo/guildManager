@@ -36,9 +36,7 @@
                             <p><a href="{{ guildInfos.websiteLink }}"><i class="fab fa-discord"></i> Discord</a></p>
                         {% endif %}
                     {% endif %}
-                    {% if app.user.scores %}
-                        <p><span class="bold">Votre niveau</span> : {{ app.user.scores.calcScores() }}</p>
-                    {% endif %}
+                    <p><span class="bold">Votre niveau</span> : {{ app.user.scores ? app.user.scores.calcScores() : ('<a href="'~ path('edit_account') ~'">Renseignez votre profil</a>')|raw }}</p>
                 </div>
             </div>
         </div>
