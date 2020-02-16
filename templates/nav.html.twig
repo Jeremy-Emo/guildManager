@@ -4,6 +4,7 @@
 <div id="menuDisplayed">
     <a href="{{ path('index') }}" {% if isDashboard is defined %}class="active"{% endif %}>Accueil</a>
     <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
+    <a href="{{ path('gvo_defs') }}" {% if isGVO is defined %}class="active"{% endif %}>Défenses GVO</a>
 
     {% if app.user.member and app.user.member.isLeader %}
         <a href="{{ path('guild_management') }}" {% if isGuildManagement is defined %}class="active"{% endif %}>Guilde - Membres</a>

@@ -5,6 +5,7 @@
 {% block moreCSS %}
     {{ parent() }}
     {{ encore_entry_link_tags('guild') }}
+    {{ encore_entry_link_tags('defenses') }}
 {% endblock %}
 
 {% block content %}
@@ -85,6 +86,27 @@
                     <p>R5 : {{ member.user.scores.r5 ? 'Oui' : 'Non' }}</p>
                     {% else %}
                         <p class="ma-25-top">Non renseignés</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-25-bottom">Défenses GVO :</h2>
+                    {% if member.user.defenses|length > 0 %}
+                        {% for defense in member.user.defenses %}
+                            <div class="row align-items-center pa-10-bottom ma-25-bottom border-bottom">
+                                <div class="col-3"><img class="border-leader" src="{{ defense.mobLeader.image }}"></div>
+                                <div class="col-3"><img src="{{ defense.mobOne.image }}"></div>
+                                <div class="col-3"><img src="{{ defense.mobTwo.image }}"></div>
+                                <div class="col-3"><p>{{ defense.victories }} Victoires <br>{{ defense.loses }} Défaites</p></div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Aucune défense enregistrée</p>
+
                     {% endif %}
                 </div>
             </div>
