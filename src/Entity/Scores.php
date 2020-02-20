@@ -161,6 +161,31 @@ class Scores
      */
     private $bestArenaRank;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sssFireRift;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sssWindRift;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sssWaterRift;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sssDarkRift;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sssLightRift;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -313,5 +338,65 @@ class Scores
     public function __toString()
     {
         return $this->calcScores();
+    }
+
+    public function getSssFireRift(): ?bool
+    {
+        return $this->sssFireRift;
+    }
+
+    public function setSssFireRift(?bool $sssFireRift): self
+    {
+        $this->sssFireRift = $sssFireRift;
+
+        return $this;
+    }
+
+    public function getSssWindRift(): ?bool
+    {
+        return $this->sssWindRift;
+    }
+
+    public function setSssWindRift(?bool $sssWindRift): self
+    {
+        $this->sssWindRift = $sssWindRift;
+
+        return $this;
+    }
+
+    public function getSssWaterRift(): ?bool
+    {
+        return $this->sssWaterRift;
+    }
+
+    public function setSssWaterRift(?bool $sssWaterRift): self
+    {
+        $this->sssWaterRift = $sssWaterRift;
+
+        return $this;
+    }
+
+    public function getSssDarkRift(): ?bool
+    {
+        return $this->sssDarkRift;
+    }
+
+    public function setSssDarkRift(?bool $sssDarkRift): self
+    {
+        $this->sssDarkRift = $sssDarkRift;
+
+        return $this;
+    }
+
+    public function getSssLightRift(): ?bool
+    {
+        return $this->sssLightRift;
+    }
+
+    public function setSssLightRift(?bool $sssLightRift): self
+    {
+        $this->sssLightRift = $sssLightRift;
+
+        return $this;
     }
 }
