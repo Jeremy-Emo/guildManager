@@ -6,6 +6,7 @@ use App\Entity\Buildings;
 use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
+use App\Form\Type\EditPasswordType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -65,10 +66,11 @@ class AdminController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/admin/compte/{id}", name="admin_edit_account", methods={"GET", "POST"})
      * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @param int $id
      * @return Response
      */
-    public function editAccount(Request $request, int $id) : Response
+    public function editAccount(Request $request, UserPasswordEncoderInterface $passwordEncoder, int $id) : Response
     {
         if(! $this->getUser()->getIsAdmin()) {
             throw new NotFoundHttpException();
@@ -110,9 +112,27 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_accounts');
         }
 
+        $form = $this->createForm(EditPasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_accounts');
+        }
+
         return $this->render('admin/editAccount.html.twig', [
             'formRecords' => $formRecords->createView(),
             'formBuilds' => $formBuilds->createView(),
+            'form' => $form->createView(),
             'user' => $user,
             'isAdminAccounts' => true,
         ]);
