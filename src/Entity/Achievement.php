@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Achievement
 {
+    public function getImagePath() : string
+    {
+        return '/img/icons/' . $this->image . '.png';
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -46,6 +51,13 @@ class Achievement
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
