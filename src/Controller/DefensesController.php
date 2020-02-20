@@ -93,7 +93,7 @@ class DefensesController extends AbstractController
             'owner' => $this->getUser(),
         ]);
 
-        $defense->setOwner(null);
+        $defense->setOwner(null)->setDetail("Ancienne défense de la guilde");
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($defense);

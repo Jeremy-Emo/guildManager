@@ -49,6 +49,11 @@ class Defense
      */
     private $mobTwo;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $detail;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +127,18 @@ class Defense
     public function setMobTwo(?Monster $mobTwo): self
     {
         $this->mobTwo = $mobTwo;
+
+        return $this;
+    }
+
+    public function getDetail(): ?string
+    {
+        return $this->detail;
+    }
+
+    public function setDetail(?string $detail): self
+    {
+        $this->detail = $detail;
 
         return $this;
     }

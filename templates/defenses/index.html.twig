@@ -43,17 +43,23 @@
                         {{ form_end(form) }}
                     </div>
                     {% for defense in results %}
-                    <div class="row align-items-center pa-10-bottom pa-10-top ma-25-bottom border-bottom">
+                    <div class="row align-items-center">
                         <div class="col-4 col-md-3"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
                         <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                         <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
                         <div class="col-md-3 pa-10-top">
-                            {% if defense.owner %}
-                                <p>{{ defense.owner }}</p>
-                            {% endif %}
                             <p>{{ defense.victories }} Victoires <br>{{ defense.loses }} Défaites</p>
                         </div>
                     </div>
+                        <div class="row align-items-center pa-10-bottom pa-10-top ma-25-bottom border-bottom">
+                            <div class="col-12">
+                                {% if defense.owner %}
+                                    <p class="t-align-center">Défense de {{ defense.owner }}</p>
+                                {% elseif defense.detail %}
+                                    <p class="t-align-center">{{ defense.detail }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
