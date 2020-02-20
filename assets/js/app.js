@@ -20,4 +20,14 @@ $(document).ready(function() {
       $("#menuDisplayed").toggle();
    });
 
+   $('[data-toggle="popover"]').popover();
+
+   $('[data-toggle=popover]').on('click', function(e){
+      $('[data-toggle=popover]').not(this).popover('hide');
+   });
+   
+   $('body').on('click', '.popover', function(){
+      $('[aria-describedby="'+$(this).attr('id')+'"]').popover('hide');
+   });
+
 });

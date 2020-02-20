@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
 use App\Entity\Event;
 use App\Form\Type\GuildContentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -39,12 +40,15 @@ class BoardController extends AbstractController
 
         $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
 
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
+
         return $this->render('board/index.html.twig', [
             'memberInfos' => $this->getUser()->getMember(),
             'formGuild' => isset($formGuild) ? $formGuild->createView() : null,
             'guildInfos' => $guild ?? null,
             'isDashboard' => true,
             'events' => $events,
+            'hfs' => $hfs,
         ]);
     }
 }
