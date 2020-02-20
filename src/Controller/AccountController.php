@@ -2,16 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
 use App\Entity\Buildings;
 use App\Entity\Scores;
+use App\Entity\User;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditAccountInfosType;
 use App\Form\Type\EditPasswordType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -98,5 +102,64 @@ class AccountController extends AbstractController
             'formBuilds' => $formBuilds->createView(),
             'isMyAccount' => true,
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/editer-defis/{id}", name="edit_hfs", methods={"GET"})
+     * @param int $id
+     * @return Response
+     */
+    public function updateHFS(int $id) : Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        if($user === null || !$this->getUser()->getIsAdmin()){
+            throw new NotFoundHttpException();
+        }
+
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
+
+        return $this->render('account/updateHFS.html.twig', [
+            'user' => $user,
+            'hfs' => $hfs,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/toggle-defi", name="toggle_defi", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function toggleHF(Request $request) : Response
+    {
+        if($request->isXmlHttpRequest()){
+
+            $id = $request->request->get('id');
+            $hf = $request->request->get('hf');
+
+            if($id === null || $hf === null || !$this->getUser()->getIsAdmin()) {
+                throw new NotFoundHttpException();
+            }
+            $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+            $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($hf);
+
+            if($user->getAchievements()->contains($hf)){
+                $user->removeAchievement($hf);
+            } else {
+                $user->addAchievement($hf);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return new JsonResponse([
+                "success" => true,
+            ]);
+        } else {
+            throw new NotFoundHttpException();
+        }
     }
 }

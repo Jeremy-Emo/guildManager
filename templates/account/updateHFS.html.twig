@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Modifier défis{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <input type="hidden" id="userId" value="{{ user.id }}">
+                    <h2 class="ma-20-bottom">Défis :</h2>
+                    {% for hf in hfs %}
+                        <div class="row align-items-center border-bottom">
+                            <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in user.achievements ? ' inactive' : '' }}" data-id="{{ hf.id }}"><p class="ma-10-top">{{ hf.text }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('hfs') }}
+{% endblock %}
+
