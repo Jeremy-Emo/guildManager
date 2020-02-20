@@ -52,7 +52,7 @@ class CreateUserCommand extends Command
         $em->persist($user);
 
         $member = new Members();
-        $member->setGuild($guild)->setUser($user);
+        $member->setGuild($guild)->setUser($user)->setIsLeader(true);
         $em->persist($member);
 
         $em->flush();
