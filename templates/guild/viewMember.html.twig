@@ -106,8 +106,15 @@
                         {% endfor %}
                     {% else %}
                         <p>Aucune défense enregistrée</p>
-
                     {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-25-bottom">Défis :</h2>
+                    {% for hf in hfs %}
+                        <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in member.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
+                    {% endfor %}
                 </div>
             </div>
         </div>

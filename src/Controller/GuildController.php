@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
 use App\Entity\GvGScores;
 use App\Entity\Members;
 use App\Entity\User;
@@ -154,10 +155,13 @@ class GuildController extends AbstractController
             'semaine' => 'DESC'
         ], 5);
 
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
+
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member,
             'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
             'activity' => $activity,
+            'hfs' => $hfs,
         ]);
     }
 
