@@ -59,16 +59,6 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'dark_light',
             ],
             [
-                'name' => 'Chanceux',
-                'text' => 'Posséder un nat5 L&D',
-                'image' => 'dark_light',
-            ],
-            [
-                'name' => 'Chanceux',
-                'text' => 'Posséder un nat5 L&D',
-                'image' => 'dark_light',
-            ],
-            [
                 'name' => 'Très chanceux',
                 'text' => 'Posséder 2 nat5 L&D',
                 'image' => 'dark_light',
@@ -227,6 +217,11 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Expert des dimensions',
                 'text' => 'Monter 30 monstre 2e éveil 6*',
                 'image' => 'miho',
+            ],
+            [
+                'name' => 'Comme les grands',
+                'text' => 'Finir le 100e étage de la ToAH',
+                'image' => 'toah',
             ],
         ];
 
