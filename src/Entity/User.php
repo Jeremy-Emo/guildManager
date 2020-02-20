@@ -98,11 +98,17 @@ class User implements UserInterface
      */
     private $defenses;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Achievement", mappedBy="users")
+     */
+    private $achievements;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->myEvents = new ArrayCollection();
         $this->defenses = new ArrayCollection();
+        $this->achievements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -351,6 +357,34 @@ class User implements UserInterface
             if ($defense->getOwner() === $this) {
                 $defense->setOwner(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Achievement[]
+     */
+    public function getAchievements(): Collection
+    {
+        return $this->achievements;
+    }
+
+    public function addAchievement(Achievement $achievement): self
+    {
+        if (!$this->achievements->contains($achievement)) {
+            $this->achievements[] = $achievement;
+            $achievement->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAchievement(Achievement $achievement): self
+    {
+        if ($this->achievements->contains($achievement)) {
+            $this->achievements->removeElement($achievement);
+            $achievement->removeUser($this);
         }
 
         return $this;
