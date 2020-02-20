@@ -466,8 +466,8 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'img' => 'mihyang',
             ],
             [
-                'name' => 'Mimir',
-                'img' => 'mimir',
+                'name' => 'Mimirr',
+                'img' => 'mimirr',
             ],
             [
                 'name' => 'Monte',
