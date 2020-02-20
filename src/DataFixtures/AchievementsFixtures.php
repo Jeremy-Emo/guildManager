@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Achievement;
-use App\Entity\Rank;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\ORM\Id\AssignedGenerator;
@@ -90,6 +89,16 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'champion',
             ],
             [
+                'name' => 'Le début dans l\'arène',
+                'text' => 'Faire C1 en arène',
+                'image' => 'c1',
+            ],
+            [
+                'name' => 'Top 300',
+                'text' => 'Faire G1 en arène',
+                'image' => 'g1',
+            ],
+            [
                 'name' => 'Presque une légende !',
                 'text' => 'Faire G2 en arène',
                 'image' => 'g2',
@@ -98,6 +107,16 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'I wanna be a legend !',
                 'text' => 'Faire G3 en arène',
                 'image' => 'g3',
+            ],
+            [
+                'name' => 'Little monster',
+                'text' => 'Faire C1 en RTA',
+                'image' => 'c1',
+            ],
+            [
+                'name' => 'True monster',
+                'text' => 'Faire G1 en RTA',
+                'image' => 'g1',
             ],
             [
                 'name' => 'Invincible',
@@ -178,6 +197,36 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'FUUUUU-SION !',
                 'text' => 'Avoir complété 6 fusions',
                 'image' => 'fusion',
+            ],
+            [
+                'name' => 'Maître des rifts',
+                'text' => 'Faire SSS sur toutes les rifts',
+                'image' => 'sss',
+            ],
+            [
+                'name' => 'Banquier de la guilde',
+                'text' => 'Participer à une économie de vélins pour une summon de guilde',
+                'image' => 'guild_scroll',
+            ],
+            [
+                'name' => 'Raider de la guilde',
+                'text' => 'Participer à une session de raid de guilde',
+                'image' => 'raid',
+            ],
+            [
+                'name' => 'Nouvel éveil',
+                'text' => 'Monter 5 monstre 2e éveil 6*',
+                'image' => 'raoq',
+            ],
+            [
+                'name' => 'Voyage au centre des dimensions',
+                'text' => 'Monter 10 monstre 2e éveil 6*',
+                'image' => 'elucia',
+            ],
+            [
+                'name' => 'Expert des dimensions',
+                'text' => 'Monter 30 monstre 2e éveil 6*',
+                'image' => 'miho',
             ],
         ];
 
