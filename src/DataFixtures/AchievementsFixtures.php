@@ -24,9 +24,19 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'gb10',
             ],
             [
+                'name' => 'Comme les grands',
+                'text' => 'Finir le 100e étage de la ToAH',
+                'image' => 'toah',
+            ],
+            [
                 'name' => 'PC Master Raid',
                 'text' => 'Monter une team BJ5 stable',
                 'image' => 'raid',
+            ],
+            [
+                'name' => 'Maître des rifts',
+                'text' => 'Faire SSS sur toutes les rifts',
+                'image' => 'sss',
             ],
             [
                 'name' => 'Début du late game',
@@ -39,14 +49,44 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'late',
             ],
             [
-                'name' => 'Destructeur de défenses',
-                'text' => 'Monter une offense Bulldozer/Cuivre/Imesety',
-                'image' => 'break_def',
+                'name' => 'Riche',
+                'text' => 'Monter à 10 millions de mana',
+                'image' => 'pognon2',
             ],
             [
-                'name' => 'NINJAS !!!',
-                'text' => 'Monter une défense Susanoo/Orion/Garo',
-                'image' => 'ninja',
+                'name' => 'Richissime',
+                'text' => 'Monter à 50 millions de mana',
+                'image' => 'pognon',
+            ],
+            [
+                'name' => 'FUUUUU-SION !',
+                'text' => 'Avoir complété 6 fusions',
+                'image' => 'fusion',
+            ],
+            [
+                'name' => 'Motivé',
+                'text' => 'Posséder 30 monstres 6*',
+                'image' => '6-1',
+            ],
+            [
+                'name' => 'Acharné',
+                'text' => 'Posséder 50 monstres 6*',
+                'image' => '6-2',
+            ],
+            [
+                'name' => 'Accro',
+                'text' => 'Posséder 100 monstres 6*',
+                'image' => '6-3',
+            ],
+            [
+                'name' => 'Malade',
+                'text' => 'Posséder 150 monstres 6*',
+                'image' => '6-4',
+            ],
+            [
+                'name' => 'Exalté',
+                'text' => 'Posséder 200 monstres 6*',
+                'image' => '6-5',
             ],
             [
                 'name' => 'Maître des éléments',
@@ -74,9 +114,64 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'cb',
             ],
             [
-                'name' => 'Champion de la guilde',
-                'text' => 'Gagner une fois un tournoi RTA de guilde',
-                'image' => 'champion',
+                'name' => 'Nouvel éveil',
+                'text' => 'Monter 5 monstre 2e éveil 6*',
+                'image' => 'raoq',
+            ],
+            [
+                'name' => 'Voyage au centre des dimensions',
+                'text' => 'Monter 10 monstre 2e éveil 6*',
+                'image' => 'elucia',
+            ],
+            [
+                'name' => 'Expert des dimensions',
+                'text' => 'Monter 30 monstre 2e éveil 6*',
+                'image' => 'miho',
+            ],
+            [
+                'name' => 'Destructeur de défenses',
+                'text' => 'Monter une offense Bulldozer/Cuivre/Imesety',
+                'image' => 'break_def',
+            ],
+            [
+                'name' => 'NINJAS !!!',
+                'text' => 'Monter une défense Susanoo/Orion/Garo',
+                'image' => 'ninja',
+            ],
+            [
+                'name' => 'Invincible',
+                'text' => 'Faire 10 victoires d\'affilée en GVO',
+                'image' => 'gvg',
+            ],
+            [
+                'name' => 'Vous ne passerez PAS',
+                'text' => 'Faire 10 défenses réussies consécutives en GVO',
+                'image' => 'fortress',
+            ],
+            [
+                'name' => 'Le MUR',
+                'text' => 'Avoir une défense à plus de 100 victoires',
+                'image' => 'mur',
+            ],
+            [
+                'name' => 'Destructeur de tours',
+                'text' => 'Prendre une tour en solo en GVO',
+                'image' => 'tower_destruction',
+            ],
+            [
+                'name' => 'Le début de la vitesse',
+                'text' => 'Posséder un monstre à 270 de vitesse',
+                'image' => 'orion',
+            ],
+            [
+                'name' => 'Rapide',
+                'text' => 'Posséder un monstre à 290 de vitesse',
+                'image' => 'bernard',
+            ],
+            [
+                'name' => 'A la vitesse de la lumière',
+                'text' => 'Posséder un monstre à 310 de vitesse',
+                'image' => 'fregate',
             ],
             [
                 'name' => 'Le début dans l\'arène',
@@ -109,89 +204,14 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'image' => 'g1',
             ],
             [
-                'name' => 'Invincible',
-                'text' => 'Faire 10 victoires d\'affilée en GVO',
-                'image' => 'gvg',
+                'name' => 'Champion de la guilde',
+                'text' => 'Gagner une fois un tournoi RTA de guilde',
+                'image' => 'champion',
             ],
             [
                 'name' => 'Mécène de la guilde',
                 'text' => 'Prendre un pack de guilde',
                 'image' => 'crystal',
-            ],
-            [
-                'name' => 'Le début de la vitesse',
-                'text' => 'Posséder un monstre à 270 de vitesse',
-                'image' => 'orion',
-            ],
-            [
-                'name' => 'Rapide',
-                'text' => 'Posséder un monstre à 290 de vitesse',
-                'image' => 'bernard',
-            ],
-            [
-                'name' => 'A la vitesse de la lumière',
-                'text' => 'Posséder un monstre à 310 de vitesse',
-                'image' => 'fregate',
-            ],
-            [
-                'name' => 'Vous ne passerez PAS',
-                'text' => 'Faire 10 défenses réussies consécutives en GVO',
-                'image' => 'fortress',
-            ],
-            [
-                'name' => 'Le MUR',
-                'text' => 'Avoir une défense à plus de 100 victoires',
-                'image' => 'mur',
-            ],
-            [
-                'name' => 'Destructeur de tours',
-                'text' => 'Prendre une tour en solo en GVO',
-                'image' => 'tower_destruction',
-            ],
-            [
-                'name' => 'Riche',
-                'text' => 'Monter à 10 millions de mana',
-                'image' => 'pognon2',
-            ],
-            [
-                'name' => 'Richissime',
-                'text' => 'Monter à 50 millions de mana',
-                'image' => 'pognon',
-            ],
-            [
-                'name' => 'Motivé',
-                'text' => 'Posséder 30 monstres 6*',
-                'image' => '6-1',
-            ],
-            [
-                'name' => 'Acharné',
-                'text' => 'Posséder 50 monstres 6*',
-                'image' => '6-2',
-            ],
-            [
-                'name' => 'Accro',
-                'text' => 'Posséder 100 monstres 6*',
-                'image' => '6-3',
-            ],
-            [
-                'name' => 'Malade',
-                'text' => 'Posséder 150 monstres 6*',
-                'image' => '6-4',
-            ],
-            [
-                'name' => 'Exalté',
-                'text' => 'Posséder 200 monstres 6*',
-                'image' => '6-5',
-            ],
-            [
-                'name' => 'FUUUUU-SION !',
-                'text' => 'Avoir complété 6 fusions',
-                'image' => 'fusion',
-            ],
-            [
-                'name' => 'Maître des rifts',
-                'text' => 'Faire SSS sur toutes les rifts',
-                'image' => 'sss',
             ],
             [
                 'name' => 'Banquier de la guilde',
@@ -202,26 +222,6 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Raider de la guilde',
                 'text' => 'Participer à une session de raid de guilde',
                 'image' => 'raid',
-            ],
-            [
-                'name' => 'Nouvel éveil',
-                'text' => 'Monter 5 monstre 2e éveil 6*',
-                'image' => 'raoq',
-            ],
-            [
-                'name' => 'Voyage au centre des dimensions',
-                'text' => 'Monter 10 monstre 2e éveil 6*',
-                'image' => 'elucia',
-            ],
-            [
-                'name' => 'Expert des dimensions',
-                'text' => 'Monter 30 monstre 2e éveil 6*',
-                'image' => 'miho',
-            ],
-            [
-                'name' => 'Comme les grands',
-                'text' => 'Finir le 100e étage de la ToAH',
-                'image' => 'toah',
             ],
         ];
 
