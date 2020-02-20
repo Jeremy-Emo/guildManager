@@ -178,7 +178,7 @@ class GuildController extends AbstractController
             $id = $request->request->get('id');
             $type = $request->request->get('type');
 
-            if($id === null || $type === null) {
+            if($id === null || $type === null || !$this->getUser()->getIsAdmin()) {
                 throw new NotFoundHttpException();
             }
             $user = $this->getDoctrine()->getRepository(Members::class)->find($id);
