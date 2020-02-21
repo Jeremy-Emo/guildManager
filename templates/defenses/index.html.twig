@@ -61,6 +61,9 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {% if app.user.isAdmin %}
+                        <p class="t-align-right ma-25-top"><a href="{{ path('add_defense') }}">Ajouter une défense ennemie</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>

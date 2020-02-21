@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Defense;
+use App\Form\Type\DefenseEnemyType;
 use App\Form\Type\DefenseType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -147,5 +148,34 @@ class DefensesController extends AbstractController
         } else {
             throw new NotFoundHttpException();
         }
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/ajouter-defense-gvo", name="add_defense", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function add(Request $request) : Response
+    {
+        $defense = new Defense();
+
+        $form = $this->createForm(DefenseEnemyType::class, $defense);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($defense);
+            $em->flush();
+
+            return $this->redirectToRoute('gvo_defs');
+        }
+
+        return $this->render('defenses/new.html.twig', [
+            'isGVO' => true,
+            'form' => $form->createView(),
+            'stats' => true,
+        ]);
     }
 }
