@@ -47,7 +47,7 @@ class AccountController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('edit_account');
+            return $this->redirectToRoute('edit_account', ['_fragment' => 'profilPassword']);
         }
 
         $formAccount = $this->createForm(EditAccountInfosType::class, $user);
@@ -58,7 +58,7 @@ class AccountController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('edit_account');
+            return $this->redirectToRoute('edit_account', ['_fragment' => 'profilInfos']);
         }
 
         if($user->getScores() === null) {
@@ -75,7 +75,7 @@ class AccountController extends AbstractController
             $entityManager->persist($records);
             $entityManager->flush();
 
-            return $this->redirectToRoute('edit_account');
+            return $this->redirectToRoute('edit_account', ['_fragment' => 'profilRecords']);
         }
 
         if($user->getBuildings() === null) {
@@ -92,7 +92,7 @@ class AccountController extends AbstractController
             $entityManager->persist($builds);
             $entityManager->flush();
 
-            return $this->redirectToRoute('edit_account');
+            return $this->redirectToRoute('edit_account', ['_fragment' => 'profilBatiments']);
         }
 
         return $this->render('account/edit.html.twig', [

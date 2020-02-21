@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
+        <div class="row" id="profilRecords">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
                 <h2 class="ma-15-bottom">Mes records : </h2>
                 {{ form_start(formRecords) }}
@@ -13,7 +13,7 @@
                 {{ form_end(formRecords) }}
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="profilBatiments">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
                 <h2 class="ma-15-bottom">Mes bâtiments (niveaux) : </h2>
                 {{ form_start(formBuilds) }}
@@ -22,7 +22,7 @@
                 {{ form_end(formBuilds) }}
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="profilInfos">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
                 <h2 class="ma-15-bottom">Infos de compte : </h2>
                 {{ form_start(formAccount) }}
@@ -31,7 +31,7 @@
                 {{ form_end(formAccount) }}
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="profilPassword">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
                 <h2 class="ma-15-bottom">Changer de mot de passe : </h2>
                 {{ form_start(form) }}
