@@ -20,6 +20,20 @@ $(document).ready(function(){
         });
     }
 
+    if(document.getElementById('defense_enemy_mobLeader')){
+        let monsterSelect1 = new vanillaSelectBox("#defense_enemy_mobLeader", {
+            search: true,
+        });
+
+        let monsterSelect2 = new vanillaSelectBox("#defense_enemy_mobOne", {
+            search: true,
+        });
+
+        let monsterSelect3 = new vanillaSelectBox("#defense_enemy_mobTwo", {
+            search: true,
+        });
+    }
+
     $('body').on("change input", '.victory', function(){
         updateScores(true, $(this).attr('data-id'), $(this).val());
     });
