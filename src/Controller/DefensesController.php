@@ -93,10 +93,19 @@ class DefensesController extends AbstractController
             'owner' => $this->getUser(),
         ]);
 
-        $defense->setOwner(null)->setDetail("Ancienne défense de la guilde");
+        if($defense === null){
+            throw new NotFoundHttpException();
+        }
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($defense);
+
+        if(( $defense->getVictories() + $defense->getLoses() ) < 10) {
+            $em->remove($defense);
+        } else {
+            $defense->setOwner(null)->setDetail("Ancienne défense de la guilde");
+            $em->persist($defense);
+        }
+
         $em->flush();
 
         return $this->redirectToRoute('gvo_defs');
