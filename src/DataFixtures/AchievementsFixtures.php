@@ -223,6 +223,16 @@ class AchievementsFixtures extends Fixture implements FixtureGroupInterface
                 'text' => 'Participer à une session de raid de guilde',
                 'image' => 'raid',
             ],
+            [
+                'name' => 'Bâtisseur de l\'arène',
+                'text' => 'Terminer ses bâtiments d\'arène',
+                'image' => 'arena',
+            ],
+            [
+                'name' => 'Bâtisseur de la guilde',
+                'text' => 'Terminer ses drapeaux de guilde',
+                'image' => 'tower_siege',
+            ],
         ];
 
         $i = 1;
