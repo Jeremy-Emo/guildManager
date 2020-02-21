@@ -84,6 +84,11 @@
                     <p>ToAH : {{ member.user.scores.toah }} étage(s)</p>
                     <p>R4 : {{ member.user.scores.r4 ? 'Oui' : 'Non' }}</p>
                     <p>R5 : {{ member.user.scores.r5 ? 'Oui' : 'Non' }}</p>
+                    <p>SSS Rift Feu : {{ member.user.scores.sssFireRift ? 'Oui' : 'Non' }}</p>
+                    <p>SSS Rift Vent : {{ member.user.scores.sssWindRift ? 'Oui' : 'Non' }}</p>
+                    <p>SSS Rift Eau : {{ member.user.scores.sssWaterRift ? 'Oui' : 'Non' }}</p>
+                    <p>SSS Rift Dark : {{ member.user.scores.sssDarkRift ? 'Oui' : 'Non' }}</p>
+                    <p>SSS Rift Light : {{ member.user.scores.sssLightRift ? 'Oui' : 'Non' }}</p>
                     {% else %}
                         <p class="ma-25-top">Non renseignés</p>
                     {% endif %}
