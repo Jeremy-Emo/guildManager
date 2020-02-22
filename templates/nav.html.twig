@@ -7,7 +7,7 @@
     <a href="{{ path('gvo_defs') }}" {% if isGVO is defined %}class="active"{% endif %}>Défenses GVO</a>
     <a href="{{ path('toolbox') }}" {% if isToolbox is defined %}class="active"{% endif %}>Boîte à outils</a>
 
-    {% if app.user.member and app.user.member.isLeader %}
+    {% if app.user.member %}
         <a href="{{ path('guild_management') }}" {% if isGuildManagement is defined %}class="active"{% endif %}>Guilde - Membres</a>
     {% endif %}
 

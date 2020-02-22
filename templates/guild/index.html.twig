@@ -12,9 +12,11 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <a href="{{ path('guild_manage_infos') }}" class="ma-25-top ma-25-bottom block f-right">Modifier les informations de guilde</a>
-                    {% if needScores %}
-                        <a href="{{ path('guild_register_gvg_scores') }}" class="ma-25-top ma-25-bottom block f-left">Enregistrer les scores de GvG</a>
+                    {% if leader %}
+                        <a href="{{ path('guild_manage_infos') }}" class="ma-25-top ma-25-bottom block f-right">Modifier les informations de guilde</a>
+                        {% if needScores %}
+                            <a href="{{ path('guild_register_gvg_scores') }}" class="ma-25-top ma-25-bottom block f-left">Enregistrer les scores de GvG</a>
+                        {% endif %}
                     {% endif %}
                     <table class="table">
                         <thead>

@@ -25,7 +25,7 @@ class GuildController extends AbstractController
      */
     public function index() : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
+        if($this->getUser()->getMember() === null) {
             throw new NotFoundHttpException();
         }
 
@@ -43,6 +43,7 @@ class GuildController extends AbstractController
             'isGuildManagement' => true,
             'members' => $members,
             'needScores' => count($scores) > 0 ? false : true,
+            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
         ]);
     }
 
