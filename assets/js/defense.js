@@ -1,37 +1,23 @@
-require('../css/vanillaSelectBox.css');
 require('../scss/defense.scss');
+
+require('select2/dist/css/select2.min.css');
+require('select2/dist/js/select2.full.min');
+
 const $ = require('jquery');
 
-import { vanillaSelectBox } from './vanillaSelectBox';
 
 $(document).ready(function(){
 
     if(document.getElementById('defense_mobLeader')){
-        let monsterSelect1 = new vanillaSelectBox("#defense_mobLeader", {
-            search: true,
-        });
-
-        let monsterSelect2 = new vanillaSelectBox("#defense_mobOne", {
-            search: true,
-        });
-
-        let monsterSelect3 = new vanillaSelectBox("#defense_mobTwo", {
-            search: true,
-        });
+        $('#defense_mobLeader').select2();
+        $('#defense_mobOne').select2();
+        $('#defense_mobTwo').select2();
     }
 
     if(document.getElementById('defense_enemy_mobLeader')){
-        let monsterSelect1 = new vanillaSelectBox("#defense_enemy_mobLeader", {
-            search: true,
-        });
-
-        let monsterSelect2 = new vanillaSelectBox("#defense_enemy_mobOne", {
-            search: true,
-        });
-
-        let monsterSelect3 = new vanillaSelectBox("#defense_enemy_mobTwo", {
-            search: true,
-        });
+        $('#defense_enemy_mobLeader').select2();
+        $('#defense_enemy_mobOne').select2();
+        $('#defense_enemy_mobTwo').select2();
     }
 
     $('body').on("change input", '.victory', function(){
