@@ -109,6 +109,14 @@ class MonstersPartTwoFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Kai\'en',
                 'img' => 'kaien',
             ],
+            [
+                'name' => 'Michelle',
+                'img' => 'michelle',
+            ],
+            [
+                'name' => 'Rachid',
+                'img' => 'rachid',
+            ],
         ];
 
 
@@ -120,7 +128,10 @@ class MonstersPartTwoFixtures extends Fixture implements FixtureGroupInterface
 
 
         $fourStars = [
-
+            [
+                'name' => 'Iona',
+                'img' => 'iona',
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {
