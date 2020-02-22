@@ -4,40 +4,50 @@
 
 {% block content %}
     <div class="container">
-        <div class="row" id="profilRecords">
-            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
-                <h2 class="ma-15-bottom">Mes records : </h2>
-                {{ form_start(formRecords) }}
-                {{ form_widget(formRecords) }}
-                <input type="submit" value="Enregistrer">
-                {{ form_end(formRecords) }}
+        <div id="accordion">
+            <div class="row" id="profilRecords">
+                <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                    <h2 class="ma-15-bottom btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Mes records : </h2>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        {{ form_start(formRecords) }}
+                        {{ form_widget(formRecords) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(formRecords) }}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row" id="profilBatiments">
-            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
-                <h2 class="ma-15-bottom">Mes bâtiments (niveaux) : </h2>
-                {{ form_start(formBuilds) }}
-                {{ form_widget(formBuilds) }}
-                <input type="submit" value="Enregistrer">
-                {{ form_end(formBuilds) }}
+            <div class="row" id="profilBatiments">
+                <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                    <h2 class="ma-15-bottom btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Mes bâtiments (niveaux) : </h2>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        {{ form_start(formBuilds) }}
+                        {{ form_widget(formBuilds) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(formBuilds) }}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row" id="profilInfos">
-            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
-                <h2 class="ma-15-bottom">Infos de compte : </h2>
-                {{ form_start(formAccount) }}
-                {{ form_widget(formAccount) }}
-                <input type="submit" value="Enregistrer">
-                {{ form_end(formAccount) }}
+            <div class="row" id="profilInfos">
+                <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                    <h2 class="ma-15-bottom btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Infos de compte : </h2>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        {{ form_start(formAccount) }}
+                        {{ form_widget(formAccount) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(formAccount) }}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row" id="profilPassword">
-            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
-                <h2 class="ma-15-bottom">Changer de mot de passe : </h2>
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <input type="submit" value="Enregistrer">
-                {{ form_end(form) }}
+            <div class="row" id="profilPassword">
+                <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                    <h2 class="ma-15-bottom btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">Changer de mot de passe : </h2>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
