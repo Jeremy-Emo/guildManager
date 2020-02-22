@@ -142,6 +142,7 @@
                     datasets: [{
                         label: 'Activité sur les dernières semaines de participation',
                         data: [{% for act in activity %}{{ act.attackNumber }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                        backgroundColor: [{% for act in activity %}'{{ act.getColor() }}'{% if not loop.last %}, {% endif %}{% endfor %}],
                         borderWidth: 1
                     }]
                 },

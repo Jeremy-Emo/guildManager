@@ -25,6 +25,17 @@ class GvGScores
         }
     }
 
+    public function getColor(): string
+    {
+        if($this->attackNumber < 20) {
+            return 'rgba(255, 0, 0, 0.1)';
+        }
+        if($this->attackNumber < 25) {
+            return 'rgba(255, 102, 0, 0.1)';
+        }
+        return 'rgba(0, 204, 0, 0.1)';
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
