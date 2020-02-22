@@ -5,17 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
 {
-    private $encoder;
-
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
-        $this->encoder = $encoder;
-    }
-
     public function load($manager)
     {
         $twoStars = [
