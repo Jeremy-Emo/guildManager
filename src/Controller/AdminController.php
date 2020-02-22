@@ -52,7 +52,7 @@ class AdminController extends AbstractController
         }
 
         $users = $this->getDoctrine()->getRepository(User::class)->findBy([], [
-            'lastVisitAt' => 'DESC'
+            'username' => 'ASC'
         ]);
 
         return $this->render('admin/index.html.twig', [
