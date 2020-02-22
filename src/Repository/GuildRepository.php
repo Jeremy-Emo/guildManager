@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Guild;
+use App\Entity\Members;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +18,22 @@ class GuildRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Guild::class);
+    }
+
+    public function getMembersInGvG(Guild $guild)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb
+            ->from(Members::class, 'm')
+            ->select('m')
+            ->join('m.guild', 'g')
+            ->join('m.user', 'u')
+            ->orderBy('u.username', 'ASC')
+            ->where('g.id = :id')
+            ->andWhere('m.isInGvG = true')
+            ->setParameter('id', $guild->getId())
+        ;
+        return $qb->getQuery()->execute();
     }
 
     // /**

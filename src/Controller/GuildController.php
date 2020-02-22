@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Achievement;
+use App\Entity\Guild;
 use App\Entity\GvGScores;
 use App\Entity\Members;
 use App\Entity\User;
@@ -92,20 +93,19 @@ class GuildController extends AbstractController
         }
 
         $guild = $this->getUser()->getMember()->getGuild();
+        $members = $this->getDoctrine()->getRepository(Guild::class)->getMembersInGvG($guild);
 
         $form = $this->createFormBuilder();
-        foreach($guild->getMembers() as $member) {
-            if($member->getIsInGvG()){
-                $form->add('score'.$member->getId(), IntegerType::class, [
-                    'required' => true,
-                    'label' => $member->getUser()->getUsername(),
-                    'attr' => [
-                        'data-id' => $member->getId(),
-                        'min' => 0,
-                        'max' => 36,
-                    ],
-                ]);
-            }
+        foreach($members as $member) {
+            $form->add('score'.$member->getId(), IntegerType::class, [
+                'required' => true,
+                'label' => $member->getUser()->getUsername(),
+                'attr' => [
+                    'data-id' => $member->getId(),
+                    'min' => 0,
+                    'max' => 36,
+                ],
+            ]);
         }
         $formFinal = $form->getForm();
 
