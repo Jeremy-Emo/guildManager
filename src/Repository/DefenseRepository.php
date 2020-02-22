@@ -25,7 +25,7 @@ class DefenseRepository extends ServiceEntityRepository
             ->join('d.mobLeader', 'ml')
             ->join('d.mobOne', 'mo')
             ->join('d.mobTwo', 'mt')
-            ->where('ml.name like :name or mo.name like :name or ml.name like :name')
+            ->where('ml.name like :name or mo.name like :name or mt.name like :name')
             ->setParameter('name', '%'.$name.'%')
         ;
 
