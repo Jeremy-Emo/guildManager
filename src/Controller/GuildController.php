@@ -153,7 +153,7 @@ class GuildController extends AbstractController
             'user' => $member,
             'year' => date("Y"),
         ], [
-            'semaine' => 'DESC'
+            'semaine' => 'ASC'
         ], 5);
 
         $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
