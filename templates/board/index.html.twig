@@ -62,6 +62,9 @@
                         <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
                     {% endfor %}
                     <p class="ma-10-top">Les défis doivent être validés par les admins de la guilde, n'hésitez pas à leur demander !</p>
+                    {% if app.user.isAdmin %}
+                        <p class="t-align-right ma-25-top"><a href="{{ path('edit_hfs', {'id':app.user.id}) }}">Modifier</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
