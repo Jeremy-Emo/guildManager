@@ -93,6 +93,21 @@ class Scores
         return "Aucun score";
     }
 
+    public function getRecordsColor() : ?string
+    {
+        $score = $this->calcScores();
+        if($score === "Late +" || $score === "Late -") {
+            return "red";
+        }
+        if($score === "Mid +" || $score === "Mid -") {
+            return "orange";
+        }
+        if($score === "Early +" || $score === "Early -") {
+            return "green";
+        }
+        return false;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

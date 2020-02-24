@@ -22,7 +22,7 @@
             <div class="col-12 ma-25-top">
                 <div class="row bg-white pa-20">
                     <div class="col-md-6">
-                        <p>Niveau : {{ member.user.scores ? member.user.scores.calcScores() : 'Non renseigné' }}</p>
+                        <p>Niveau : <span{{ member.user.scores ? (" class='" ~ member.user.scores.getRecordsColor() ~ "'")|raw : '' }}>{{ member.user.scores ? member.user.scores.calcScores() : 'Non renseigné' }}</span></p>
                         {% if member.user.swarfarm %}
                             <p><a href="{{ member.user.swarfarm }}">Swarfarm</a></p>
                         {% endif %}

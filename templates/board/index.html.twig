@@ -35,8 +35,13 @@
                             <p><a href="{{ guildInfos.discordLink }}"><i class="fab fa-discord"></i> Discord</a></p>
                         {% endif %}
                     {% endif %}
-                    <p><span class="bold">Votre niveau</span> : {{ app.user.scores ? app.user.scores.calcScores() : ('<a href="'~ path('edit_account') ~'">Renseignez votre profil</a>')|raw }}<br>
-                    Votre niveau est déterminé selon votre avancée en PVE. Améliorez vos records pour monter votre niveau.</p>
+                    <p>
+                        <span class="bold">Votre niveau</span> :
+                        <span{{ app.user.scores ? (" class='" ~ app.user.scores.getRecordsColor() ~ "'")|raw : '' }}>
+                            {{ app.user.scores ? app.user.scores.calcScores() : ('<a href="'~ path('edit_account') ~'">Renseignez votre profil</a>')|raw }}
+                        </span><br>
+                        Votre niveau est déterminé selon votre avancée en PVE. Améliorez vos records pour monter votre niveau.
+                    </p>
                 </div>
             </div>
         </div>
