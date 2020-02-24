@@ -38,7 +38,7 @@ class Members
     public function getCritical()
     {
         $score = $this->getGvGScores()->last();
-        if($score === null){
+        if($score === null || $score === false){
             return false;
         }
         if($score->getAttackNumber() < 20) {
