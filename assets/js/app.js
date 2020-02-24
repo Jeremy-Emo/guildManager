@@ -16,7 +16,7 @@ require('../scss/my.scss');
 
 $(document).ready(function() {
 
-   $('#burger').click(function(){
+   $('body').on("click", "#burger", function(){
       $("#menuDisplayed").toggle();
    });
 

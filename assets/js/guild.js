@@ -6,11 +6,11 @@ import Chart from 'chart.js';
 let userId;
 
 $(document).ready(function(){
-    $('.roll-gvg').click(function(){
+    $('body').on("click", ".roll-gvg", function(){
         userId = $(this).attr('data-id');
         roll(true);
     });
-    $('.roll-gvo').click(function(){
+    $('body').on("click", ".roll-gvo", function(){
         userId = $(this).attr('data-id');
         roll(false);
     });
