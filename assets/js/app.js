@@ -26,7 +26,7 @@ $(document).ready(function() {
       $('[data-toggle=popover]').not(this).popover('hide');
    });
 
-   $('.popover').click(function(){
+   $('body').on("click", ".popover", function(){
       $('[aria-describedby="'+$(this).attr('id')+'"]').popover('hide');
    });
 
