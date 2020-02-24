@@ -35,6 +35,21 @@ class Members
         return $this->getUser()->getUsername();
     }
 
+    public function getCritical()
+    {
+        $score = $this->getGvGScores()->last();
+        if($score === null){
+            return false;
+        }
+        if($score->getAttackNumber() < 20) {
+            return 'red';
+        }
+        if($score->getAttackNumber() < 25) {
+            return 'orange';
+        }
+        return false;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

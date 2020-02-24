@@ -16,3 +16,15 @@
   filter: grayscale(1);
   border : 1px solid red;
 }
+
+.redScores {
+  background-color: $redScores;
+}
+
+.orangeScores {
+  background-color: $orangeScores;
+}
+
+.greenScores {
+  background-color: $greenScores;
+}
