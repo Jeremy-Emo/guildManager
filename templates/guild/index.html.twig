@@ -34,7 +34,13 @@
                         {% for member in members %}
                             <tr{{ (member.member.getCritical() and app.user.isAdmin) ? (' class="' ~ member.member.getCritical() ~ 'Scores"')|raw : '' }}>
                                 <td><a href="{{ path('guild_member_info', {'id': member.id}) }}">{{ member.username }}</a></td>
-                                <td>{% if member.scores %}{{ member.scores.calcScores() }}{% else %}Aucun score{% endif %}</td>
+                                <td>
+                                    {% if member.scores %}
+                                        <span{{ member.scores ? (" class='" ~ member.scores.getRecordsColor() ~ "'")|raw : '' }}>{{ member.scores ? member.scores.calcScores() : 'Non renseigné' }}</span>
+                                    {% else %}
+                                        Aucun score
+                                    {% endif %}
+                                </td>
                                 <td>{{ member.member.isInGvG ? 'Oui' : 'Non' }}</td>
                                 <td>{{ member.member.isInGvO ? 'Oui' : 'Non' }}</td>
                             </tr>
