@@ -3,6 +3,7 @@ const $ = require('jquery');
 require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
+require('./stupidtable');
 
 const imagesContext = require.context('../img', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
 imagesContext.keys().forEach(imagesContext);
@@ -29,5 +30,7 @@ $(document).ready(function() {
    $('body').on("click", ".popover", function(){
       $('[aria-describedby="'+$(this).attr('id')+'"]').popover('hide');
    });
+
+   $('.table').stupidtable();
 
 });
