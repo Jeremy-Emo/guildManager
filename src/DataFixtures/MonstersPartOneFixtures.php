@@ -358,7 +358,7 @@ class MonstersPartOneFixtures extends Fixture implements FixtureGroupInterface
                 'img' => 'gemini',
             ],
             [
-                'name' => 'Gin',
+                'name' => 'Jin',
                 'img' => 'gin',
             ],
             [
