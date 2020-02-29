@@ -32,6 +32,17 @@ class DefenseRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getDefenseExamplesOrdered()
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->join('d.mobLeader', 'ml')
+            ->where('d.isExample = true')
+            ->orderBy('ml.name')
+        ;
+
+        return $qb->getQuery()->execute();
+    }
+
     // /**
     //  * @return Defense[] Returns an array of Defense objects
     //  */

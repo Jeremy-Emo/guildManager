@@ -22,9 +22,7 @@ class OffensesController extends AbstractController
      */
     public function index() : Response
     {
-        $defs = $this->getDoctrine()->getRepository(Defense::class)->findBy([
-            'isExample' => true,
-        ]);
+        $defs = $this->getDoctrine()->getRepository(Defense::class)->getDefenseExamplesOrdered();
 
         return $this->render('offenses/index.html.twig', [
             'isOffensesGVO' => true,
