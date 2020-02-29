@@ -14,6 +14,12 @@ $(document).ready(function(){
         $('#defense_mobTwo').select2();
     }
 
+    if(document.getElementById('offense_mobLeader')){
+        $('#offense_mobLeader').select2();
+        $('#offense_mobOne').select2();
+        $('#offense_mobTwo').select2();
+    }
+
     if(document.getElementById('defense_enemy_mobLeader')){
         $('#defense_enemy_mobLeader').select2();
         $('#defense_enemy_mobOne').select2();

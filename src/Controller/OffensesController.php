@@ -105,4 +105,34 @@ class OffensesController extends AbstractController
             'defense' => $def,
         ]);
     }
+
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/supprimer-offense-gvo/{id}", name="gvo_off_delete", methods={"GET"})
+     * @param int $id
+     * @return Response
+     */
+    public function delete(int $id) : Response
+    {
+        if(! $this->getUser()->getIsAdmin()) {
+            throw new NotFoundHttpException();
+        }
+        
+        $offense = $this->getDoctrine()->getRepository(Offense::class)->findOneBy([
+            'id' => $id,
+        ]);
+
+        if($offense === null){
+            throw new NotFoundHttpException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($offense);
+
+        $em->flush();
+
+        return $this->redirectToRoute('gvo_offs');
+    }
 }
