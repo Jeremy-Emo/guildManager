@@ -15,8 +15,8 @@
                     <h2>Défenses courantes :</h2>
                     <div class="row">
                     {% for defense in defs %}
-                        <div class="col-md-6 pa-20">
-                            <a href="{{ path('gvo_off_new', {'id' : defense.id}) }}" class="row align-items-center pa-25 classic_defense">
+                        <div class="col-md-4 pa-20">
+                            <a href="{{ path('gvo_off_new', {'id' : defense.id}) }}" class="row align-items-center classic_defense pa-5">
                                 <div class="col-4"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
                                 <div class="col-4"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                                 <div class="col-4"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
