@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Defense;
+use App\Entity\Monster;
 use App\Form\Type\DefenseEnemyType;
 use App\Form\Type\DefenseType;
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +34,15 @@ class DefensesController extends AbstractController
 
         $form = $this->createFormBuilder()
             ->setMethod('GET')
-            ->add('search', TextType::class)
+            ->add('search', EntityType::class, [
+                'class' => Monster::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('m')
+                        ->orderBy('m.name', 'ASC');
+                },
+                'expanded' => false,
+                'multiple' => true,
+            ])
             ->getForm()
         ;
         $form->handleRequest($request);

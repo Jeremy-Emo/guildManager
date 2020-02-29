@@ -26,6 +26,18 @@ $(document).ready(function(){
         $('#defense_enemy_mobTwo').select2();
     }
 
+    if(document.getElementById('form_search')){
+        $('#form_search').select2({
+            maximumSelectionLength: 3,
+            language: {
+                maximumSelected: function (args) {
+                    return 'Vous pouvez sélectionner seulement ' + args.maximum +
+                        ' monstre' + ((args.maximum > 1) ? 's' : '');
+                },
+            }
+        });
+    }
+
     $('body').on("change input", '.victory', function(){
         updateScores(true, $(this).attr('data-id'), $(this).val());
     });

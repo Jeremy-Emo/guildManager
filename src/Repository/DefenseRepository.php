@@ -19,16 +19,25 @@ class DefenseRepository extends ServiceEntityRepository
         parent::__construct($registry, Defense::class);
     }
 
-    public function getDefensesWhereIsMob(string $name)
+    public function getDefensesWhereIsMob($data)
     {
         $qb = $this->createQueryBuilder('d')
             ->join('d.mobLeader', 'ml')
             ->join('d.mobOne', 'mo')
             ->join('d.mobTwo', 'mt')
-            ->where('ml.name like :name or mo.name like :name or mt.name like :name')
             ->andWhere('d.isExample = false')
-            ->setParameter('name', '%'.$name.'%')
+//            ->where('ml.name like :name or mo.name like :name or mt.name like :name')
+//            ->setParameter('name', '%'.$name.'%')
         ;
+
+        $i = 1;
+        foreach($data as $datum) {
+            $qb
+                ->andWhere('ml.id like :id'.$i.' or mo.id like :id'.$i.' or mt.id like :id'.$i)
+                ->setParameter('id'.$i, $datum)
+            ;
+            $i++;
+        }
 
         return $qb->getQuery()->execute();
     }
