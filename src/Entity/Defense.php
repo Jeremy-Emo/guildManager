@@ -2,13 +2,28 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DefenseRepository")
+ * @HasLifecycleCallbacks
  */
 class Defense
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if ($this->getIsExample() === null) {
+            $this->setIsExample(false);
+        }
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -53,6 +68,21 @@ class Defense
      * @ORM\Column(type="text", nullable=true)
      */
     private $detail;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isExample;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offense", mappedBy="defense")
+     */
+    private $offenses;
+
+    public function __construct()
+    {
+        $this->offenses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +169,49 @@ class Defense
     public function setDetail(?string $detail): self
     {
         $this->detail = $detail;
+
+        return $this;
+    }
+
+    public function getIsExample(): ?bool
+    {
+        return $this->isExample;
+    }
+
+    public function setIsExample(bool $isExample): self
+    {
+        $this->isExample = $isExample;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offense[]
+     */
+    public function getOffenses(): Collection
+    {
+        return $this->offenses;
+    }
+
+    public function addOffense(Offense $offense): self
+    {
+        if (!$this->offenses->contains($offense)) {
+            $this->offenses[] = $offense;
+            $offense->setDefense($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffense(Offense $offense): self
+    {
+        if ($this->offenses->contains($offense)) {
+            $this->offenses->removeElement($offense);
+            // set the owning side to null (unless already changed)
+            if ($offense->getDefense() === $this) {
+                $offense->setDefense(null);
+            }
+        }
 
         return $this;
     }

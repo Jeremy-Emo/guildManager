@@ -103,12 +103,18 @@ class User implements UserInterface
      */
     private $achievements;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offense", mappedBy="owner")
+     */
+    private $offenses;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->myEvents = new ArrayCollection();
         $this->defenses = new ArrayCollection();
         $this->achievements = new ArrayCollection();
+        $this->offenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,6 +391,37 @@ class User implements UserInterface
         if ($this->achievements->contains($achievement)) {
             $this->achievements->removeElement($achievement);
             $achievement->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offense[]
+     */
+    public function getOffenses(): Collection
+    {
+        return $this->offenses;
+    }
+
+    public function addOffense(Offense $offense): self
+    {
+        if (!$this->offenses->contains($offense)) {
+            $this->offenses[] = $offense;
+            $offense->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffense(Offense $offense): self
+    {
+        if ($this->offenses->contains($offense)) {
+            $this->offenses->removeElement($offense);
+            // set the owning side to null (unless already changed)
+            if ($offense->getOwner() === $this) {
+                $offense->setOwner(null);
+            }
         }
 
         return $this;

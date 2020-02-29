@@ -4,6 +4,7 @@
 <div id="menuDisplayed">
     <a href="{{ path('index') }}" {% if isDashboard is defined %}class="active"{% endif %}>Accueil</a>
     <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
+    <a href="{{ path('gvo_offs') }}" {% if isOffensesGVO is defined %}class="active"{% endif %}>Offenses GVO</a>
     <a href="{{ path('gvo_defs') }}" {% if isGVO is defined %}class="active"{% endif %}>Défenses GVO</a>
     <a href="{{ path('toolbox') }}" {% if isToolbox is defined %}class="active"{% endif %}>Boîte à outils</a>
 

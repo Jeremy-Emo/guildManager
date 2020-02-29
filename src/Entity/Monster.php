@@ -48,11 +48,29 @@ class Monster
      */
     private $defensesWhereMobTwo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offense", mappedBy="mobLeader", orphanRemoval=true)
+     */
+    private $offensesWhereLeader;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offense", mappedBy="mobOne", orphanRemoval=true)
+     */
+    private $offensesWhereMobOne;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offense", mappedBy="mobTwo", orphanRemoval=true)
+     */
+    private $offensesWhereMobTwo;
+
     public function __construct()
     {
         $this->defensesWhereLeader = new ArrayCollection();
         $this->defensesWhereMobOne = new ArrayCollection();
         $this->defensesWhereMobTwo = new ArrayCollection();
+        $this->offensesWhereLeader = new ArrayCollection();
+        $this->offensesWhereMobOne = new ArrayCollection();
+        $this->offensesWhereMobTwo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,6 +189,99 @@ class Monster
             // set the owning side to null (unless already changed)
             if ($defensesWhereMobTwo->getMobTwo() === $this) {
                 $defensesWhereMobTwo->setMobTwo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offense[]
+     */
+    public function getOffensesWhereLeader(): Collection
+    {
+        return $this->offensesWhereLeader;
+    }
+
+    public function addOffensesWhereLeader(Offense $offensesWhereLeader): self
+    {
+        if (!$this->offensesWhereLeader->contains($offensesWhereLeader)) {
+            $this->offensesWhereLeader[] = $offensesWhereLeader;
+            $offensesWhereLeader->setMobLeader($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffensesWhereLeader(Offense $offensesWhereLeader): self
+    {
+        if ($this->offensesWhereLeader->contains($offensesWhereLeader)) {
+            $this->offensesWhereLeader->removeElement($offensesWhereLeader);
+            // set the owning side to null (unless already changed)
+            if ($offensesWhereLeader->getMobLeader() === $this) {
+                $offensesWhereLeader->setMobLeader(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offense[]
+     */
+    public function getOffensesWhereMobOne(): Collection
+    {
+        return $this->offensesWhereMobOne;
+    }
+
+    public function addOffensesWhereMobOne(Offense $offensesWhereMobOne): self
+    {
+        if (!$this->offensesWhereMobOne->contains($offensesWhereMobOne)) {
+            $this->offensesWhereMobOne[] = $offensesWhereMobOne;
+            $offensesWhereMobOne->setMobOne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffensesWhereMobOne(Offense $offensesWhereMobOne): self
+    {
+        if ($this->offensesWhereMobOne->contains($offensesWhereMobOne)) {
+            $this->offensesWhereMobOne->removeElement($offensesWhereMobOne);
+            // set the owning side to null (unless already changed)
+            if ($offensesWhereMobOne->getMobOne() === $this) {
+                $offensesWhereMobOne->setMobOne(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offense[]
+     */
+    public function getOffensesWhereMobTwo(): Collection
+    {
+        return $this->offensesWhereMobTwo;
+    }
+
+    public function addOffensesWhereMobTwo(Offense $offensesWhereMobTwo): self
+    {
+        if (!$this->offensesWhereMobTwo->contains($offensesWhereMobTwo)) {
+            $this->offensesWhereMobTwo[] = $offensesWhereMobTwo;
+            $offensesWhereMobTwo->setMobTwo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffensesWhereMobTwo(Offense $offensesWhereMobTwo): self
+    {
+        if ($this->offensesWhereMobTwo->contains($offensesWhereMobTwo)) {
+            $this->offensesWhereMobTwo->removeElement($offensesWhereMobTwo);
+            // set the owning side to null (unless already changed)
+            if ($offensesWhereMobTwo->getMobTwo() === $this) {
+                $offensesWhereMobTwo->setMobTwo(null);
             }
         }
 

@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Offenses GVO{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('defense') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Défenses courantes :</h2>
+                    <div class="row">
+                    {% for defense in defs %}
+                        <div class="col-md-6 pa-20">
+                            <a href="{{ path('gvo_off_new', {'id' : defense.id}) }}" class="row align-items-center pa-25 classic_defense">
+                                <div class="col-4"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    {% if app.user.isAdmin %}
+                        <p class="t-align-right ma-25-top"><a href="{{ path('gvo_def_example_add') }}">Ajouter une défense courante</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+{% endblock %}

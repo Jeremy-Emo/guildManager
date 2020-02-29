@@ -3,3 +3,11 @@
 .border-leader {
   border : 2px solid red;
 }
+
+.classic_defense {
+  border : 1px solid $lightGray;
+  &:hover {
+    background-color: $lightGray;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Nouvelle offense GVO{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('defense') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="pa-20 bg-white">
+                            <h2>Comment attaquer :</h2>
+                            <div class="row align-items-center pa-25">
+                                <div class="col-4"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        {% for off in defense.offenses %}
+                        <div class="pa-20 bg-white ma-25-top">
+                            <div class="row align-items-center pa-25">
+                                <div class="col-4"><img class="border-leader full-width" src="{{ off.mobLeader.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ off.mobOne.image }}"></div>
+                                <div class="col-4"><img class="full-width" src="{{ off.mobTwo.image }}"></div>
+                            </div>
+                            <p class="pa-25-right pa-25-left">{{ off.comment }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Ajouter mon offense :</h2>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Créer">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('defense') }}
+{% endblock %}
