@@ -96,7 +96,7 @@ class OffensesController extends AbstractController
             $em->persist($off);
             $em->flush();
 
-            return $this->redirectToRoute('gvo_offs');
+            return $this->redirectToRoute('gvo_off_new', ['id' => $id]);
         }
 
         return $this->render('offenses/new.html.twig', [
