@@ -38,6 +38,15 @@ class DefensesController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $results = $defRepo->getDefensesWhereIsMob($form->get('search')->getData());
+            $victories = 0;
+            $fights = 0;
+            foreach($results as $result){
+                $victories += $result->getVictories();
+                $fights += $result->getTotalFights();
+            }
+            if($results !== null && $fights !== 0){
+                $winrate = $victories / $fights * 100;
+            }
         }
 
         return $this->render('defenses/index.html.twig', [
@@ -45,6 +54,7 @@ class DefensesController extends AbstractController
             'myDefenses' => $myDefenses,
             'form' => $form->createView(),
             'results' => $results ?? null,
+            'winrate' => $winrate ?? null,
         ]);
     }
 

@@ -24,6 +24,11 @@ class Defense
         }
     }
 
+    public function getTotalFights(): int
+    {
+        return $this->getVictories() + $this->getLoses();
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
