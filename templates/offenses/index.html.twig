@@ -17,7 +17,12 @@
                     {% for defense in defs %}
                         <div class="col-md-4 pa-20">
                             <a href="{{ path('gvo_off_new', {'id' : defense.id}) }}" class="row align-items-center classic_defense pa-5">
-                                <div class="col-4"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
+                                <div class="col-4">
+                                    <div class="monster_lead">
+                                        <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
+                                        <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
+                                    </div>
+                                </div>
                                 <div class="col-4"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                                 <div class="col-4"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
                             </a>

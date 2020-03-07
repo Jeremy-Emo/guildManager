@@ -16,7 +16,12 @@
                     <p class="ma-25-top border-bottom pa-10-bottom"><a href="{{ path('gvo_def_new') }}">Ajouter une défense</a></p>
                     {% for defense in myDefenses %}
                         <div class="row align-items-center pa-10-top">
-                            <div class="col-4 col-md-3"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
+                            <div class="col-4 col-md-3">
+                                <div class="monster_lead">
+                                    <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
+                                    <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
+                                </div>
+                            </div>
                             <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                             <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
                             <div class="col-md-3"><p><a href="{{ path('gvo_def_delete', {'id':defense.id}) }}">Supprimer</a></p></div>
@@ -48,7 +53,12 @@
                     {% endif %}
                     {% for defense in results %}
                     <div class="row align-items-center">
-                        <div class="col-4 col-md-3"><img class="border-leader full-width" src="{{ defense.mobLeader.image }}"></div>
+                        <div class="col-4 col-md-3">
+                            <div class="monster_lead">
+                                <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
+                                <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
+                            </div>
+                        </div>
                         <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
                         <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
                         <div class="col-md-3 pa-10-top">
