@@ -25,8 +25,14 @@
                 <div class="pa-20 bg-white full-height">
                     {% if guildInfos %}
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
+                        {% if guildInfos.plusRule %}
+                            <p>Règle du +{{ guildInfos.plusRule }}, tours vertes en priorité.</p>
+                        {% endif %}
+                        {% if guildInfos.horaires %}
+                            <p><span class="bold">Horaires</span> : {{ guildInfos.horaires }}</p>
+                        {% endif %}
                         {% if guildInfos.message %}
-                            <p><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
+                            <p class="ma-20-bottom"><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
                         {% endif %}
                         {% if guildInfos.websiteLink %}
                             <p>Site web : <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>

@@ -44,6 +44,16 @@ class Guild
      */
     private $message;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $plusRule;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $horaires;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -136,5 +146,29 @@ class Guild
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getPlusRule(): ?int
+    {
+        return $this->plusRule;
+    }
+
+    public function setPlusRule(?int $plusRule): self
+    {
+        $this->plusRule = $plusRule;
+
+        return $this;
+    }
+
+    public function getHoraires(): ?string
+    {
+        return $this->horaires;
+    }
+
+    public function setHoraires(?string $horaires): self
+    {
+        $this->horaires = $horaires;
+
+        return $this;
     }
 }
