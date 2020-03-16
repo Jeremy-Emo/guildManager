@@ -17,6 +17,17 @@
                         <p><input type="submit" value="Modifier"></p>
                     </div>
                     {{ form_end(formGuild) }}
+                    {% if guildInfos %}
+                        {% if guildInfos.horaires %}
+                            <p><i class="fas fa-clock"></i> <span class="bold">Horaires des GvG</span> : {{ guildInfos.horaires }}</p>
+                        {% endif %}
+                        {% if guildInfos.gvgDefType %}
+                            <p><span class="bold"><i class="fab fa-fort-awesome"></i> Type de défenses GvG</span> : {{ guildInfos.gvgDefType }}</p>
+                        {% endif %}
+                        {% if guildInfos.plusRule %}
+                            <p><i class="fas fa-skull"></i> Règle du +{{ guildInfos.plusRule }}, tours vertes en priorité.</p>
+                        {% endif %}
+                    {% endif %}
                 {% else %}
                     <p>Vous ne faites pas partie d'une guilde de l'alliance.</p>
                 {% endif %}
@@ -27,12 +38,6 @@
                 <div class="pa-20 bg-white full-height">
                     {% if guildInfos %}
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
-                        {% if guildInfos.plusRule %}
-                            <p>Règle du +{{ guildInfos.plusRule }}, tours vertes en priorité.</p>
-                        {% endif %}
-                        {% if guildInfos.horaires %}
-                            <p><span class="bold">Horaires</span> : {{ guildInfos.horaires }}</p>
-                        {% endif %}
                         {% if guildInfos.message %}
                             <p class="ma-20-bottom"><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
                         {% endif %}

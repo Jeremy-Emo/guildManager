@@ -54,6 +54,11 @@ class Guild
      */
     private $horaires;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gvgDefType;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -168,6 +173,18 @@ class Guild
     public function setHoraires(?string $horaires): self
     {
         $this->horaires = $horaires;
+
+        return $this;
+    }
+
+    public function getGvgDefType(): ?string
+    {
+        return $this->gvgDefType;
+    }
+
+    public function setGvgDefType(?string $gvgDefType): self
+    {
+        $this->gvgDefType = $gvgDefType;
 
         return $this;
     }

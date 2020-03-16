@@ -16,7 +16,7 @@ class NewDataOneFixtures extends Fixture implements FixtureGroupInterface
                 'img' => 'bering',
             ],
         ];
-        
+
         foreach ($fourStars as $fourStar) {
             $mon = new Monster();
             $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png');
