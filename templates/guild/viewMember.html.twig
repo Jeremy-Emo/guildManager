@@ -35,13 +35,31 @@
             </div>
         </div>
         {% if leader %}
-        <div class="row">
-            <div class="col-12 ma-25-top">
-                <div class="pa-20 bg-white">
-                    <canvas id="stats"></canvas>
+            <div class="row">
+                <div class="col-12 ma-25-top">
+                    <div class="pa-20 bg-white">
+                        <canvas id="stats"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-6 ma-25-top">
+                    <div class="pa-20 bg-white">
+                        {{ form_start(formPlayerNote) }}
+                        {{ form_widget(formPlayerNote) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(formPlayerNote) }}
+                    </div>
+                </div>
+                <div class="col-6 ma-25-top">
+                    <div class="pa-20 bg-white">
+                        {{ form_start(formLeaderNote) }}
+                        {{ form_widget(formLeaderNote) }}
+                        <input type="submit" value="Enregistrer">
+                        {{ form_end(formLeaderNote) }}
+                    </div>
+                </div>
+            </div>
         {% endif %}
         <div class="row">
             <div class="col-md-6 ma-25-top">

@@ -89,6 +89,16 @@ class Members
      */
     private $gvGScores;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $leadersNote;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $baseNote;
+
     public function __construct()
     {
         $this->gvGScores = new ArrayCollection();
@@ -186,6 +196,30 @@ class Members
                 $gvGScore->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLeadersNote(): ?string
+    {
+        return $this->leadersNote;
+    }
+
+    public function setLeadersNote(?string $leadersNote): self
+    {
+        $this->leadersNote = $leadersNote;
+
+        return $this;
+    }
+
+    public function getBaseNote(): ?string
+    {
+        return $this->baseNote;
+    }
+
+    public function setBaseNote(?string $baseNote): self
+    {
+        $this->baseNote = $baseNote;
 
         return $this;
     }

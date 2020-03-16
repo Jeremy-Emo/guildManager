@@ -8,6 +8,8 @@ use App\Entity\GvGScores;
 use App\Entity\Members;
 use App\Entity\User;
 use App\Form\Type\GuildInfosType;
+use App\Form\Type\LeaderNoteType;
+use App\Form\Type\PlayerNoteType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -149,6 +151,24 @@ class GuildController extends AbstractController
             throw new NotFoundHttpException();
         }
 
+        $formPlayerNote = $this->createForm(PlayerNoteType::class, $member);
+        $formPlayerNote->handleRequest($request);
+        if($formPlayerNote->isSubmitted() && $formPlayerNote->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($member);
+            $em->flush();
+            $this->redirectToRoute('guild_member_info', ['id' => $id]);
+        }
+
+        $formLeaderNote = $this->createForm(LeaderNoteType::class, $member);
+        $formLeaderNote->handleRequest($request);
+        if($formLeaderNote->isSubmitted() && $formLeaderNote->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($member);
+            $em->flush();
+            $this->redirectToRoute('guild_member_info', ['id' => $id]);
+        }
+
         $activity = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
             'user' => $member,
             'year' => date("Y"),
@@ -163,6 +183,8 @@ class GuildController extends AbstractController
             'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
             'activity' => $activity,
             'hfs' => $hfs,
+            'formLeaderNote' => $formLeaderNote->createView(),
+            'formPlayerNote' => $formPlayerNote->createView(),
         ]);
     }
 
