@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Nom</th>
-                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Niveau</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Niveau</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> GvG</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> GvO</th>
                         </tr>
@@ -39,7 +39,7 @@
                                     {% endif %}
                                     <a href="{{ path('guild_member_info', {'id': member.id}) }}">{{ member.username }}</a>
                                 </td>
-                                <td>
+                                <td data-sort-value="{{ member.scores ? member.scores.calculateScores() : '0' }}">
                                     {% if member.scores %}
                                         <span{{ member.scores ? (" class='" ~ member.scores.getRecordsColor() ~ "'")|raw : '' }}>{{ member.scores ? member.scores.calcScores() : 'Non renseigné' }}</span>
                                     {% else %}

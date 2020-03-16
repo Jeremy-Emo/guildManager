@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Scores
 {
-    public function calcScores() : string
+    public function calculateScores(): int
     {
         $score = 0;
         if($this->gb10 !== null){
@@ -70,6 +70,13 @@ class Scores
         if($this->r5) {
             $score += 2;
         }
+
+        return $score;
+    }
+
+    public function calcScores() : string
+    {
+        $score = $this->calculateScores();
 
         if($score >= 17) {
             return "Late +";
