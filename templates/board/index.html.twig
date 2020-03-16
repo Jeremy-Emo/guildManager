@@ -10,6 +10,10 @@
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white full-height">
                 {% if memberInfos %}
+                    {% if memberInfos.baseNote %}
+                        <p class="ma-5-bottom"><span class="bold">Note au joueur : </span></p>
+                        <p class="border-bottom pa-10-bottom">{{ memberInfos.baseNote }}</p>
+                    {% endif %}
                     {{ form_start(formGuild) }}
                     <div class="column">
                         <p>{{ form_row(formGuild.isInGvG) }}</p>
