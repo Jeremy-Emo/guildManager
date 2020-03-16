@@ -1,5 +1,7 @@
 {% extends 'layout.html.twig' %}
 
+{% form_theme formGuild 'forms.html.twig' %}
+
 {% block page_title %}Tableau de bord{% endblock %}
 
 {% block content %}
@@ -10,8 +12,8 @@
                 {% if memberInfos %}
                     {{ form_start(formGuild) }}
                     <div class="column">
-                        <p>{{ form_widget(formGuild.isInGvG) }}</p>
-                        <p>{{ form_widget(formGuild.isInGvO) }}</p>
+                        <p>{{ form_row(formGuild.isInGvG) }}</p>
+                        <p>{{ form_row(formGuild.isInGvO) }}</p>
                         <p><input type="submit" value="Modifier"></p>
                     </div>
                     {{ form_end(formGuild) }}

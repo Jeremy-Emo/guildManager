@@ -1,0 +1,15 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_label %}
+    {{ parent() }}
+    {% if required %}
+        <span class="required" title="Champ requis">*</span>
+    {% endif %}
+{% endblock %}
+
+{% block checkbox_widget %}
+    {{ parent() }}
+    <div class="state p-success">
+        {{ block('form_label') }}
+    </div>
+{% endblock %}
