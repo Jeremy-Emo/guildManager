@@ -31,9 +31,28 @@
                             <td data-sort-value="{{ user.lastVisitAt ? user.lastVisitAt|date("U") : '0' }}">{{ user.lastVisitAt ? user.lastVisitAt|date("d/m/Y") : 'Jamais' }}</td>
                             <td>
                                 <a href="{{ path('admin_edit_account', {'id':user.id}) }}">Modifier</a><br>
-                                <a href="{{ path('admin_delete_account', {'id':user.id}) }}">Supprimer</a>
+                                <span class="like-a-link" data-toggle="modal" data-target="#deleteModal{{ user.id }}">Supprimer</span>
                             </td>
                         </tr>
+                        <div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ user.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ user.id }}">Supprimer le compte de {{ user.username }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous certain de vouloir supprimer le compte ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <a href="{{ path('admin_delete_account', {'id':user.id}) }}"><button type="button" class="btn btn-primary">Supprimer</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
                     </tbody>
                 </table>
