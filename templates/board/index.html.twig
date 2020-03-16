@@ -16,8 +16,8 @@
                     {% endif %}
                     {{ form_start(formGuild) }}
                     <div class="column">
-                        <p>{{ form_row(formGuild.isInGvG) }}</p>
-                        <p>{{ form_row(formGuild.isInGvO) }}</p>
+                        {{ form_row(formGuild.isInGvG) }}<br>
+                        {{ form_row(formGuild.isInGvO) }}
                         <p><input type="submit" value="Modifier"></p>
                     </div>
                     {{ form_end(formGuild) }}

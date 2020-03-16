@@ -1,4 +1,4 @@
-{% extends 'form_div_layout.html.twig' %}
+{% extends 'bootstrap_4_layout.html.twig' %}
 
 {% block form_label %}
     {{ parent() }}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block checkbox_widget %}
-    {{ parent() }}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
     <div class="state p-success">
         {{ block('form_label') }}
     </div>
