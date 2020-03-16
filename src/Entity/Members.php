@@ -85,7 +85,7 @@ class Members
     private $isInGvO;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\GvGScores", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\GvGScores", mappedBy="user", cascade={"remove"})
      */
     private $gvGScores;
 
