@@ -31,7 +31,7 @@ class GvGScores
             return 'rgba(255, 0, 0, 0.1)';
         }
         if($this->attackNumber < 25) {
-            return 'rgba(255, 102, 0, 0.1)';
+            return 'rgba(255, 175, 0, 0.1)';
         }
         return 'rgba(0, 204, 0, 0.1)';
     }
