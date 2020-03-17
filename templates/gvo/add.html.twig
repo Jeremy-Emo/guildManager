@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Nouvelle guilde ennemie{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Ajouter une guilde ennemie :</h2>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Ajouter">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+{% endblock %}

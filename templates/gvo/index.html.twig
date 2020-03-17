@@ -1,0 +1,79 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}GVO - Guildes ennemies{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('defense') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Guildes déjà affrontées :</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Nom</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Dernier affrontement</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for guild in guilds %}
+                            <tr>
+                                <td><a href="{{ path('enemy_guild_defenses', {'id': guild.id}) }}">{{ guild.name }}</a></td>
+                                <td data-sort-value="{{ guild.lastGvOBattle|date("U") }}">{{ guild.lastGvOBattle|date("d/m/Y") }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if leader %}
+                        <a href="{{ path('add_enemy_guild') }}" class="ma-10-top">Ajouter une guilde ennemie</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% if defenses is defined %}
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    {% for defense in defenses %}
+                        <div class="row align-items-center">
+                            <div class="col-4 col-md-3">
+                                <div class="monster_lead">
+                                    <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
+                                    <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
+                            <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
+                            <div class="col-md-3 pa-10-top">
+                                <p>{{ defense.victories }} Victoires <br>{{ defense.loses }} Défaites</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center pa-10-bottom pa-10-top ma-25-bottom border-bottom">
+                            <div class="col-12">
+                                {% if defense.owner %}
+                                    <p class="t-align-center">Défense de {{ defense.owner }}</p>
+                                {% elseif defense.enemyName %}
+                                    <p class="t-align-center">Défense de {{ defense.enemyName }}</p>
+                                {% endif %}
+                                {% if defense.detail %}
+                                    <p><span class="bold">Détail : </span>{{ defense.detail }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if leader %}
+                        <p class="t-align-right ma-25-top"><a href="{{ path('add_defense', {'id':app.request.get('id')}) }}">Ajouter une défense ennemie</a></p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+{% endblock %}

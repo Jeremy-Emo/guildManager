@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Defense;
+use App\Entity\EnemyGuild;
 use App\Entity\Monster;
 use App\Form\Type\DefenseEnemyType;
 use App\Form\Type\DefenseType;
@@ -172,24 +173,38 @@ class DefensesController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/ajouter-defense-gvo", name="add_defense", methods={"GET", "POST"})
+     * @Route("/ajouter-defense-gvo/{id}", name="add_defense", methods={"GET", "POST"})
      * @param Request $request
+     * @param int $id
      * @return Response
      */
-    public function add(Request $request) : Response
+    public function add(Request $request, int $id) : Response
     {
+        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
+            throw new NotFoundHttpException();
+        }
+
+        $guild = $this->getDoctrine()->getRepository(EnemyGuild::class)->find($id);
+        if($guild === null) {
+            throw new NotFoundHttpException();
+        }
+
         $defense = new Defense();
 
         $form = $this->createForm(DefenseEnemyType::class, $defense);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
+            $defense->setEnemyGuild($guild);
             $em = $this->getDoctrine()->getManager();
             $em->persist($defense);
+
+            $guild->setLastGvOBattle(new \DateTime('now'));
+            $em->persist($guild);
+
             $em->flush();
 
-            return $this->redirectToRoute('gvo_defs');
+            return $this->redirectToRoute('enemy_guilds');
         }
 
         return $this->render('defenses/new.html.twig', [

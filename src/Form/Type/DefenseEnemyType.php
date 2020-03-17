@@ -17,6 +17,7 @@ class DefenseEnemyType extends AbstractType
             ->add('mobOne')
             ->add('mobTwo')
             ->add('detail')
+            ->add('enemyName')
             ->add('victories', IntegerType::class, [
                 'attr' => [
                     'min' => 0,

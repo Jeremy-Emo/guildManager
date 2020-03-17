@@ -84,6 +84,16 @@ class Defense
      */
     private $offenses;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EnemyGuild", inversedBy="defenses")
+     */
+    private $enemyGuild;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $enemyName;
+
     public function __construct()
     {
         $this->offenses = new ArrayCollection();
@@ -217,6 +227,30 @@ class Defense
                 $offense->setDefense(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnemyGuild(): ?EnemyGuild
+    {
+        return $this->enemyGuild;
+    }
+
+    public function setEnemyGuild(?EnemyGuild $enemyGuild): self
+    {
+        $this->enemyGuild = $enemyGuild;
+
+        return $this;
+    }
+
+    public function getEnemyName(): ?string
+    {
+        return $this->enemyName;
+    }
+
+    public function setEnemyName(?string $enemyName): self
+    {
+        $this->enemyName = $enemyName;
 
         return $this;
     }
