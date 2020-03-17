@@ -8,6 +8,7 @@ use App\Entity\Monster;
 use App\Form\Type\DefenseEnemyType;
 use App\Form\Type\DefenseType;
 use Doctrine\ORM\EntityRepository;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -177,6 +178,7 @@ class DefensesController extends AbstractController
      * @param Request $request
      * @param int $id
      * @return Response
+     * @throws Exception
      */
     public function add(Request $request, int $id) : Response
     {
@@ -211,6 +213,44 @@ class DefensesController extends AbstractController
             'isGVO' => true,
             'form' => $form->createView(),
             'stats' => true,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/editer-defense-gvo/{id}", name="edit_defense", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     * @throws Exception
+     */
+    public function edit(Request $request, int $id) : Response
+    {
+        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
+            throw new NotFoundHttpException();
+        }
+
+        $defense = $this->getDoctrine()->getRepository(Defense::class)->find($id);
+        if($defense === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(DefenseEnemyType::class, $defense);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($defense);
+
+            $em->flush();
+
+            return $this->redirectToRoute('enemy_guilds');
+        }
+
+        return $this->render('defenses/new.html.twig', [
+            'isGVO' => true,
+            'form' => $form->createView(),
+            'edit' => true,
         ]);
     }
 }

@@ -12,7 +12,11 @@
         <div class="row">
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2>Créer une défense :</h2>
+                    {% if edit is defined %}
+                        <h2>Editer une défense :</h2>
+                    {% else %}
+                        <h2>Créer une défense :</h2>
+                    {% endif %}
                     {% if stats is defined %}
                         <p class="ma-25-top ma-25-bottom">Il est préférable d'ajouter des défenses ayant fait au moins 10 combats pour des raisons de pertinence.</p>
                     {% endif %}

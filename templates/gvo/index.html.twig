@@ -61,6 +61,9 @@
                                 {% if defense.detail %}
                                     <p><span class="bold">Détail : </span>{{ defense.detail }}</p>
                                 {% endif %}
+                                {% if leader %}
+                                    <p class="t-align-right"><a href="{{ path('edit_defense', {'id':defense.id}) }}">Modifier la défense</a></p>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
