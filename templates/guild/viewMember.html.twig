@@ -26,6 +26,10 @@
                         {% if member.user.swarfarm %}
                             <p><a href="{{ member.user.swarfarm }}">Swarfarm</a></p>
                         {% endif %}
+                        {% if member.user.scores %}
+                            <p>Rang arène : {{ member.user.scores.bestArenaRank ? member.user.scores.bestArenaRank : 'Non renseigné' }}</p>
+                            <p>Rang RTA : {{ member.user.scores.bestRTARank ? member.user.scores.bestRTARank : 'Non renseigné' }}</p>
+                        {% endif %}
                     </div>
                     <div class="col-md-6 border-left">
                         <p>GVG : <span class="roll-gvg-txt">{{ member.isInGvG ? 'Oui' : 'Non' }}</span>{% if leader %} <i class="fas fa-sync-alt roll-gvg" data-id="{{ member.id }}"></i>{% endif %}</p>
@@ -93,7 +97,7 @@
             </div>
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2>Records</h2>
+                    <h2>Infos de compte :</h2>
                     {% if member.user.scores %}
                     <p class="ma-25-top">GB10 : {{ member.user.scores.gb10 }} s.</p>
                     <p>DB10 : {{ member.user.scores.db10 }} s.</p>
@@ -107,8 +111,10 @@
                     <p>SSS Rift Eau : {{ member.user.scores.sssWaterRift ? 'Oui' : 'Non' }}</p>
                     <p>SSS Rift Dark : {{ member.user.scores.sssDarkRift ? 'Oui' : 'Non' }}</p>
                     <p>SSS Rift Light : {{ member.user.scores.sssLightRift ? 'Oui' : 'Non' }}</p>
+                    <p>Nombre de 6 étoiles : {{ member.user.scores.nbSixStars ? member.user.scores.nbSixStars : 'Non renseigné' }}</p>
+                    <p>Vitesse du monstre le plus rapide ! : {{ member.user.scores.minSpeed ? member.user.scores.minSpeed : 'Non renseignée' }}</p>
                     {% else %}
-                        <p class="ma-25-top">Non renseignés</p>
+                        <p class="ma-25-top">Non renseignées</p>
                     {% endif %}
                 </div>
             </div>
