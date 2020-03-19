@@ -1,5 +1,7 @@
 {% extends 'layout.html.twig' %}
 
+{% form_theme formRecords with ['forms.html.twig'] %}
+
 {% block page_title %}Editer le compte de {{ user.username }}{% endblock %}
 
 {% block content %}
