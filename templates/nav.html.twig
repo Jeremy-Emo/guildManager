@@ -13,6 +13,10 @@
         <a href="{{ path('enemy_guilds') }}" {% if isGuildGVO is defined %}class="active"{% endif %}>Guilde - GVO</a>
     {% endif %}
 
+    {% if app.user.member and app.user.member.isLeader %}
+        <a href="{{ path('guild_stats') }}" {% if isGuildStats is defined %}class="active"{% endif %}>Guilde - Statistiques</a>
+    {% endif %}
+
     {% if app.user.isAdmin %}
         <a href="{{ path('admin_accounts') }}" {% if isAdminAccounts is defined %}class="active"{% endif %}>Admin - Comptes</a>
     {% endif %}

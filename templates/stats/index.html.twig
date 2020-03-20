@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Statistiques de la guilde{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('guild') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <p>Niveau moyen de la guilde : {{ baseStats.levelMoyen }}</p>
+                    <canvas id="statsLevel"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('guild') }}
+    <script>
+        let ctx = document.getElementById('statsLevel');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Aucun", "Early -", "Early +", "Mid -", "Mid +", "Late -", "Late +"],
+                datasets: [{
+                    label: "Niveaux des membres de guilde",
+                    data: [{% for stat in baseStats.statsLevels %}{{ stat }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: [
+                        'rgba(213, 213, 213, 0.5)',
+                        'rgba(255, 0, 0, 0.1)',
+                        'rgba(255, 0, 0, 0.1)',
+                        'rgba(255, 175, 0, 0.1)',
+                        'rgba(255, 175, 0, 0.1)',
+                        'rgba(255, 0, 0, 0.1)',
+                        'rgba(255, 0, 0, 0.1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}
