@@ -25,6 +25,11 @@ class EnemyGuild
         }
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

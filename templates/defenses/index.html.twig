@@ -69,6 +69,8 @@
                             <div class="col-12">
                                 {% if defense.owner %}
                                     <p class="t-align-center">Défense de {{ defense.owner }}</p>
+                                {% elseif defense.enemyName and defense.enemyGuild %}
+                                    <p class="t-align-center">Défense de {{ defense.enemyName }} (guilde : {{ defense.enemyGuild }})</p>
                                 {% elseif defense.detail %}
                                     <p class="t-align-center">{{ defense.detail }}</p>
                                 {% endif %}
