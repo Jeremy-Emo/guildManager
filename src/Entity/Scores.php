@@ -70,6 +70,9 @@ class Scores
         if($this->r5) {
             $score += 2;
         }
+        if($this->sssDarkRift && $this->sssFireRift && $this->sssLightRift && $this->sssWaterRift && $this->sssWindRift) {
+            $score += 1;
+        }
 
         return $score;
     }
