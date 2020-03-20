@@ -17,6 +17,33 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white border-bottom">
+                    <h2>Voir les infos de GvG :</h2>
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Voir la semaine">
+                    {{ form_end(form) }}
+                </div>
+                {% if users %}
+                <div class="pa-20 bg-white">
+                    <p>Personnes critiques (- de 20 attaques) :</p>
+                    {% for user in users.critical %}
+                        <p class="pa-10-left">- <a href="{{ path('guild_member_info', {'id':user.member.id}) }}">{{ user.username }}</a></p>
+                    {% endfor %}
+                    <p>Personnes devant faire attention (- de 25 attaques) :</p>
+                    {% for user in users.warning %}
+                        <p class="pa-10-left">- <a href="{{ path('guild_member_info', {'id':user.member.id}) }}">{{ user.username }}</a></p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    <div class="pa-20 bg-white">
+                        <p>Aucun record enregistré pour cette recherche</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 
