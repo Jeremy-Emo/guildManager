@@ -100,7 +100,7 @@ class GuildController extends AbstractController
         $form = $this->createFormBuilder();
         foreach($members as $member) {
             $form->add('score'.$member->getId(), IntegerType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => $member->getUser()->getUsername(),
                 'attr' => [
                     'data-id' => $member->getId(),
@@ -117,7 +117,7 @@ class GuildController extends AbstractController
         {
             $em = $this->getDoctrine()->getManager();
             foreach($formFinal->getData() as $key => $data) {
-                if($data !== 0){
+                if($data !== "" && $data !== null){
                     $scores = new GvGScores();
                     $scores->setYear(date('Y'))->setSemaine(date('W'));
                     $scores->setUser($this->getDoctrine()->getRepository(Members::class)->find((int) str_replace('score', '', $key)));
