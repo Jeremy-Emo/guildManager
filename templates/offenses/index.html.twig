@@ -13,6 +13,9 @@
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Défenses courantes :</h2>
+                    {% if app.user.isAdmin %}
+                        <p class="t-align-right inline"><a href="{{ path('gvo_def_example_add') }}">Ajouter une défense courante</a></p>
+                    {% endif %}
                     <div class="row">
                     {% for defense in defs %}
                         <div class="col-md-4 pa-20">
@@ -29,9 +32,11 @@
                         </div>
                     {% endfor %}
                     </div>
-                    {% if app.user.isAdmin %}
-                        <p class="t-align-right ma-25-top"><a href="{{ path('gvo_def_example_add') }}">Ajouter une défense courante</a></p>
-                    {% endif %}
+                    <div class="row">
+                        <div class="col-12 t-align-center">
+                            <a href="https://swgt.io/3mdc/" target="_blank">Une défense manque ? N'hésitez pas à consulter ce site !</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
