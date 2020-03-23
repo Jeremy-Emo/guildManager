@@ -117,12 +117,14 @@ class GuildController extends AbstractController
         {
             $em = $this->getDoctrine()->getManager();
             foreach($formFinal->getData() as $key => $data) {
-                $scores = new GvGScores();
-                $scores->setYear(date('Y'))->setSemaine(date('W'));
-                $scores->setUser($this->getDoctrine()->getRepository(Members::class)->find((int) str_replace('score', '', $key)));
-                $scores->setAttackNumber($data);
-                $em->persist($scores);
-                $em->flush();
+                if($data !== 0){
+                    $scores = new GvGScores();
+                    $scores->setYear(date('Y'))->setSemaine(date('W'));
+                    $scores->setUser($this->getDoctrine()->getRepository(Members::class)->find((int) str_replace('score', '', $key)));
+                    $scores->setAttackNumber($data);
+                    $em->persist($scores);
+                    $em->flush();
+                }
             }
 
             return $this->redirectToRoute('guild_management');
