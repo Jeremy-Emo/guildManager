@@ -48,7 +48,7 @@
                         {{ form_end(form) }}
                     </div>
                     {% if winrate %}
-                        <p class="ma-5-bottom red pa-5-bottom">Winrate : {{ winrate }}%</p>
+                        <p class="ma-5-bottom red pa-5-bottom">Winrate : {{ winrate|number_format(2, ',', ' ') }}%</p>
                         <p class="ma-25-bottom border-bottom pa-10-bottom">Nombre de résultats : {{ results|length }}</p>
                     {% endif %}
                     {% for defense in results %}
