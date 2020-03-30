@@ -2,12 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Achievement;
 use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class NewDataTwoFixtures extends Fixture implements FixtureGroupInterface
+class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load($manager)
     {
@@ -482,6 +481,10 @@ class NewDataTwoFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Dova',
                 'img' => 'dova',
             ],
+            [
+                'name' => 'Bering',
+                'img' => 'bering',
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {
@@ -495,6 +498,6 @@ class NewDataTwoFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['toProd', 'data2'];
+        return ['toProd', 'monsters', 'part4'];
     }
 }
