@@ -46,7 +46,7 @@ class GuildController extends GenericController
             'isGuildManagement' => true,
             'members' => $members,
             'needScores' => count($scores) > 0 ? false : true,
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getUser()->getMember()->getIsLeader(),
         ]);
     }
 
