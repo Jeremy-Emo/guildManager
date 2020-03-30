@@ -151,7 +151,7 @@ class GuildController extends GenericController
 
         $formPlayerNote = $this->createForm(PlayerNoteType::class, $member);
         $formPlayerNote->handleRequest($request);
-        if($formPlayerNote->isSubmitted() && $formPlayerNote->isValid()){
+        if($formPlayerNote->isSubmitted() && $formPlayerNote->isValid() && $this->getUser()->getMember()->getIsLeader()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($member);
             $em->flush();
@@ -160,7 +160,7 @@ class GuildController extends GenericController
 
         $formLeaderNote = $this->createForm(LeaderNoteType::class, $member);
         $formLeaderNote->handleRequest($request);
-        if($formLeaderNote->isSubmitted() && $formLeaderNote->isValid()){
+        if($formLeaderNote->isSubmitted() && $formLeaderNote->isValid() && $this->getUser()->getMember()->getIsLeader()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($member);
             $em->flush();

@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Admin - Gestion des leaders{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Modifier les leaders de la guilde {{ guild.name }} :</h2>
+                    {{ form_start(form) }}
+                    {% for field in form %}
+                        {% if field.vars.name != "_token" %}
+                            {% for memberField in field %}
+                            {{ form_widget(memberField, {'checked':(memberField.vars.value in leaders ? 1 : 0)}) }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    <input type="submit" value="Valider" class="ma-10-top">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

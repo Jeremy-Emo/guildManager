@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Buildings;
+use App\Entity\Guild;
+use App\Entity\Members;
 use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditPasswordType;
+use App\Form\Type\LeadersType;
+use App\Form\Type\NewGuildType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -55,7 +59,6 @@ class AdminController extends GenericController
 
         return $this->render('admin/index.html.twig', [
             'form' => $form->createView(),
-            'isAdminAccounts' => true,
             'users' => $users,
         ]);
     }
@@ -130,7 +133,6 @@ class AdminController extends GenericController
             'formBuilds' => $formBuilds->createView(),
             'form' => $form->createView(),
             'user' => $user,
-            'isAdminAccounts' => true,
         ]);
     }
 
@@ -152,5 +154,89 @@ class AdminController extends GenericController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_accounts');
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/guildes", name="admin_guilds", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function indexGuilds(Request $request) : Response
+    {
+        $this->checkAdmin();
+
+        $guild = new Guild();
+        $form = $this->createForm(NewGuildType::class, $guild);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($guild);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_guilds');
+        }
+
+        $guilds = $this->getDoctrine()->getRepository(Guild::class)->findBy([], [
+            'name' => 'ASC'
+        ]);
+
+        return $this->render('admin/guilds.html.twig', [
+            'form' => $form->createView(),
+            'guilds' => $guilds,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/guilde/leaders/{id}", name="admin_guild_leaders", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function guildLeaders(Request $request, int $id) : Response
+    {
+        $this->checkAdmin();
+
+        $guild = $this->getDoctrine()->getRepository(Guild::class)->find($id);
+
+        if($guild === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $guildLeadersId = [];
+        foreach($guild->getMembers() as $member){
+            if($member->getIsLeader()){
+                $guildLeadersId[] = $member->getId();
+            }
+        }
+
+        $options['id'] = $guild->getId();
+
+        $form = $this->createForm(LeadersType::class, null, $options);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            foreach($guild->getMembers() as $member){
+                $member->setIsLeader(false);
+                $em->persist($member);
+            }
+            foreach ($form->get('members')->getData() as $data){
+                $member = $this->getDoctrine()->getRepository(Members::class)->find($data);
+                $member->setIsLeader(true);
+                $em->persist($member);
+            }
+            $em->flush();
+            return $this->redirectToRoute('admin_guilds');
+        }
+
+        return $this->render('admin/guildLeaders.html.twig', [
+            'form' => $form->createView(),
+            'guild' => $guild,
+            'leaders' => $guildLeadersId,
+        ]);
     }
 }
