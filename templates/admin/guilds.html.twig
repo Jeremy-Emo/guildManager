@@ -20,7 +20,7 @@
                 <div class="pa-20 bg-white">
                     <h2 class="ma-20-bottom">Liste des guildes :</h2>
                     {% for guild in guilds %}
-                    <p>
+                    <p class="border-bottom pa-10-bottom">
                         <span>{{ guild.name }}</span>
                         <span class="f-right"><a href="{{ path('admin_guild_leaders', {'id':guild.id}) }}">Gérer les leaders</a></span>
                     </p>
