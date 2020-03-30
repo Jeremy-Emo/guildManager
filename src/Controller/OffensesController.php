@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
-class OffensesController extends AbstractController
+class OffensesController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
@@ -38,9 +38,7 @@ class OffensesController extends AbstractController
      */
     public function addDef(Request $request) : Response
     {
-        if(! $this->getUser()->getIsAdmin()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkAdmin();
 
         $defense = new Defense();
 
@@ -115,9 +113,7 @@ class OffensesController extends AbstractController
      */
     public function delete(int $id) : Response
     {
-        if(! $this->getUser()->getIsAdmin()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkAdmin();
         
         $offense = $this->getDoctrine()->getRepository(Offense::class)->findOneBy([
             'id' => $id,

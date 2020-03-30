@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefensesController extends AbstractController
+class DefensesController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
@@ -182,9 +182,7 @@ class DefensesController extends AbstractController
      */
     public function add(Request $request, int $id) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $guild = $this->getDoctrine()->getRepository(EnemyGuild::class)->find($id);
         if($guild === null) {
@@ -226,9 +224,7 @@ class DefensesController extends AbstractController
      */
     public function edit(Request $request, int $id) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $defense = $this->getDoctrine()->getRepository(Defense::class)->find($id);
         if($defense === null) {

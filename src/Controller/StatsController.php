@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
-class StatsController extends AbstractController
+class StatsController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
@@ -23,9 +23,7 @@ class StatsController extends AbstractController
      */
     public function index(Request $request, StatsFactory $statsFactory) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $guild = $this->getUser()->getMember()->getGuild();
 

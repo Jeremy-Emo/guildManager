@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GuildController extends AbstractController
+class GuildController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
@@ -58,9 +58,7 @@ class GuildController extends AbstractController
      */
     public function infos(Request $request) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $guild = $this->getUser()->getMember()->getGuild();
 
@@ -90,9 +88,7 @@ class GuildController extends AbstractController
      */
     public function gvgScores(Request $request) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $guild = $this->getUser()->getMember()->getGuild();
         $members = $this->getDoctrine()->getRepository(Guild::class)->getMembersInGvG($guild);

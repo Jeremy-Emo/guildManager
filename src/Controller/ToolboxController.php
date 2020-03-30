@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ToolboxController extends AbstractController
+class ToolboxController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")

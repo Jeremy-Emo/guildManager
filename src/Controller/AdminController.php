@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AdminController extends AbstractController
+class AdminController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
@@ -28,9 +28,7 @@ class AdminController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
-        if(! $this->getUser()->getIsAdmin()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkAdmin();
 
         $user = new User();
         $form = $this->createForm(NewUserType::class, $user);
@@ -72,9 +70,7 @@ class AdminController extends AbstractController
      */
     public function editAccount(Request $request, UserPasswordEncoderInterface $passwordEncoder, int $id) : Response
     {
-        if(! $this->getUser()->getIsAdmin()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkAdmin();
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
@@ -147,9 +143,7 @@ class AdminController extends AbstractController
      */
     public function deleteAccount(Request $request, int $id) : Response
     {
-        if(! $this->getUser()->getIsAdmin()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkAdmin();
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 

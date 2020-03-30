@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BoardController extends AbstractController
+class BoardController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
