@@ -15,6 +15,18 @@ body {
   background-color: $lightGray;
   min-height: 100%;
   font-family: $txt-font;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width : 100%;
+  left : 0;
+  background-color: $lightWhite;
+  & > p {
+    margin-top : 10px;
+  }
 }
 
 h1 {
@@ -30,6 +42,73 @@ h2 {
 ===================================================================================================================== */
 .row {
   margin : 0;
+}
+
+.navbar {
+  padding : 0;
+}
+
+.navbar-brand {
+  padding : 15px 25px;
+  background : $blue;
+  color : $white;
+  text-decoration: none;
+}
+
+.nav-item.dropdown {
+  & > a {
+    padding : 18px 25px;
+    text-decoration: none;
+    color : $black;
+    &:hover {
+      background-color: $lightGray;
+    }
+  }
+}
+
+.dropdown-menu.show {
+  border-radius: 1px;
+  margin-top: 17px;
+  background-color: $lightWhite;
+  min-width : 230px;
+  & > li {
+    border-bottom: 1px solid $lightGray;
+    &:hover {
+      background-color: $lightGray;
+    }
+    & > a {
+      padding: 5px 25px;
+      width : 100%;
+      display : inline-block;
+      height : 100%;
+      text-decoration: none;
+      color : $black;
+    }
+  }
+}
+
+@media screen and (max-width : 991px) {
+  .nav-item.dropdown {
+    & > a {
+      width : 100%;
+      display : inline-block;
+      padding : 5px 10px;
+    }
+  }
+  .dropdown-menu.show {
+    margin-top: 0;
+    padding : 0;
+    & > li {
+      border : none;
+      & > a {
+        padding : 5px 20px;
+      }
+    }
+  }
+}
+
+#navbarNavDropdown {
+  background-color : $lightWhite;
 }
 
 /* =====================================================================================================================

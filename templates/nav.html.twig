@@ -1,25 +1,47 @@
-<nav>
-    <i class="fas fa-bars" id="burger"></i>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{{ path('index') }}">SW-Guilde</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav full-width">
+            {% if app.user.member %}
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> La guilde <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="{{ path('guild_management') }}" class="text-uppercase">Membres</a></li>
+                        {% if app.user.member.isLeader %}
+                            <li><a href="{{ path('guild_stats') }}" class="text-uppercase">Statistiques</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> GVO <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="{{ path('gvo_offs') }}" class="text-uppercase">Offenses</a></li>
+                        <li><a href="{{ path('gvo_defs') }}" class="text-uppercase">Défenses</a></li>
+                        <li><a href="{{ path('enemy_guilds') }}" class="text-uppercase">Guildes affrontées</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> Autres <span class="caret"></span></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="{{ path('toolbox') }}" class="text-uppercase">Boîte à outils</a></li>
+                </ul>
+            </li>
+            {% if app.user.isAdmin %}
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> Administration <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="{{ path('admin_accounts') }}" class="text-uppercase">Comptes</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            <li class="nav-item user-navbox">
+                <a href="{{ path('edit_account') }}">{{ app.user.username }}</a>{% if app.user.member %} @ {{ app.user.member.guild.name }}{% endif %}
+                <a href="{{ path('app_logout') }}" class="ma-10-left"><i class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    </div>
 </nav>
-<div id="menuDisplayed">
-    <a href="{{ path('index') }}" {% if isDashboard is defined %}class="active"{% endif %}>Accueil</a>
-    <a href="{{ path('edit_account') }}" {% if isMyAccount is defined %}class="active"{% endif %}>Mon compte</a>
-    <a href="{{ path('gvo_offs') }}" {% if isOffensesGVO is defined %}class="active"{% endif %}>Offenses GVO</a>
-    <a href="{{ path('gvo_defs') }}" {% if isGVO is defined %}class="active"{% endif %}>Mes défenses GVO</a>
-    <a href="{{ path('toolbox') }}" {% if isToolbox is defined %}class="active"{% endif %}>Boîte à outils</a>
-
-    {% if app.user.member %}
-        <a href="{{ path('guild_management') }}" {% if isGuildManagement is defined %}class="active"{% endif %}>Guilde - Membres</a>
-        <a href="{{ path('enemy_guilds') }}" {% if isGuildGVO is defined %}class="active"{% endif %}>Guilde - GVO</a>
-    {% endif %}
-
-    {% if app.user.member and app.user.member.isLeader %}
-        <a href="{{ path('guild_stats') }}" {% if isGuildStats is defined %}class="active"{% endif %}>Guilde - Statistiques</a>
-    {% endif %}
-
-    {% if app.user.isAdmin %}
-        <a href="{{ path('admin_accounts') }}" {% if isAdminAccounts is defined %}class="active"{% endif %}>Admin - Comptes</a>
-    {% endif %}
-
-    <a href="{{ path('app_logout') }}">Déconnexion</a>
-</div>

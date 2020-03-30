@@ -13,54 +13,19 @@ nav {
   border-bottom: 1px solid $lightBlue;
 }
 
-#menuDisplayed {
-  display : none;
-  min-height: calc(100vh - #{$navHeight} );
-  width : 360px;
-  position: fixed;
-  top : $navHeight;
-  left : 0;
-  z-index : 5000;
-  background-color: $lightWhite;
-  border-right: 1px solid $lightBlue;
-
-  a {
-    display : block;
-    height : 50px;
-    width : 100%;
-    text-decoration: none;
-    padding : 10px;
-    border-bottom: 1px solid $lightBlue;
-    color : $dark;
-    font-size : 20px;
-
-    &:hover {
-      background-color: $lightGray;
-    }
-  }
-
-  a.active {
-    background-color: $lightGray;
-  }
-}
-
-@media screen and (max-width : 768px) {
-  #menuDisplayed {
-    width : 100%;
-    border-right: none;
-  }
-}
-
 #content {
   margin-top : $navHeight;
 }
 
-#burger {
-  font-size : 40px;
-  width : 40px;
-  height : 40px;
-  cursor : pointer;
-  display : block;
-  margin-top : 10px;
-  margin-left : 20px;
+@media screen and (min-width : 992px) {
+  .user-navbox {
+    margin-left: auto !important;
+    padding-right : 20px;
+  }
+}
+
+@media screen and (max-width : 991px) {
+  .user-navbox {
+    padding : 5px 10px;
+  }
 }
