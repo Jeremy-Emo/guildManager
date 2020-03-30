@@ -17,7 +17,7 @@ class Achievement
     public function getImagePath() : string
     {
         if(strpos($this->image, '.')){
-            return '/img/icons/' . $this->image;
+            return '/img/icons/uploads/' . $this->image;
         } else {
             return '/img/icons/' . $this->image . '.png';
         }
@@ -102,7 +102,7 @@ class Achievement
 
     protected function getUploadRootDir()
     {
-        return $_ENV['ABSOLUTE_PATH_FOR_UPLOAD'].'/img/icons/';
+        return $_ENV['ABSOLUTE_PATH_FOR_UPLOAD'].'/img/icons/uploads/';
     }
 
     /**
