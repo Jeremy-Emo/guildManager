@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Achievement;
 use App\Entity\Buildings;
 use App\Entity\Guild;
 use App\Entity\Members;
@@ -9,6 +10,7 @@ use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditPasswordType;
+use App\Form\Type\HfType;
 use App\Form\Type\LeadersType;
 use App\Form\Type\NewGuildType;
 use App\Form\Type\NewUserType;
@@ -238,5 +240,56 @@ class AdminController extends GenericController
             'guild' => $guild,
             'leaders' => $guildLeadersId,
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/defis", name="admin_hf", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function hf(Request $request) : Response
+    {
+        $this->checkAdmin();
+
+        $hf = new Achievement();
+        $form = $this->createForm(HfType::class, $hf);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hf);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_hf');
+        }
+
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findBy([], [
+            'name' => 'ASC'
+        ]);
+
+        return $this->render('admin/hfs.html.twig', [
+            'form' => $form->createView(),
+            'hfs' => $hfs,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/supprimer-defi/{id}", name="admin_hf_delete", methods={"GET"})
+     * @param int $id
+     * @return Response
+     */
+    public function hfDelete(int $id) : Response
+    {
+        $this->checkAdmin();
+
+        $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($hf);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_hf');
     }
 }

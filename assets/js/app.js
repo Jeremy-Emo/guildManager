@@ -4,6 +4,9 @@ require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 require('./stupidtable');
+require('dropify/dist/js/dropify.min');
+require('dropify/dist/css/dropify.min.css');
+require('dropify/dist/fonts/dropify.ttf');
 
 const imagesContext = require.context('../img', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
 imagesContext.keys().forEach(imagesContext);
@@ -32,5 +35,18 @@ $(document).ready(function() {
    });
 
    $('.table').stupidtable();
+
+   $('.dropify').dropify({
+      messages : {
+         'default': 'Déposez un fichier ici ou cliquez-moi !',
+         'replace': 'Déposez un fichiez ou cliquez pour remplacer.',
+         'remove':  'Supprimer',
+         'error':   'Une erreur est survenue.'
+      },
+      error: {
+         'fileSize': 'Le fichier est trop lourd : ({{ value }} max).',
+         'imageFormat': 'Le format d\'image est incorrect : seuls sont autorisés ({{ value }}).'
+      }
+   });
 
 });
