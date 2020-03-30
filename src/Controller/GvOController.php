@@ -25,7 +25,7 @@ class GvOController extends GenericController
 
         return $this->render('gvo/index.html.twig', [
             'isGuildGVO' => true,
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getUser()->getMember()->getIsLeader(),
             'guilds' => $guilds,
         ]);
     }
@@ -51,7 +51,7 @@ class GvOController extends GenericController
 
         return $this->render('gvo/index.html.twig', [
             'isGuildGVO' => true,
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getUser()->getMember()->getIsLeader(),
             'guilds' => $guilds,
             'defenses' => $defenses,
         ]);
