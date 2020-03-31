@@ -31,7 +31,9 @@ class Defense
 
     public function getIfFiveStarsDefense(): bool
     {
-        if($this->mobLeader->getNaturalStars() > 4 || $this->mobOne->getNaturalStars() > 4 || $this->mobTwo->getNaturalStars() > 4){
+        if($this->mobLeader->getNaturalStars() !== null && $this->mobOne->getNaturalStars() !== null && $this->mobTwo->getNaturalStars() !== null
+            && ($this->mobLeader->getNaturalStars() > 4 || $this->mobOne->getNaturalStars() > 4 || $this->mobTwo->getNaturalStars() > 4)
+        ){
             return true;
         }
         return false;
