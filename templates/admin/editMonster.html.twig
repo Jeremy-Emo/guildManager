@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Admin - Modification de monstre{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Modifier un monstre : </h2>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Modifier">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+{% endblock %}

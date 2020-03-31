@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Admin - Gestion des monstres{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Liste des monstres :</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Nom</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Famille</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Etoiles</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Element</th>
+                            <th scope="col"><i class="fas fa-caret-down"></i> Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for monster in monsters %}
+                            <tr>
+                                <td>
+                                    <span>{{ monster.name }}</span>
+                                </td>
+                                <td>
+                                    <span>{{ monster.monsterFamily ? monster.monsterFamily.name : 'Non renseigné' }}</span>
+                                </td>
+                                <td>
+                                    <span>{{ monster.naturalStars ? monster.naturalStars : 'Non renseigné' }}</span>
+                                </td>
+                                <td>
+                                    {% if monster.element %}
+                                        <span><img class="element-box" src="{{ monster.element.image }}"> {{ monster.element.name }}</span>
+                                    {% else %}
+                                        <span>Non renseigné</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_monster_edit', {'id':monster.id}) }}">Modifier</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

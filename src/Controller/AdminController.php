@@ -6,12 +6,14 @@ use App\Entity\Achievement;
 use App\Entity\Buildings;
 use App\Entity\Guild;
 use App\Entity\Members;
+use App\Entity\Monster;
 use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditPasswordType;
 use App\Form\Type\HfType;
 use App\Form\Type\LeadersType;
+use App\Form\Type\MonsterType;
 use App\Form\Type\NewGuildType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
@@ -291,5 +293,55 @@ class AdminController extends GenericController
         $em->flush();
 
         return $this->redirectToRoute('admin_hf');
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/monstres", name="admin_monsters", methods={"GET"})
+     * @return Response
+     */
+    public function monsters() : Response
+    {
+        $this->checkAdmin();
+
+        $monsters = $this->getDoctrine()->getRepository(Monster::class)->findBy([], [
+            'name' => 'ASC'
+        ]);
+
+        return $this->render('admin/monsters.html.twig', [
+            'monsters' => $monsters,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/editer-monstre/{id}", name="admin_monster_edit", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function editMonster(Request $request, int $id) : Response
+    {
+        $this->checkAdmin();
+
+        $monster = $this->getDoctrine()->getRepository(Monster::class)->find($id);
+
+        if($monster === null){
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(MonsterType::class, $monster);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($monster);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_monsters');
+        }
+
+        return $this->render('admin/editMonster.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
