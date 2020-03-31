@@ -64,6 +64,10 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'ref' => 'chasseresseAuFauve',
             ],
             [
+                'name' => 'Chasseur de bêtes',
+                'ref' => 'chasseurDeBetes',
+            ],
+            [
                 'name' => 'Chasseur de tête',
                 'ref' => 'chasseurDeTete',
             ],
@@ -136,6 +140,14 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'ref' => 'dryade',
             ],
             [
+                'name' => 'Elémentaire',
+                'ref' => 'elementaire',
+            ],
+            [
+                'name' => 'Elémentaire faible',
+                'ref' => 'elementaireFaible',
+            ],
+            [
                 'name' => 'Elfe Patrouilleur',
                 'ref' => 'elfePatrouilleur',
             ],
@@ -146,6 +158,10 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Empereur des Foudres',
                 'ref' => 'empereurDesFoudres',
+            ],
+            [
+                'name' => 'Expert en art martial',
+                'ref' => 'martialArtist',
             ],
             [
                 'name' => 'Faucheuse',
@@ -228,6 +244,10 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'ref' => 'ifrit',
             ],
             [
+                'name' => 'Inferno',
+                'ref' => 'inferno',
+            ],
+            [
                 'name' => 'Inugami',
                 'ref' => 'inugami',
             ],
@@ -284,8 +304,16 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'ref' => 'mammouthDeCombat',
             ],
             [
+                'name' => 'Minotaure',
+                'ref' => 'minotaure',
+            ],
+            [
                 'name' => 'Moine Bestial',
                 'ref' => 'moineBestial',
+            ],
+            [
+                'name' => 'Momie',
+                'ref' => 'momie',
             ],
             [
                 'name' => 'Ninja',
@@ -340,6 +368,10 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'ref' => 'reinePolaire',
             ],
             [
+                'name' => 'Requin coursier',
+                'ref' => 'requinCoursier',
+            ],
+            [
                 'name' => 'Roi Barbare',
                 'ref' => 'roiBarbare',
             ],
@@ -350,6 +382,10 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
             [
                 'name' => 'Roi Singe',
                 'ref' => 'roiSinge',
+            ],
+            [
+                'name' => 'Salamandre',
+                'ref' => 'salamandre',
             ],
             [
                 'name' => 'Samourai',

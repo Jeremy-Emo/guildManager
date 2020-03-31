@@ -15,14 +15,20 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
             [
                 'name' => 'Huga',
                 'img' => 'huga',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_WATER")
             ],
             [
                 'name' => 'Jansson',
                 'img' => 'jansson',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Walter',
                 'img' => 'walter',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
         ];
 
@@ -43,22 +49,32 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
             [
                 'name' => 'Fairo',
                 'img' => 'fairo',
+                'family' => $this->getReference("lutinChampion"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Pigma',
                 'img' => 'pigma',
+                'family' => $this->getReference("lutinChampion"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Shaffron',
                 'img' => 'shaffron',
+                'family' => $this->getReference("lutinChampion"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Loque',
                 'img' => 'loque',
+                'family' => $this->getReference("lutinChampion"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Geoffrey',
                 'img' => 'geoffrey',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
         ];
 

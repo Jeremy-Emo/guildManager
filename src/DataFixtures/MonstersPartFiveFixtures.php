@@ -15,22 +15,32 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
             [
                 'name' => 'Bernard',
                 'img' => 'bernard',
+                'family' => $this->getReference("griffon"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Kahn',
                 'img' => 'kahn',
+                'family' => $this->getReference("griffon"),
+                'element' => $this->getReference("ELEM_WATER")
             ],
             [
                 'name' => 'Shamann',
                 'img' => 'shamann',
+                'family' => $this->getReference("griffon"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Spectra',
                 'img' => 'spectra',
+                'family' => $this->getReference("griffon"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Varus',
                 'img' => 'varus',
+                'family' => $this->getReference("griffon"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
         ];
 

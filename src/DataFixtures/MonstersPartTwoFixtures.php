@@ -15,46 +15,68 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             [
                 'name' => 'Shushu',
                 'img' => 'shushu',
+                'family' => $this->getReference("howl"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Gamir',
                 'img' => 'gamir',
+                'family' => $this->getReference("cerbere"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Shamar',
                 'img' => 'shamar',
+                'family' => $this->getReference("cerbere"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Allen',
                 'img' => 'allen',
+                'family' => $this->getReference("vagabond"),
+                'element' => $this->getReference("ELEM_WATER")
             ],
             [
                 'name' => 'Roid',
                 'img' => 'roid',
+                'family' => $this->getReference("vagabond"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Chacha',
                 'img' => 'chacha',
+                'family' => $this->getReference("howl"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Chichi',
                 'img' => 'chichi',
+                'family' => $this->getReference("howl"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Lala',
                 'img' => 'lala',
+                'family' => $this->getReference("howl"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Rizak',
                 'img' => 'rizak',
+                'family' => $this->getReference("garuda"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Lindermen',
                 'img' => 'lindermen',
+                'family' => $this->getReference("garuda"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Cahule',
                 'img' => 'cahule',
+                'family' => $this->getReference("garuda"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
         ];
 
@@ -75,54 +97,80 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             [
                 'name' => 'Lucasha',
                 'img' => 'lucasha',
+                'family' => $this->getReference("harpie"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Calicus',
                 'img' => 'calicus',
+                'family' => $this->getReference("requinCoursier"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Cassie',
                 'img' => 'cassie',
+                'family' => $this->getReference("cowgirl"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Gina',
                 'img' => 'gina',
+                'family' => $this->getReference("sorciereMystique"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
             [
                 'name' => 'Linda',
                 'img' => 'linda',
+                'family' => $this->getReference("sorciereMystique"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Silia',
                 'img' => 'silia',
+                'family' => $this->getReference("sorciereMystique"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Rebecca',
                 'img' => 'rebecca',
+                'family' => $this->getReference("sorciereMystique"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Prom',
                 'img' => 'prom',
+                'family' => $this->getReference("faucheuse"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Rumicus',
                 'img' => 'rumicus',
+                'family' => $this->getReference("requinCoursier"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Elpuria',
                 'img' => 'elpuria',
+                'family' => $this->getReference("serpent"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Kai\'en',
                 'img' => 'kaien',
+                'family' => $this->getReference("vagabond"),
+                'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Michelle',
                 'img' => 'michelle',
+                'family' => $this->getReference("pretreEpikion"),
+                'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Rachid',
                 'img' => 'rachid',
+                'family' => $this->getReference("pretreEpikion"),
+                'element' => $this->getReference("ELEM_DARK")
             ],
         ];
 
@@ -144,6 +192,8 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             [
                 'name' => 'Iona',
                 'img' => 'iona',
+                'family' => $this->getReference("pretreEpikion"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
         ];
 
@@ -164,6 +214,8 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             [
                 'name' => 'Elsharion',
                 'img' => 'elsharion',
+                'family' => $this->getReference("ifrit"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
         ];
 
