@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
+class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
     public function load($manager)
     {
@@ -36,6 +37,12 @@ class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
         foreach ($oneStars as $oneStar) {
             $mon = new Monster();
             $mon->setName($oneStar['name'])->setImage('/img/1nat/' . $oneStar['img'] . '.png');
+            if(isset($oneStar['family'])){
+                $mon->setMonsterFamily($oneStar['family']);
+            }
+            if(isset($oneStar['element'])){
+                $mon->setElement($oneStar['element']);
+            }
             $manager->persist($mon);
         }
 
@@ -114,6 +121,12 @@ class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
         foreach ($twoStars as $twoStar) {
             $mon = new Monster();
             $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png');
+            if(isset($twoStar['family'])){
+                $mon->setMonsterFamily($twoStar['family']);
+            }
+            if(isset($twoStar['element'])){
+                $mon->setElement($twoStar['element']);
+            }
             $manager->persist($mon);
         }
 
@@ -448,6 +461,12 @@ class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
         foreach ($threeStars as $threeStar) {
             $mon = new Monster();
             $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png');
+            if(isset($threeStar['family'])){
+                $mon->setMonsterFamily($threeStar['family']);
+            }
+            if(isset($threeStar['element'])){
+                $mon->setElement($threeStar['element']);
+            }
             $manager->persist($mon);
         }
 
@@ -490,6 +509,12 @@ class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
         foreach ($fourStars as $fourStar) {
             $mon = new Monster();
             $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png');
+            if(isset($fourStar['family'])){
+                $mon->setMonsterFamily($fourStar['family']);
+            }
+            if(isset($fourStar['element'])){
+                $mon->setElement($fourStar['element']);
+            }
             $manager->persist($mon);
         }
 
@@ -499,5 +524,13 @@ class MonstersPartFourFixtures extends Fixture implements FixtureGroupInterface
     public static function getGroups(): array
     {
         return ['toProd', 'monsters', 'part4'];
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            FamilyFixtures::class,
+            ElementsFixtures::class
+        );
     }
 }
