@@ -64,12 +64,12 @@ class Monster
     private $offensesWhereMobTwo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MonsterFamily", inversedBy="members")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MonsterFamily", inversedBy="members", cascade={"persist", "remove"})
      */
     private $monsterFamily;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Element", inversedBy="monsters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Element", inversedBy="monsters", cascade={"persist", "remove"})
      */
     private $element;
 

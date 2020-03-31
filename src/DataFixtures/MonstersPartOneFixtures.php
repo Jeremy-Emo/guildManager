@@ -1179,7 +1179,7 @@ class MonstersPartOneFixtures extends Fixture implements DependentFixtureInterfa
             [
                 'name' => 'Gildong',
                 'img' => 'gildong',
-                'family' => $this->getReference("taosite"),
+                'family' => $this->getReference("taoiste"),
                 'element' => $this->getReference("ELEM_WATER")
             ],
             [

@@ -43,7 +43,7 @@ class ElementsFixtures extends Fixture implements FixtureGroupInterface
             $elem->setName($element['name'])->setImage('/img/icons/' . $element['image'] . '.png');
             $manager->persist($elem);
 
-            $this->setReference($elem['ref'], $elem);
+            $this->setReference($element['ref'], $elem);
         }
     }
 
