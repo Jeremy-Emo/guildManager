@@ -46,7 +46,7 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
 
         foreach ($oneStars as $oneStar) {
             $mon = new Monster();
-            $mon->setName($oneStar['name'])->setImage('/img/1nat/' . $oneStar['img'] . '.png');
+            $mon->setName($oneStar['name'])->setImage('/img/1nat/' . $oneStar['img'] . '.png')->setNaturalStars(1);
             if(isset($oneStar['family'])){
                 $mon->setMonsterFamily($oneStar['family']);
             }
@@ -164,7 +164,7 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
 
         foreach ($twoStars as $twoStar) {
             $mon = new Monster();
-            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png');
+            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png')->setNaturalStars(2);
             if(isset($twoStar['family'])){
                 $mon->setMonsterFamily($twoStar['family']);
             }
@@ -666,7 +666,7 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
 
         foreach ($threeStars as $threeStar) {
             $mon = new Monster();
-            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png');
+            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png')->setNaturalStars(3);
             if(isset($threeStar['family'])){
                 $mon->setMonsterFamily($threeStar['family']);
             }
@@ -730,7 +730,7 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
 
         foreach ($fourStars as $fourStar) {
             $mon = new Monster();
-            $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png');
+            $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png')->setNaturalStars(4);
             if(isset($fourStar['family'])){
                 $mon->setMonsterFamily($fourStar['family']);
             }

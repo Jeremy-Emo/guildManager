@@ -16,37 +16,42 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
                 'name' => 'Bernard',
                 'img' => 'bernard',
                 'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_WIND")
+                'element' => $this->getReference("ELEM_WIND"),
+                'stars' => 3,
             ],
             [
                 'name' => 'Kahn',
                 'img' => 'kahn',
                 'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_WATER")
+                'element' => $this->getReference("ELEM_WATER"),
+                'stars' => 3,
             ],
             [
                 'name' => 'Shamann',
                 'img' => 'shamann',
                 'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_LIGHT")
+                'element' => $this->getReference("ELEM_LIGHT"),
+                'stars' => 3,
             ],
             [
                 'name' => 'Spectra',
                 'img' => 'spectra',
                 'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_FIRE")
+                'element' => $this->getReference("ELEM_FIRE"),
+                'stars' => 3,
             ],
             [
                 'name' => 'Varus',
                 'img' => 'varus',
                 'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_DARK")
+                'element' => $this->getReference("ELEM_DARK"),
+                'stars' => 3,
             ],
         ];
 
         foreach ($secondAwakes as $secondAwake) {
             $mon = new Monster();
-            $mon->setName($secondAwake['name'] . ' 2A')->setImage('/img/2a/' . $secondAwake['img'] . '.png');
+            $mon->setName($secondAwake['name'] . ' 2A')->setImage('/img/2a/' . $secondAwake['img'] . '.png')->setNaturalStars($secondAwake['stars']);
             if(isset($secondAwake['family'])){
                 $mon->setMonsterFamily($secondAwake['family']);
             }

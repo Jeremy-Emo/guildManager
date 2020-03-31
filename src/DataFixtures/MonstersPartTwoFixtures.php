@@ -83,7 +83,7 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 
         foreach ($twoStars as $twoStar) {
             $mon = new Monster();
-            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png');
+            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png')->setNaturalStars(2);
             if(isset($twoStar['family'])){
                 $mon->setMonsterFamily($twoStar['family']);
             }
@@ -177,7 +177,7 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 
         foreach ($threeStars as $threeStar) {
             $mon = new Monster();
-            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png');
+            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png')->setNaturalStars(3);
             if(isset($threeStar['family'])){
                 $mon->setMonsterFamily($threeStar['family']);
             }
@@ -199,7 +199,7 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 
         foreach ($fourStars as $fourStar) {
             $mon = new Monster();
-            $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png');
+            $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png')->setNaturalStars(4);
             if(isset($fourStar['family'])){
                 $mon->setMonsterFamily($fourStar['family']);
             }
@@ -221,7 +221,7 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 
         foreach ($fiveStars as $fiveStar) {
             $mon = new Monster();
-            $mon->setName($fiveStar['name'])->setImage('/img/5nat/' . $fiveStar['img'] . '.png');
+            $mon->setName($fiveStar['name'])->setImage('/img/5nat/' . $fiveStar['img'] . '.png')->setNaturalStars(5);
             if(isset($fiveStar['family'])){
                 $mon->setMonsterFamily($fiveStar['family']);
             }

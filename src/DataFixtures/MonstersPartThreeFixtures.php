@@ -35,7 +35,7 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
 
         foreach ($twoStars as $twoStar) {
             $mon = new Monster();
-            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png');
+            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png')->setNaturalStars(2);
             if(isset($twoStar['family'])){
                 $mon->setMonsterFamily($twoStar['family']);
             }
@@ -81,7 +81,7 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
 
         foreach ($threeStars as $threeStar) {
             $mon = new Monster();
-            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png');
+            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png')->setNaturalStars(3);
             if(isset($threeStar['family'])){
                 $mon->setMonsterFamily($threeStar['family']);
             }

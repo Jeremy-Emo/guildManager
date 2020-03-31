@@ -73,6 +73,11 @@ class Monster
      */
     private $element;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $naturalStars;
+
     public function __construct()
     {
         $this->defensesWhereLeader = new ArrayCollection();
@@ -318,6 +323,18 @@ class Monster
     public function setElement(?Element $element): self
     {
         $this->element = $element;
+
+        return $this;
+    }
+
+    public function getNaturalStars(): ?int
+    {
+        return $this->naturalStars;
+    }
+
+    public function setNaturalStars(?int $naturalStars): self
+    {
+        $this->naturalStars = $naturalStars;
 
         return $this;
     }
