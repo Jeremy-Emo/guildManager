@@ -63,6 +63,16 @@ class Monster
      */
     private $offensesWhereMobTwo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\MonsterFamily", inversedBy="members")
+     */
+    private $monsterFamily;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Element", inversedBy="monsters")
+     */
+    private $element;
+
     public function __construct()
     {
         $this->defensesWhereLeader = new ArrayCollection();
@@ -284,6 +294,30 @@ class Monster
                 $offensesWhereMobTwo->setMobTwo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMonsterFamily(): ?MonsterFamily
+    {
+        return $this->monsterFamily;
+    }
+
+    public function setMonsterFamily(?MonsterFamily $monsterFamily): self
+    {
+        $this->monsterFamily = $monsterFamily;
+
+        return $this;
+    }
+
+    public function getElement(): ?Element
+    {
+        return $this->element;
+    }
+
+    public function setElement(?Element $element): self
+    {
+        $this->element = $element;
 
         return $this;
     }
