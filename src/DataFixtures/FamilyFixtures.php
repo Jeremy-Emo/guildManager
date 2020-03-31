@@ -464,6 +464,6 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['toProd', 'monsters'];
+        return ['toProd', 'monsters', 'pack1'];
     }
 }

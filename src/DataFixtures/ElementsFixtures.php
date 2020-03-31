@@ -49,6 +49,6 @@ class ElementsFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['toProd', 'elements', 'monsters'];
+        return ['toProd', 'monsters', 'pack1'];
     }
 }
