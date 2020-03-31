@@ -30,6 +30,28 @@ class User implements UserInterface
         return $this->getUsername();
     }
 
+    public function countNatFourDefenses(): int
+    {
+        $count = 0;
+        foreach($this->defenses as $defense){
+            if(!$defense->getIfFiveStarsDefense()){
+                $count ++;
+            }
+        }
+        return $count;
+    }
+
+    public function countNatFiveDefenses(): int
+    {
+        $count = 0;
+        foreach($this->defenses as $defense){
+            if($defense->getIfFiveStarsDefense()){
+                $count ++;
+            }
+        }
+        return $count;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

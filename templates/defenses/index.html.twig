@@ -13,7 +13,9 @@
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Mes défenses :</h2>
-                    <p class="ma-25-top border-bottom pa-10-bottom"><a href="{{ path('gvo_def_new') }}">Ajouter une défense</a></p>
+                    <p class="ma-25-top">Nombre de défenses 4* : {{ app.user.countNatFourDefenses() }}</p>
+                    <p class="border-bottom pa-10-bottom">Nombre de défenses 5* : {{ app.user.countNatFiveDefenses() }}</p>
+                    <p class="border-bottom pa-10-bottom"><a href="{{ path('gvo_def_new') }}">Ajouter une défense</a></p>
                     {% for defense in myDefenses %}
                         <div class="row align-items-center pa-10-top">
                             <div class="col-4 col-md-3">
@@ -33,6 +35,11 @@
                             <div class="col-md-6 pa-10">
                                 <p class="row">Défaites : <input type="number" min="0" data-id="{{ defense.id }}" class="loses" value="{{ defense.loses }}"></p>
                             </div>
+                            {% if defense.getElementWarning() %}
+                                <div class="col-12 pa-10">
+                                    <p class="red">/!\ Cette défense contient des monstres du même élément !</p>
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

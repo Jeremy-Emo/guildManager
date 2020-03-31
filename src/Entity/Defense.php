@@ -29,6 +29,29 @@ class Defense
         return $this->getVictories() + $this->getLoses();
     }
 
+    public function getIfFiveStarsDefense(): bool
+    {
+        if($this->mobLeader->getNaturalStars() > 4 || $this->mobOne->getNaturalStars() > 4 || $this->mobTwo->getNaturalStars() > 4){
+            return true;
+        }
+        return false;
+    }
+
+    public function getElementWarning(): bool
+    {
+        if(
+            $this->mobLeader->getElement() !== null && $this->mobOne->getElement() !== null && $this->mobTwo->getElement() !== null
+            && (
+                $this->mobLeader->getElement() === $this->mobOne->getElement()
+                || $this->mobLeader->getElement() === $this->mobTwo->getElement()
+                || $this->mobOne->getElement() === $this->mobTwo->getElement()
+            )
+        ){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
