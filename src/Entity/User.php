@@ -130,6 +130,11 @@ class User implements UserInterface
      */
     private $offenses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $discordTag;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -445,6 +450,18 @@ class User implements UserInterface
                 $offense->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDiscordTag(): ?string
+    {
+        return $this->discordTag;
+    }
+
+    public function setDiscordTag(?string $discordTag): self
+    {
+        $this->discordTag = $discordTag;
 
         return $this;
     }

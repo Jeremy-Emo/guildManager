@@ -21,6 +21,10 @@ class EditAccountInfosType extends AbstractType
                 'required' => false,
                 'label' => 'Lien Swarfarm'
             ])
+            ->add('discordTag', TextType::class, [
+                'required' => false,
+                'label' => 'Tag Discord'
+            ])
         ;
     }
 
