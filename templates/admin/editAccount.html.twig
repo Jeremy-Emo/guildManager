@@ -8,6 +8,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
+                <h2 class="ma-15-bottom">Sa guilde : </h2>
+                {{ form_start(formMember) }}
+                {{ form_widget(formMember) }}
+                <input type="submit" value="Enregistrer">
+                {{ form_end(formMember) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 ma-25-top pa-20 bg-white">
                 <h2 class="ma-15-bottom">Ses records : </h2>
                 {{ form_start(formRecords) }}
                 {{ form_widget(formRecords) }}

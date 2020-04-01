@@ -13,6 +13,7 @@ use App\Form\Type\BuildingsType;
 use App\Form\Type\EditPasswordType;
 use App\Form\Type\HfType;
 use App\Form\Type\LeadersType;
+use App\Form\Type\MembersType;
 use App\Form\Type\MonsterType;
 use App\Form\Type\NewGuildType;
 use App\Form\Type\NewUserType;
@@ -132,9 +133,21 @@ class AdminController extends GenericController
             return $this->redirectToRoute('admin_accounts');
         }
 
+        $member = $user->getMember();
+        $formMember = $this->createForm(MembersType::class, $member);
+        $formMember->handleRequest($request);
+        if($formMember->isSubmitted() && $formMember->isValid()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($member);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_accounts');
+        }
+
         return $this->render('admin/editAccount.html.twig', [
             'formRecords' => $formRecords->createView(),
             'formBuilds' => $formBuilds->createView(),
+            'formMember' => $formMember->createView(),
             'form' => $form->createView(),
             'user' => $user,
         ]);
