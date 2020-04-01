@@ -1,0 +1,76 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Calculateur de temps d'achat des bâtiments{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h1 class="ma-25-bottom">Calculateur du prévisionnel du combat d'occupation</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <label for="redPoints">Points actuels des Rouges : </label>
+                                <input id="redPoints" type="number" min="0" value="0" max="20000">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <label for="redTowers">Tours actives des Rouges : </label>
+                                <input id="redTowers" type="number" min="0" value="12" max="36">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <label for="bluePoints">Points actuels des Bleus : </label>
+                                <input id="bluePoints" type="number" min="0" value="0" max="20000">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <label for="blueTowers">Tours actives des Bleus : </label>
+                                <input id="blueTowers" type="number" min="0" value="12" max="36">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <label for="yellowPoints">Points actuels des Jaunes : </label>
+                                <input id="yellowPoints" type="number" min="0" value="0" max="20000">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <label for="yellowTowers">Tours actives des Jaunes : </label>
+                                <input id="yellowTowers" type="number" min="0" value="12" max="36">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="calc" class="btn btn-primary">Calculer</button>
+                        </div>
+                        <div class="col-12">
+                            <p class="ma-20-top">Gagnant : <span id="result">?</span> dans <span id="time">?</span> minutes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('gvo') }}
+{% endblock %}

@@ -16,9 +16,7 @@ class ToolboxController extends GenericController
      */
     public function index() : Response
     {
-        return $this->render('toolbox/index.html.twig', [
-            'isToolbox' => true,
-        ]);
+        return $this->render('toolbox/index.html.twig', []);
     }
 
     /**
@@ -28,9 +26,7 @@ class ToolboxController extends GenericController
      */
     public function bj5() : Response
     {
-        return $this->render('toolbox/bj5.html.twig', [
-            'isToolbox' => true,
-        ]);
+        return $this->render('toolbox/bj5.html.twig', []);
     }
 
     /**
@@ -40,8 +36,16 @@ class ToolboxController extends GenericController
      */
     public function buildings() : Response
     {
-        return $this->render('toolbox/buildings.html.twig', [
-            'isToolbox' => true,
-        ]);
+        return $this->render('toolbox/buildings.html.twig', []);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/boite-a-outils/gvo-time", name="toolbox_gvo_time", methods={"GET"})
+     * @return Response
+     */
+    public function gvoTime() : Response
+    {
+        return $this->render('toolbox/gvoTime.html.twig', []);
     }
 }
