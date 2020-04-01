@@ -31,10 +31,11 @@ class StatsController extends GenericController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $week = $form->get('week')->getData()->format("W");
-            $scores = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
-                'semaine' => $week,
-            ]);
+            $year = $form->get('week')->getData()->format("Y");
+            $scores = $this->getDoctrine()->getRepository(GvGScores::class)->getScoresForWeekAndGuild($week, $year, $guild);
             $users = [];
+            $users['critical'] = [];
+            $users['warning'] = [];
             foreach($scores as $score){
                 if($score->getAttackNumber() < 20){
                     $users['critical'][] = $score->getUser()->getUser();

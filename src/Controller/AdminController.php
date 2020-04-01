@@ -138,6 +138,7 @@ class AdminController extends GenericController
         $formMember->handleRequest($request);
         if($formMember->isSubmitted() && $formMember->isValid()){
             $entityManager = $this->getDoctrine()->getManager();
+            $member->setChangeGuildDate(new \DateTime('now'));
             $entityManager->persist($member);
             $entityManager->flush();
 

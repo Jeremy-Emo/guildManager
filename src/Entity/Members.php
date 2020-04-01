@@ -99,6 +99,11 @@ class Members
      */
     private $baseNote;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $changeGuildDate;
+
     public function __construct()
     {
         $this->gvGScores = new ArrayCollection();
@@ -220,6 +225,18 @@ class Members
     public function setBaseNote(?string $baseNote): self
     {
         $this->baseNote = $baseNote;
+
+        return $this;
+    }
+
+    public function getChangeGuildDate(): ?\DateTimeInterface
+    {
+        return $this->changeGuildDate;
+    }
+
+    public function setChangeGuildDate(?\DateTimeInterface $changeGuildDate): self
+    {
+        $this->changeGuildDate = $changeGuildDate;
 
         return $this;
     }

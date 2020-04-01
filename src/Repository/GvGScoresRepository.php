@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\GvGScores;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +18,29 @@ class GvGScoresRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, GvGScores::class);
+    }
+
+    public function getScoresForWeekAndGuild($week, $year, $guild)
+    {
+        $dto = new DateTime();
+        $dto->setISODate($year, $week);
+        $start = $dto->format('Y-m-d');
+
+        $qb = $this->createQueryBuilder('s')
+            ->join('s.user', 'm')
+            ->join('m.guild', 'g')
+            ->andWhere('s.semaine = :week')
+            ->andWhere('s.year = :year')
+            ->setParameter('week', $week)
+            ->setParameter('year', $year)
+            ->andWhere('g.id = :guild')
+            ->setParameter('guild', $guild->getId())
+            ->andWhere('m.changeGuildDate < :start OR m.changeGuildDate is null')
+            ->setParameter('start', $start)
+        ;
+
+        return $qb->getQuery()->getResult();
+
     }
 
     // /**
