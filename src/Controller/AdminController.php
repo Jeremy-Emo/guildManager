@@ -152,10 +152,13 @@ class AdminController extends GenericController
         $this->checkAdmin();
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($user);
-        $entityManager->flush();
+        if(!$user->getIsAdmin()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        } else {
+            throw new NotFoundHttpException();
+        }
 
         return $this->redirectToRoute('admin_accounts');
     }

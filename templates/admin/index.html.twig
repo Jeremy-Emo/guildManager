@@ -31,7 +31,9 @@
                             <td data-sort-value="{{ user.lastVisitAt ? user.lastVisitAt|date("U") : '0' }}">{{ user.lastVisitAt ? user.lastVisitAt|date("d/m/Y") : 'Jamais' }}</td>
                             <td>
                                 <a href="{{ path('admin_edit_account', {'id':user.id}) }}">Modifier</a><br>
+                                {% if not user.isAdmin %}
                                 <span class="like-a-link" data-toggle="modal" data-target="#deleteModal{{ user.id }}">Supprimer</span>
+                                {% endif %}
                             </td>
                         </tr>
                         <div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ user.id }}" aria-hidden="true">
@@ -48,7 +50,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        {% if not user.isAdmin %}
                                         <a href="{{ path('admin_delete_account', {'id':user.id}) }}"><button type="button" class="btn btn-primary">Supprimer</button></a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
