@@ -45,6 +45,8 @@ class ElementsFixtures extends Fixture implements FixtureGroupInterface
 
             $this->setReference($element['ref'], $elem);
         }
+
+        $manager->flush();
     }
 
     public static function getGroups(): array

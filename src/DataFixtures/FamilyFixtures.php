@@ -460,6 +460,8 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
 
             $this->setReference($family['ref'], $fam);
         }
+
+        $manager->flush();
     }
 
     public static function getGroups(): array
