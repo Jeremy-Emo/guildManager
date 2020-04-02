@@ -7,6 +7,7 @@ use App\Entity\Buildings;
 use App\Entity\Guild;
 use App\Entity\Members;
 use App\Entity\Monster;
+use App\Entity\MonsterFamily;
 use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
@@ -15,7 +16,9 @@ use App\Form\Type\HfType;
 use App\Form\Type\LeadersType;
 use App\Form\Type\MembersType;
 use App\Form\Type\MonsterType;
+use App\Form\Type\NewFamilyType;
 use App\Form\Type\NewGuildType;
+use App\Form\Type\NewMonsterType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -358,6 +361,62 @@ class AdminController extends GenericController
         }
 
         return $this->render('admin/editMonster.html.twig', [
+            'form' => $form->createView(),
+            'isNew' => false,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/nouveau-monstre", name="admin_monster_new", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function newMonster(Request $request) : Response
+    {
+        $this->checkAdmin();
+
+        $monster = new Monster();
+
+        $form = $this->createForm(NewMonsterType::class, $monster);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($monster);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_monsters');
+        }
+
+        return $this->render('admin/editMonster.html.twig', [
+            'form' => $form->createView(),
+            'isNew' => true,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/nouvelle-famille", name="admin_monsterFamily_new", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function newMonsterFamily(Request $request) : Response
+    {
+        $this->checkAdmin();
+
+        $mf = new MonsterFamily();
+
+        $form = $this->createForm(NewFamilyType::class, $mf);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($mf);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_monsters');
+        }
+
+        return $this->render('admin/family.html.twig', [
             'form' => $form->createView(),
         ]);
     }

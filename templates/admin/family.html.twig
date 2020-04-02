@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block page_title %}Admin - {{ isNew ? 'Création' : 'Modification' }} de monstre{% endblock %}
+{% block page_title %}Admin - Nouvelle famille de monstres{% endblock %}
 
 {% block moreCSS %}
     {{ parent() }}
@@ -11,10 +11,10 @@
         <div class="row">
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2 class="ma-20-bottom">{{ isNew ? 'Créer' : 'Modifier' }} un monstre : </h2>
+                    <h2 class="ma-20-bottom">Créer une famille de monstres : </h2>
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <input type="submit" value="{{ isNew ? 'Créer' : 'Modifier' }}">
+                    <input type="submit" value="Créer">
                     {{ form_end(form) }}
                 </div>
             </div>

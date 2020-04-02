@@ -7,7 +7,15 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2 class="ma-20-bottom">Liste des monstres :</h2>
+                    <div class="row border-bottom pa-20-bottom">
+                        <div class="col-md-6">
+                            <a href="{{ path('admin_monsterFamily_new') }}">Créer une famille</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ path('admin_monster_new') }}" class="f-right-desktop">Créer un monstre</a>
+                        </div>
+                    </div>
+                    <h2 class="ma-20-top ma-20-bottom">Liste des monstres :</h2>
                     <table class="table">
                         <thead>
                         <tr>
