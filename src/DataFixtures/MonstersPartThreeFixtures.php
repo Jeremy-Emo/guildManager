@@ -76,6 +76,12 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
                 'family' => $this->getReference("viking"),
                 'element' => $this->getReference("ELEM_FIRE")
             ],
+            [
+                'name' => 'Fami',
+                'img' => 'fami',
+                'family' => $this->getReference("archerMagique"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
         ];
 
 
