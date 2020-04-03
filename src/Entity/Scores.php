@@ -3,12 +3,25 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ScoresRepository")
+ * @HasLifecycleCallbacks
  */
 class Scores
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if ($this->getR5() === true) {
+            $this->setR4(true);
+        }
+    }
+
     public function calculateScores(): int
     {
         $score = 0;
