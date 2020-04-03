@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ScoresRepository")
@@ -14,6 +15,7 @@ class Scores
 {
     /**
      * @PrePersist
+     * @PreUpdate
      */
     public function setDefaults(): void
     {
