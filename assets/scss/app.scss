@@ -70,26 +70,29 @@ h2 {
   }
 }
 
-.dropdown-menu.show {
-  border-radius: 1px;
-  margin-top: 17px;
-  background-color: $lightWhite;
-  min-width : 230px;
-  & > li {
-    border-bottom: 1px solid $lightGray;
-    &:hover {
-      background-color: $lightGray;
-    }
-    & > a {
-      padding: 5px 25px;
-      width : 100%;
-      display : inline-block;
-      height : 100%;
-      text-decoration: none;
-      color : $black;
+#top-menu {
+  .dropdown-menu.show {
+    border-radius: 1px;
+    margin-top: 17px;
+    background-color: $lightWhite;
+    min-width : 230px;
+    & > li {
+      border-bottom: 1px solid $lightGray;
+      &:hover {
+        background-color: $lightGray;
+      }
+      & > a {
+        padding: 5px 25px;
+        width : 100%;
+        display : inline-block;
+        height : 100%;
+        text-decoration: none;
+        color : $black;
+      }
     }
   }
 }
+
 
 @media screen and (max-width : 991px) {
   .nav-item.dropdown {

@@ -11,6 +11,52 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Rank
 {
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function getImage()
+    {
+        $return = '/img/arena/';
+        switch($this->name){
+            case 'Débutant':
+                $return .= 'beginner';
+                break;
+            case 'F1':
+                $return .= 'fighter_1';
+                break;
+            case 'F2':
+                $return .= 'fighter_2';
+                break;
+            case 'F3':
+                $return .= 'fighter_3';
+                break;
+            case 'C1':
+                $return .= 'conqueror_1';
+                break;
+            case 'C2':
+                $return .= 'conqueror_2';
+                break;
+            case 'C3':
+                $return .= 'conqueror_3';
+                break;
+            case 'G1':
+                $return .= 'guardian_1';
+                break;
+            case 'G2':
+                $return .= 'guardian_2';
+                break;
+            case 'G3':
+                $return .= 'guardian_3';
+                break;
+            case 'Légende':
+                $return .= 'legend';
+                break;
+        }
+        return $return . '.webp';
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -123,10 +169,5 @@ class Rank
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
     }
 }

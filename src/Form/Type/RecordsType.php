@@ -2,7 +2,9 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Rank;
 use App\Entity\Scores;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -76,8 +78,34 @@ class RecordsType extends AbstractType
                 'label' => 'SSS Rift Light',
                 'required' => false,
             ])
-            ->add('bestRTARank')
-            ->add('bestArenaRank')
+            ->add('bestRTARank', EntityType::class, [
+                'class' => Rank::class,
+                'choice_label' => function ($rank) {
+                    return $rank->getName();
+                },
+                'choice_attr' => function($choice, $key, $value) {
+                    return [
+                        'data-content' => $choice->getName() . " <img src='" . $choice->getImage(). "'>"
+                    ];
+                },
+                'attr' => [
+                    'class' => 'selectpicker'
+                ]
+            ])
+            ->add('bestArenaRank', EntityType::class, [
+                'class' => Rank::class,
+                'choice_label' => function ($rank) {
+                    return $rank->getName();
+                },
+                'choice_attr' => function($choice, $key, $value) {
+                    return [
+                        'data-content' => $choice->getName() . " <img src='" . $choice->getImage(). "'>"
+                    ];
+                },
+                'attr' => [
+                    'class' => 'selectpicker'
+                ]
+            ])
             ->add('nbSixStars')
             ->add('minSpeed')
         ;

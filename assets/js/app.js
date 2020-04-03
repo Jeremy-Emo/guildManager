@@ -7,6 +7,8 @@ require('./stupidtable');
 require('dropify/dist/js/dropify.min');
 require('dropify/dist/css/dropify.min.css');
 require('dropify/dist/fonts/dropify.ttf');
+require('bootstrap-select/dist/js/bootstrap-select.min');
+require('bootstrap-select/dist/css/bootstrap-select.min.css');
 
 const imagesContext = require.context('../img', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
 imagesContext.keys().forEach(imagesContext);
@@ -19,10 +21,6 @@ require('../scss/my.scss');
 
 
 $(document).ready(function() {
-
-   $('body').on("click", "#burger", function(){
-      $("#menuDisplayed").toggle();
-   });
 
    $('[data-toggle="popover"]').popover();
 
