@@ -7,13 +7,17 @@
 {% block content %}
     <div class="container">
         <div class="row">
+            {% if memberInfos and memberInfos.baseNote %}
+                <div class="col-12">
+                    <div class="pa-20 bg-note">
+                        <p class="ma-5-bottom"><span class="bold">Note au joueur : </span></p>
+                        <p>{{ memberInfos.baseNote }}</p>
+                    </div>
+                </div>
+            {% endif %}
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white full-height">
                 {% if memberInfos %}
-                    {% if memberInfos.baseNote %}
-                        <p class="ma-5-bottom"><span class="bold">Note au joueur : </span></p>
-                        <p class="border-bottom pa-10-bottom">{{ memberInfos.baseNote }}</p>
-                    {% endif %}
                     {{ form_start(formGuild) }}
                     <div class="column">
                         {{ form_row(formGuild.isInGvG) }}<br>
