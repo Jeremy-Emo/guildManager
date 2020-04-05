@@ -70,6 +70,10 @@ h2 {
   }
 }
 
+.container-fluid {
+  max-width : 1600px;
+}
+
 #top-menu {
   .dropdown-menu.show {
     border-radius: 1px;

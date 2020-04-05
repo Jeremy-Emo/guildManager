@@ -22,7 +22,7 @@ class DefensesController extends GenericController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/defenses-gvo", name="gvo_defs", methods={"GET"})
+     * @Route("/mes-defenses-gvo", name="gvo_defs", methods={"GET"})
      * @param Request $request
      * @return Response
      */
@@ -33,6 +33,21 @@ class DefensesController extends GenericController
         $myDefenses = $defRepo->findBy([
             'owner' => $this->getUser(),
         ]);
+
+        return $this->render('defenses/index.html.twig', [
+            'myDefenses' => $myDefenses,
+            'winrate' => $winrate ?? null,
+        ]);
+    }
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/aide-aux-defenses-gvo", name="gvo_defs_help", methods={"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function help(Request $request) : Response
+    {
+        $defRepo = $this->getDoctrine()->getRepository(Defense::class);
 
         $form = $this->createFormBuilder()
             ->setMethod('GET')
@@ -61,9 +76,7 @@ class DefensesController extends GenericController
             }
         }
 
-        return $this->render('defenses/index.html.twig', [
-            'isGVO' => true,
-            'myDefenses' => $myDefenses,
+        return $this->render('defenses/help.html.twig', [
             'form' => $form->createView(),
             'results' => $results ?? null,
             'winrate' => $winrate ?? null,

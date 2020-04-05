@@ -1,0 +1,75 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Aide aux défenses GvO{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('defense') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-25-bottom">Rechercher les défenses avec ce mob :</h2>
+                    <div class="ma-25-bottom">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Rechercher">
+                        {{ form_end(form) }}
+                    </div>
+                    {% if winrate %}
+                        <p class="ma-5-bottom red pa-5-bottom">Winrate : {{ winrate|number_format(2, ',', ' ') }}%</p>
+                        <p class="ma-25-bottom border-bottom pa-10-bottom">Nombre de résultats : {{ results|length }}</p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Leader</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Mob 1</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Mob 2</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Victoires</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Défaites</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for defense in results %}
+                                <tr class="border-bottom">
+                                    <td data-sort-value="{{ defense.mobLeader.name }}">
+                                        <img class="monster-img" src="{{ defense.mobLeader.image }}">
+                                        {{ defense.mobLeader.name }}
+                                    </td>
+                                    <td data-sort-value="{{ defense.mobOne.name }}">
+                                        <img class="monster-img" src="{{ defense.mobOne.image }}"> {{ defense.mobOne.name }}
+                                    </td>
+                                    <td data-sort-value="{{ defense.mobTwo.name }}">
+                                        <img class="monster-img" src="{{ defense.mobTwo.image }}"> {{ defense.mobTwo.name }}
+                                    </td>
+                                    <td>{{ defense.victories }}</td>
+                                    <td>{{ defense.loses }}</td>
+                                    <td>
+                                        {% if defense.owner %}
+                                            Défense de {{ defense.owner }}
+                                        {% elseif defense.enemyName and defense.enemyGuild %}
+                                            Défense de {{ defense.enemyName }} (guilde : {{ defense.enemyGuild }})
+                                        {% elseif defense.detail %}
+                                            {{ defense.detail }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('defense') }}
+{% endblock %}

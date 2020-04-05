@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block page_title %}Défenses GVO{% endblock %}
+{% block page_title %}Mes défenses GVO{% endblock %}
 
 {% block moreCSS %}
     {{ parent() }}
@@ -8,82 +8,51 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 ma-25-top">
+            <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Mes défenses :</h2>
                     <p class="ma-25-top">Nombre de défenses 4* : {{ app.user.countNatFourDefenses() }}</p>
                     <p class="border-bottom pa-10-bottom">Nombre de défenses 5* : {{ app.user.countNatFiveDefenses() }}</p>
                     <p class="border-bottom pa-10-bottom"><a href="{{ path('gvo_def_new') }}">Ajouter une défense</a></p>
-                    {% for defense in myDefenses %}
-                        <div class="row align-items-center pa-10-top">
-                            <div class="col-4 col-md-3">
-                                <div class="monster_lead">
-                                    <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
-                                    <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
-                            <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
-                            <div class="col-md-3"><p><a href="{{ path('gvo_def_delete', {'id':defense.id}) }}">Supprimer</a></p></div>
-                        </div>
-                        <div class="row border-bottom pa-10 align-items-center">
-                            <div class="col-md-6 pa-10">
-                                <p class="row">Victoires : <input type="number" min="0" data-id="{{ defense.id }}" class="victory" value="{{ defense.victories }}"></p>
-                            </div>
-                            <div class="col-md-6 pa-10">
-                                <p class="row">Défaites : <input type="number" min="0" data-id="{{ defense.id }}" class="loses" value="{{ defense.loses }}"></p>
-                            </div>
-                            {% if defense.getElementWarning() %}
-                                <div class="col-12 pa-10">
-                                    <p class="red">/!\ Cette défense contient des monstres du même élément !</p>
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="col-md-6 ma-25-top">
-                <div class="pa-20 bg-white">
-                    <h2 class="ma-25-bottom">Rechercher les défenses avec ce mob :</h2>
-                    <div class="ma-25-bottom">
-                        {{ form_start(form) }}
-                        {{ form_widget(form) }}
-                        <input type="submit" value="Rechercher">
-                        {{ form_end(form) }}
-                    </div>
-                    {% if winrate %}
-                        <p class="ma-5-bottom red pa-5-bottom">Winrate : {{ winrate|number_format(2, ',', ' ') }}%</p>
-                        <p class="ma-25-bottom border-bottom pa-10-bottom">Nombre de résultats : {{ results|length }}</p>
-                    {% endif %}
-                    {% for defense in results %}
-                    <div class="row align-items-center">
-                        <div class="col-4 col-md-3">
-                            <div class="monster_lead">
-                                <img class="border-leader full-width" src="{{ defense.mobLeader.image }}">
-                                <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobOne.image }}"></div>
-                        <div class="col-4 col-md-3"><img class="full-width" src="{{ defense.mobTwo.image }}"></div>
-                        <div class="col-md-3 pa-10-top">
-                            <p>{{ defense.victories }} Victoires <br>{{ defense.loses }} Défaites</p>
-                        </div>
-                    </div>
-                        <div class="row align-items-center pa-10-bottom pa-10-top ma-25-bottom border-bottom">
-                            <div class="col-12">
-                                {% if defense.owner %}
-                                    <p class="t-align-center">Défense de {{ defense.owner }}</p>
-                                {% elseif defense.enemyName and defense.enemyGuild %}
-                                    <p class="t-align-center">Défense de {{ defense.enemyName }} (guilde : {{ defense.enemyGuild }})</p>
-                                {% elseif defense.detail %}
-                                    <p class="t-align-center">{{ defense.detail }}</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Leader</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Mob 1</th>
+                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Mob 2</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Victoires</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Défaites</th>
+                            <th scope="col">Warning</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for defense in myDefenses %}
+                            <tr class="border-bottom">
+                                <td data-sort-value="{{ defense.mobLeader.name }}">
+                                    <img class="monster-img" src="{{ defense.mobLeader.image }}">
+                                    {{ defense.mobLeader.name }}
+                                </td>
+                                <td data-sort-value="{{ defense.mobOne.name }}">
+                                    <img class="monster-img" src="{{ defense.mobOne.image }}"> {{ defense.mobOne.name }}
+                                </td>
+                                <td data-sort-value="{{ defense.mobTwo.name }}">
+                                    <img class="monster-img" src="{{ defense.mobTwo.image }}"> {{ defense.mobOne.name }}
+                                </td>
+                                <td data-sort-value="{{ defense.victories }}"><input type="number" min="0" data-id="{{ defense.id }}" class="victory" value="{{ defense.victories }}"></td>
+                                <td data-sort-value="{{ defense.loses }}"><input type="number" min="0" data-id="{{ defense.id }}" class="loses" value="{{ defense.loses }}"></td>
+                                <td>
+                                    {% if defense.getElementWarning() %}
+                                        <p class="red">/!\ Cette défense contient des monstres du même élément !</p>
+                                    {% endif %}
+                                </td>
+                                <td><a href="{{ path('gvo_def_delete', {'id':defense.id}) }}">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
