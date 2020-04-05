@@ -85,9 +85,15 @@ class Guild
      */
     private $gvgCritical;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Siege", mappedBy="guild", orphanRemoval=true)
+     */
+    private $sieges;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
+        $this->sieges = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,6 +241,37 @@ class Guild
     public function setGvgCritical(?int $gvgCritical): self
     {
         $this->gvgCritical = $gvgCritical;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Siege[]
+     */
+    public function getSieges(): Collection
+    {
+        return $this->sieges;
+    }
+
+    public function addSiege(Siege $siege): self
+    {
+        if (!$this->sieges->contains($siege)) {
+            $this->sieges[] = $siege;
+            $siege->setGuild($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSiege(Siege $siege): self
+    {
+        if ($this->sieges->contains($siege)) {
+            $this->sieges->removeElement($siege);
+            // set the owning side to null (unless already changed)
+            if ($siege->getGuild() === $this) {
+                $siege->setGuild(null);
+            }
+        }
 
         return $this;
     }

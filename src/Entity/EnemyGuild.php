@@ -15,16 +15,6 @@ use Doctrine\ORM\Mapping\PrePersist;
  */
 class EnemyGuild
 {
-    /**
-     * @PrePersist
-     */
-    public function setDefaults(): void
-    {
-        if ($this->getLastGvOBattle() === null) {
-            $this->setLastGvOBattle(new DateTime("now"));
-        }
-    }
-
     public function __toString()
     {
         return $this->name;
@@ -41,11 +31,6 @@ class EnemyGuild
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $lastGvOBattle;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Defense", mappedBy="enemyGuild")
@@ -70,18 +55,6 @@ class EnemyGuild
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getLastGvOBattle(): ?\DateTimeInterface
-    {
-        return $this->lastGvOBattle;
-    }
-
-    public function setLastGvOBattle(\DateTimeInterface $lastGvOBattle): self
-    {
-        $this->lastGvOBattle = $lastGvOBattle;
 
         return $this;
     }

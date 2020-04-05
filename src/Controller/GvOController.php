@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Defense;
 use App\Entity\EnemyGuild;
+use App\Entity\Siege;
 use App\Form\Type\EnemyGuildType;
+use App\Form\Type\SiegeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +26,6 @@ class GvOController extends GenericController
         $guilds = $this->getDoctrine()->getRepository(EnemyGuild::class)->findAll();
 
         return $this->render('gvo/index.html.twig', [
-            'isGuildGVO' => true,
             'leader' => $this->getUser()->getMember()->getIsLeader(),
             'guilds' => $guilds,
         ]);
@@ -50,7 +51,6 @@ class GvOController extends GenericController
         ]);
 
         return $this->render('gvo/index.html.twig', [
-            'isGuildGVO' => true,
             'leader' => $this->getUser()->getMember()->getIsLeader(),
             'guilds' => $guilds,
             'defenses' => $defenses,
@@ -65,9 +65,7 @@ class GvOController extends GenericController
      */
     public function add(Request $request) : Response
     {
-        if($this->getUser()->getMember() === null || !$this->getUser()->getMember()->getIsLeader()) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkLeader();
 
         $eg = new EnemyGuild();
         $form = $this->createForm(EnemyGuildType::class, $eg);
@@ -82,7 +80,56 @@ class GvOController extends GenericController
         }
 
         return $this->render('gvo/add.html.twig', [
-            'isGuildGVO' => true,
+            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/gvo/sieges", name="sieges", methods={"GET"})
+     * @return Response
+     */
+    public function sieges() : Response
+    {
+        if($this->getUser()->getMember() === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $sieges = $this->getDoctrine()->getRepository(Siege::class)->findBy([
+            'guild' => $this->getUser()->getMember()->getGuild()
+        ]);
+
+        return $this->render('gvo/sieges.html.twig', [
+            'leader' => $this->getUser()->getMember()->getIsLeader(),
+            'sieges' => $sieges,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/gvo/ajouter-siege", name="add_siege", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function addSiege(Request $request) : Response
+    {
+        $this->checkLeader();
+
+        $siege = new Siege();
+        $form = $this->createForm(SiegeType::class, $siege);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $siege->setGuild($this->getUser()->getMember()->getGuild());
+            $em->persist($siege);
+            $em->flush();
+
+            return $this->redirectToRoute('sieges');
+        }
+
+        return $this->render('gvo/addSiege.html.twig', [
             'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
             'form' => $form->createView(),
         ]);

@@ -17,14 +17,12 @@
                         <thead>
                         <tr>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Nom</th>
-                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Dernier affrontement</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for guild in guilds %}
                             <tr>
                                 <td><a href="{{ path('enemy_guild_defenses', {'id': guild.id}) }}">{{ guild.name }}</a></td>
-                                <td data-sort-value="{{ guild.lastGvOBattle|date("U") }}">{{ guild.lastGvOBattle|date("d/m/Y") }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
