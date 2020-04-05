@@ -6,12 +6,28 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GuildRepository")
+ * @HasLifecycleCallbacks
  */
 class Guild
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if ($this->getGvgWarning() === null) {
+            $this->setGvgWarning(25);
+        }
+        if ($this->getGvgCritical() === null) {
+            $this->setGvgCritical(20);
+        }
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -58,6 +74,16 @@ class Guild
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $gvgDefType;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvgWarning;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gvgCritical;
 
     public function __construct()
     {
@@ -185,6 +211,30 @@ class Guild
     public function setGvgDefType(?string $gvgDefType): self
     {
         $this->gvgDefType = $gvgDefType;
+
+        return $this;
+    }
+
+    public function getGvgWarning(): ?int
+    {
+        return $this->gvgWarning;
+    }
+
+    public function setGvgWarning(?int $gvgWarning): self
+    {
+        $this->gvgWarning = $gvgWarning;
+
+        return $this;
+    }
+
+    public function getGvgCritical(): ?int
+    {
+        return $this->gvgCritical;
+    }
+
+    public function setGvgCritical(?int $gvgCritical): self
+    {
+        $this->gvgCritical = $gvgCritical;
 
         return $this;
     }

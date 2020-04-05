@@ -26,6 +26,8 @@ class StatsController extends GenericController
         $this->checkLeader();
 
         $guild = $this->getUser()->getMember()->getGuild();
+        $critical = $guild->getGvgCritical() ?? 20;
+        $warning = $guild->getGvgWarning() ?? 25;
 
         $form = $this->createForm(SelectTimeType::class);
         $form->handleRequest($request);
@@ -37,19 +39,20 @@ class StatsController extends GenericController
             $users['critical'] = [];
             $users['warning'] = [];
             foreach($scores as $score){
-                if($score->getAttackNumber() < 20){
+                if($score->getAttackNumber() < $critical){
                     $users['critical'][] = $score->getUser()->getUser();
-                } else if($score->getAttackNumber() < 25) {
+                } else if($score->getAttackNumber() < $warning) {
                     $users['warning'][] = $score->getUser()->getUser();
                 }
             }
         }
 
         return $this->render('stats/index.html.twig', [
-            'isGuildStats' => true,
             'baseStats' => $statsFactory->getStats($guild),
             'form' => $form->createView(),
             'users' => $users ?? null,
+            'critical' => $critical,
+            'warning' => $warning,
         ]);
     }
 }

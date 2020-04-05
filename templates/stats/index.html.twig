@@ -28,11 +28,11 @@
                 </div>
                 {% if users %}
                 <div class="pa-20 bg-white">
-                    <p>Personnes critiques (- de 20 attaques) :</p>
+                    <p>Personnes critiques (- de {{ critical }} attaques) :</p>
                     {% for user in users.critical %}
                         <p class="pa-10-left">- <a href="{{ path('guild_member_info', {'id':user.id}) }}">{{ user.username }}</a></p>
                     {% endfor %}
-                    <p>Personnes devant faire attention (- de 25 attaques) :</p>
+                    <p>Personnes devant faire attention (- de {{ warning }} attaques) :</p>
                     {% for user in users.warning %}
                         <p class="pa-10-left">- <a href="{{ path('guild_member_info', {'id':user.id}) }}">{{ user.username }}</a></p>
                     {% endfor %}

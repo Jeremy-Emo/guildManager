@@ -36,6 +36,18 @@ class GuildInfosType extends AbstractType
                     'min' => 0,
                 ],
             ])
+            ->add('gvgWarning', IntegerType::class, [
+                'required' => false,
+                'attr' => [
+                    'min' => 0,
+                ],
+            ])
+            ->add('gvgCritical', IntegerType::class, [
+                'required' => false,
+                'attr' => [
+                    'min' => 0,
+                ],
+            ])
         ;
     }
 

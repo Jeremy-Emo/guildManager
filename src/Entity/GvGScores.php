@@ -27,10 +27,12 @@ class GvGScores
 
     public function getColor(): string
     {
-        if($this->attackNumber < 20) {
+        $critical = $this->getUser()->getGuild()->getGvgCritical() ?? 20;
+        $warning = $this->getUser()->getGuild()->getGvgWarning() ?? 25;
+        if($this->attackNumber < $critical) {
             return 'rgba(255, 0, 0, 0.1)';
         }
-        if($this->attackNumber < 25) {
+        if($this->attackNumber < $warning) {
             return 'rgba(255, 175, 0, 0.1)';
         }
         return 'rgba(0, 204, 0, 0.1)';
