@@ -37,14 +37,16 @@ class Members
 
     public function getCritical()
     {
+        $critical = $this->guild->getGvgCritical() ?? 20;
+        $warning = $this->guild->getGvgWarning() ?? 25;
         $score = $this->getGvGScores()->last();
         if($score === null || $score === false){
             return false;
         }
-        if($score->getAttackNumber() < 20) {
+        if($score->getAttackNumber() < $critical) {
             return 'red';
         }
-        if($score->getAttackNumber() < 25) {
+        if($score->getAttackNumber() < $warning) {
             return 'orange';
         }
         return false;
