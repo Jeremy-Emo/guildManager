@@ -141,6 +141,9 @@
                     {% else %}
                         <p>Aucune défense enregistrée</p>
                     {% endif %}
+                    {% if leader %}
+                        <a href="{{ path('add_defense_guildmate', {'id': member.user.id}) }}">Ajouter une défense</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 ma-25-top">

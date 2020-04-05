@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Defense;
 use App\Entity\EnemyGuild;
 use App\Entity\Monster;
+use App\Entity\User;
 use App\Form\Type\DefenseEnemyType;
+use App\Form\Type\DefenseGuildmateType;
 use App\Form\Type\DefenseType;
 use Doctrine\ORM\EntityRepository;
 use Exception;
@@ -260,6 +262,43 @@ class DefensesController extends GenericController
             'isGVO' => true,
             'form' => $form->createView(),
             'edit' => true,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/ajouter-defense-de-joueur/{id}", name="add_defense_guildmate", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     * @throws Exception
+     */
+    public function addDefensePlayer(Request $request, int $id) : Response
+    {
+        $this->checkLeader();
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        if($user === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $defense = new Defense();
+
+        $form = $this->createForm(DefenseGuildmateType::class, $defense);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $defense->setOwner($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($defense);
+
+            $em->flush();
+
+            return $this->redirectToRoute('guild_management');
+        }
+
+        return $this->render('defenses/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
