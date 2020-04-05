@@ -10,6 +10,7 @@
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> La guilde <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="{{ path('guild_management') }}" class="text-uppercase">Membres</a></li>
+                        <li><a href="{{ path('guild_achievements_top') }}" class="text-uppercase">Classement des défis</a></li>
                         {% if app.user.member.isLeader %}
                             <li><a href="{{ path('guild_stats') }}" class="text-uppercase">Statistiques</a></li>
                         {% endif %}

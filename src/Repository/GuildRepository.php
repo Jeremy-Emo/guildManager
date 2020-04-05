@@ -36,6 +36,23 @@ class GuildRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
+    public function getMembersOrderByHF(Guild $guild)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb
+            ->from(Members::class, 'm')
+            ->select('m, count(a) as countage')
+            ->join('m.guild', 'g')
+            ->join('m.user', 'u')
+            ->leftJoin('u.achievements', 'a')
+            ->orderBy('countage', 'DESC')
+            ->where('g.id = :id')
+            ->setParameter('id', $guild->getId())
+            ->groupBy('m')
+        ;
+        return $qb->getQuery()->execute();
+    }
+
     // /**
     //  * @return Guild[] Returns an array of Guild objects
     //  */

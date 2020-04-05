@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Gestion de guilde{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('guild') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Classement des collectionneurs de défis</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Place</th>
+                                <th>Nom</th>
+                                <th>Nombre de défis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ member.0.user.username }}</td>
+                                <td>{{ member.countage }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

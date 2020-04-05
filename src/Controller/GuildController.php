@@ -229,4 +229,24 @@ class GuildController extends GenericController
             throw new NotFoundHttpException();
         }
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/guilde/classement/defis", name="guild_achievements_top", methods={"GET"})
+     * @return Response
+     */
+    public function topHF(): Response
+    {
+        if($this->getUser()->getMember() === null){
+            throw new NotFoundHttpException();
+        }
+
+        $guild = $this->getUser()->getMember()->getGuild();
+
+        $members = $this->getDoctrine()->getRepository(Guild::class)->getMembersOrderByHF($guild);
+
+        return $this->render('guild/hfTop.html.twig', [
+            'members' => $members,
+        ]);
+    }
 }
