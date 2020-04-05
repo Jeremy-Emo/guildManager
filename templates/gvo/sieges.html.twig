@@ -20,6 +20,7 @@
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Rang</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Guilde ennemie 1</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Guilde ennemie 2</th>
+                            <th scope="col">Place</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,9 @@
                                 <td>{{ siege.rank }} <img src="{{ siege.rank.getImage() }}"></td>
                                 <td><a href="{{ path('enemy_guild_defenses', {'id':siege.enemyGuildOne.id}) }}">{{ siege.enemyGuildOne.name }}</a></td>
                                 <td><a href="{{ path('enemy_guild_defenses', {'id':siege.enemyGuildTwo.id}) }}">{{ siege.enemyGuildTwo.name }}</a></td>
+                                <td>
+                                    <a href="{{ path('edit_siege', {'id':siege.id}) }}">{{ siege.getPlaceText() }}</a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

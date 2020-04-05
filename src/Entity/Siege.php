@@ -11,6 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Siege
 {
+    public function getPlaceText() : string
+    {
+        switch ($this->place){
+            case 1:
+                return '1er';
+            case 2:
+                return '2e';
+            case 3:
+                return '3e';
+            default:
+                return 'En cours';
+        }
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -46,6 +60,11 @@ class Siege
      * @ORM\JoinColumn(nullable=false)
      */
     private $rank;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $place;
 
     public function getId(): ?int
     {
@@ -108,6 +127,18 @@ class Siege
     public function setRank(?Rank $rank): self
     {
         $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getPlace(): ?int
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?int $place): self
+    {
+        $this->place = $place;
 
         return $this;
     }

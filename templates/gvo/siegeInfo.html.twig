@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Siège du {{ siege.date|date("d/m/Y") }}{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Informations du siège du {{ siege.date|date("d/m/Y") }} :</h2>
+                    {% if leader %}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Ajouter">
+                        {{ form_end(form) }}
+                    {% else %}
+                        Incoming...
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+{% endblock %}

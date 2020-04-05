@@ -20,4 +20,17 @@ class GenericController extends AbstractController
             throw new NotFoundHttpException();
         }
     }
+
+    protected function getIfLeaderOrAdmin()
+    {
+        try {
+            if($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
 }

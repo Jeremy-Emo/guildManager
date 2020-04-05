@@ -6,6 +6,7 @@ use App\Entity\Defense;
 use App\Entity\EnemyGuild;
 use App\Entity\Siege;
 use App\Form\Type\EnemyGuildType;
+use App\Form\Type\SiegeInfosType;
 use App\Form\Type\SiegeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,7 +81,7 @@ class GvOController extends GenericController
         }
 
         return $this->render('gvo/add.html.twig', [
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getIfLeaderOrAdmin(),
             'form' => $form->createView(),
         ]);
     }
@@ -130,8 +131,41 @@ class GvOController extends GenericController
         }
 
         return $this->render('gvo/addSiege.html.twig', [
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getIfLeaderOrAdmin(),
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/gvo/voir-siege/{id}", name="edit_siege", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function viewSiege(Request $request, int $id) : Response
+    {
+        $siege = $this->getDoctrine()->getRepository(Siege::class)->find($id);
+        if($siege === null){
+            throw new NotFoundHttpException();
+        }
+
+        if($this->getIfLeaderOrAdmin()){
+            $form = $this->createForm(SiegeInfosType::class, $siege);
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($siege);
+                $em->flush();
+
+                return $this->redirectToRoute('sieges');
+            }
+        }
+
+        return $this->render('gvo/siegeInfo.html.twig', [
+            'leader' => $this->getIfLeaderOrAdmin(),
+            'form' => isset($form) ? $form->createView() : null,
+            'siege' => $siege,
         ]);
     }
 }
