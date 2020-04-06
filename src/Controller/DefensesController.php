@@ -214,9 +214,6 @@ class DefensesController extends GenericController
             $em = $this->getDoctrine()->getManager();
             $em->persist($defense);
 
-            $guild->setLastGvOBattle(new \DateTime('now'));
-            $em->persist($guild);
-
             $em->flush();
 
             return $this->redirectToRoute('enemy_guilds');

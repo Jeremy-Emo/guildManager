@@ -28,16 +28,6 @@ class SiegeTowers
      */
     private $color;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Defense", mappedBy="siegeTowers")
-     */
-    private $defenses;
-
-    public function __construct()
-    {
-        $this->defenses = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -63,37 +53,6 @@ class SiegeTowers
     public function setColor(string $color): self
     {
         $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Defense[]
-     */
-    public function getDefenses(): Collection
-    {
-        return $this->defenses;
-    }
-
-    public function addDefense(Defense $defense): self
-    {
-        if (!$this->defenses->contains($defense)) {
-            $this->defenses[] = $defense;
-            $defense->setSiegeTowers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDefense(Defense $defense): self
-    {
-        if ($this->defenses->contains($defense)) {
-            $this->defenses->removeElement($defense);
-            // set the owning side to null (unless already changed)
-            if ($defense->getSiegeTowers() === $this) {
-                $defense->setSiegeTowers(null);
-            }
-        }
 
         return $this;
     }
