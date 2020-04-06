@@ -119,6 +119,11 @@ class Defense
      */
     private $enemyName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SiegeTowers", inversedBy="defenses")
+     */
+    private $siegeTowers;
+
     public function __construct()
     {
         $this->offenses = new ArrayCollection();
@@ -276,6 +281,18 @@ class Defense
     public function setEnemyName(?string $enemyName): self
     {
         $this->enemyName = $enemyName;
+
+        return $this;
+    }
+
+    public function getSiegeTowers(): ?SiegeTowers
+    {
+        return $this->siegeTowers;
+    }
+
+    public function setSiegeTowers(?SiegeTowers $siegeTowers): self
+    {
+        $this->siegeTowers = $siegeTowers;
 
         return $this;
     }
