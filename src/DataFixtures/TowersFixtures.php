@@ -11,9 +11,15 @@ class TowersFixtures extends Fixture implements FixtureGroupInterface
     public function load($manager)
     {
         for($i = 1; $i < 13; $i++){
-            $tower = new SiegeTowers();
-            $tower->setColor('blue')->setNumber($i);
-            $manager->persist($tower);
+            $towerB = new SiegeTowers();
+            $towerB->setColor('Bleue')->setNumber($i);
+            $manager->persist($towerB);
+            $towerR = new SiegeTowers();
+            $towerR->setColor('Rouge')->setNumber($i);
+            $manager->persist($towerR);
+            $towerY = new SiegeTowers();
+            $towerY->setColor('Jaune')->setNumber($i);
+            $manager->persist($towerY);
         }
         $manager->flush();
     }
