@@ -177,6 +177,14 @@ class AdminController extends GenericController
                 $off->setOwner(null);
                 $entityManager->persist($off);
             }
+            foreach($user->getDefenses() as $def){
+                if(( $def->getVictories() + $def->getLoses() ) < 10) {
+                    $entityManager->remove($def);
+                } else {
+                    $def->setOwner(null)->setDetail("Ancienne défense de la guilde");
+                    $entityManager->persist($def);
+                }
+            }
             $entityManager->remove($user);
             $entityManager->flush();
         } else {
