@@ -41,7 +41,7 @@
                                 <div class="col-4"><img class="full-width" src="{{ off.mobTwo.image }}"></div>
                             </div>
                             <p class="pa-25-right pa-25-left">{{ off.comment }}</p>
-                            <p class="t-align-right ma-5-top">Par {{ off.owner.username }}</p class="t-align-right ma-5-top">
+                            <p class="t-align-right ma-5-top">Par {{ off.owner ? off.owner.username : 'un ancien guildmate' }}</p class="t-align-right ma-5-top">
                             {% if app.user.isAdmin %}
                                 <p class="t-align-right ma-5-top"><a href="{{ path('gvo_off_delete', {'id' : off.id}) }}">Supprimer</a></p>
                             {% endif %}

@@ -21,6 +21,7 @@ use App\Form\Type\NewGuildType;
 use App\Form\Type\NewMonsterType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,6 +79,7 @@ class AdminController extends GenericController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param int $id
      * @return Response
+     * @throws Exception
      */
     public function editAccount(Request $request, UserPasswordEncoderInterface $passwordEncoder, int $id) : Response
     {
@@ -171,6 +173,10 @@ class AdminController extends GenericController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         if(!$user->getIsAdmin()){
             $entityManager = $this->getDoctrine()->getManager();
+            foreach($user->getOffenses() as $off){
+                $off->setOwner(null);
+                $entityManager->persist($off);
+            }
             $entityManager->remove($user);
             $entityManager->flush();
         } else {
