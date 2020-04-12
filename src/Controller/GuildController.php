@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Form\Type\GuildInfosType;
 use App\Form\Type\LeaderNoteType;
 use App\Form\Type\PlayerNoteType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -137,6 +138,7 @@ class GuildController extends GenericController
      * @param Request $request
      * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function viewMember(Request $request, int $id) : Response
     {
@@ -167,12 +169,18 @@ class GuildController extends GenericController
             $this->redirectToRoute('guild_member_info', ['id' => $id]);
         }
 
-        $activity = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
+        $records = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
             'user' => $member,
             'year' => date("Y"),
         ], [
-            'semaine' => 'ASC'
+            'semaine' => 'DESC'
         ], 5);
+
+        $recCollection = new ArrayCollection($records);
+        $activity = $recCollection->getIterator();
+        $activity->uasort(function ($first, $second) {
+            return $first->getSemaine() > $second->getSemaine() ? 1 : -1;
+        });
 
         $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
 
