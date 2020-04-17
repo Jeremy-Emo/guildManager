@@ -90,6 +90,11 @@ class Guild
      */
     private $sieges;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $level;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -272,6 +277,18 @@ class Guild
                 $siege->setGuild(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(?int $level): self
+    {
+        $this->level = $level;
 
         return $this;
     }

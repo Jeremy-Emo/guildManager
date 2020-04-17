@@ -27,6 +27,12 @@ class GuildInfosType extends AbstractType
             ->add('horaires', TextType::class, [
                 'required' => false,
             ])
+            ->add('level', IntegerType::class, [
+                'required' => false,
+                'attr' => [
+                    'min' => 0,
+                ],
+            ])
             ->add('gvgDefType', TextType::class, [
                 'required' => false,
             ])
