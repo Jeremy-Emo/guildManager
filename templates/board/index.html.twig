@@ -33,7 +33,7 @@
                             <p><span class="bold"><i class="fab fa-fort-awesome"></i> Type de défenses GvG</span> : {{ guildInfos.gvgDefType }}</p>
                         {% endif %}
                         {% if guildInfos.plusRule %}
-                            <p><i class="fas fa-skull"></i> Règle du +{{ guildInfos.plusRule }}, tours vertes en priorité.</p>
+                            <p><i class="fas fa-skull"></i> Règle du +{{ guildInfos.plusRule }}, tours vertes en priorité.{% if guildInfos.gvgWarning %} {{ guildInfos.gvgWarning }} attaques minimum.{% endif %}</p>
                         {% endif %}
                     {% endif %}
                 {% else %}
