@@ -34,7 +34,12 @@ $(document).ready(function(){
 
     $("#calc").click(function(){
         let gloryPointsAverage = parseFloat($('#glory').val());
+        let leaguePoints = parseInt($('#ligue').val());
         let nbreAttacks = parseInt($('#nbre_atk').val());
+
+        if ($('#pack').is(':checked')){
+            gloryPointsAverage += 1;
+        }
 
         let costs = 0;
         costs += (defPrices[10] - defPrices[parseInt($("#bat_def").val())]);
@@ -48,7 +53,7 @@ $(document).ready(function(){
         costs += (darkPrices[10] - darkPrices[parseInt($("#bat_dark").val())]);
         costs += (lightPrices[10] - lightPrices[parseInt($("#bat_light").val())]);
 
-        let result = Math.ceil(costs / ((nbreAttacks * gloryPointsAverage) - 180));
+        let result = Math.ceil(costs / ((nbreAttacks * gloryPointsAverage) + leaguePoints - 180));
 
         $("#result").text(result);
     });

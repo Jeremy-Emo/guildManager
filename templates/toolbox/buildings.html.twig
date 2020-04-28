@@ -28,6 +28,8 @@
                     <input type="hidden" id="bat_spd" value="{{ app.user.buildings ? app.user.buildings.spd : '0' }}">
                     <p><label for="nbre_atk">Nombre d'attaques par semaine : </label><input type="number" id="nbre_atk" value="0" min="0"></p>
                     <p><label for="glory">Moyenne de points de gloire gagnés par combat : </label><input type="number" id="glory" min="0" value="0"></p>
+                    <p><label for="ligue">Moyenne de points de gloire gagnés via les classements de ligue : </label><input type="number" id="ligue" min="0" value="0"></p>
+                    <p><input type="checkbox" id="pack"> <label for="pack">Sous l'effet du pack quotidien 2</label></p>
                     <p><button class="btn btn-primary" id="calc">Calculer les résultats</button></p>
                 </div>
             </div>
