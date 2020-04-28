@@ -26,7 +26,9 @@ class ToolboxController extends GenericController
      */
     public function bj5() : Response
     {
-        return $this->render('toolbox/bj5.html.twig', []);
+        return $this->render('toolbox/bj5.html.twig', [
+            'guildLevel' => $this->getUser()->getMember() ? $this->getUser()->getMember()->getGuild()->getLevel() : 1,
+        ]);
     }
 
     /**

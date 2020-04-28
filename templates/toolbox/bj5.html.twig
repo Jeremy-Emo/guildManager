@@ -10,7 +10,7 @@
                     <img src="/img/icons/raid.png" class="f-left ma-10-right">
                     <h1 class="ma-25-bottom">Calculateur pour BJ5</h1>
                     <p>Afin de calculer de manière optimale, pensez à mettre à jour vos bâtiments d'arène sur <a href="{{ path('edit_account') }}">votre profil</a>.</p>
-                    <p>Actuellement, le calculateur part du principe que le buff atk et le break def sont posés, et que la guilde est lv30.</p>
+                    <p>Actuellement, le calculateur part du principe que le buff atk et le break def sont posés.</p>
                 </div>
             </div>
         </div>
@@ -27,6 +27,7 @@
                     <input type="hidden" id="bat_fire" value="{{ app.user.buildings ? app.user.buildings.fire : '0' }}">
                     <input type="hidden" id="bat_pv" value="{{ app.user.buildings ? app.user.buildings.pv : '0' }}">
                     <input type="hidden" id="bat_def" value="{{ app.user.buildings ? app.user.buildings.def : '0' }}">
+                    <input type="hidden" id="guild_level" value="{{ guildLevel }}">
                     <div class="row">
                         <div class="col-md-6">
                             <p>
