@@ -9,6 +9,15 @@
                 <div class="pa-20 bg-white">
                     <input type="hidden" id="userId" value="{{ user.id }}">
                     <h2 class="ma-20-bottom">Défis :</h2>
+                    {% for cat in hfsCat %}
+                    <p class="ma-10-top">{{ cat.name }}</p>
+                        {% for hf in cat.achievements %}
+                            <div class="row align-items-center border-bottom">
+                                <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in user.achievements ? ' inactive' : '' }}" data-id="{{ hf.id }}"><p class="ma-10-top">{{ hf.text }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="ma-10-top">Sans catégorie :</p>
                     {% for hf in hfs %}
                         <div class="row align-items-center border-bottom">
                             <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in user.achievements ? ' inactive' : '' }}" data-id="{{ hf.id }}"><p class="ma-10-top">{{ hf.text }}</p>

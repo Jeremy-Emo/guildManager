@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Achievement;
+use App\Entity\AchievementsCategory;
 use App\Entity\Buildings;
 use App\Entity\Scores;
 use App\Entity\User;
@@ -118,11 +119,13 @@ class AccountController extends GenericController
             throw new NotFoundHttpException();
         }
 
-        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->getWhereNoCategory();
+        $hfsCat = $this->getDoctrine()->getRepository(AchievementsCategory::class)->findAll();
 
         return $this->render('account/updateHFS.html.twig', [
             'user' => $user,
             'hfs' => $hfs,
+            'hfsCat' => $hfsCat,
         ]);
     }
 
