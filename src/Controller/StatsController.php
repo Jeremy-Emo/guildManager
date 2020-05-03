@@ -23,7 +23,7 @@ class StatsController extends GenericController
      */
     public function index(Request $request, StatsFactory $statsFactory) : Response
     {
-        $this->checkLeader();
+        $this->checkMemberOfGuild();
 
         $guild = $this->getUser()->getMember()->getGuild();
         $critical = $guild->getGvgCritical() ?? 20;

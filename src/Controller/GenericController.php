@@ -21,6 +21,13 @@ class GenericController extends AbstractController
         }
     }
 
+    protected function checkMemberOfGuild()
+    {
+        if($this->getUser()->getMember() === null){
+            throw new NotFoundHttpException();
+        }
+    }
+
     protected function getIfLeaderOrAdmin()
     {
         try {
