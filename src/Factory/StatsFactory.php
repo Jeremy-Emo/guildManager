@@ -13,6 +13,8 @@ class StatsFactory extends GenericFactory
 
         $return['statsLevels'] = $this->getLevelsStats($guild);
         $return['levelMoyen'] = $this->calculateLevelOfGuild($guild);
+        $return['nbSixStarsMoyen'] = $this->calculateSixStarsOfGuild($guild);
+        $return['speedMoyenne'] = $this->calculateSpeedMoyenneOfGuild($guild);
 
         return $return;
     }
@@ -100,5 +102,47 @@ class StatsFactory extends GenericFactory
         } else {
             return "Aucun niveau.";
         }
+    }
+
+    private function calculateSixStarsOfGuild($guild)
+    {
+        $members = $this->doctrine->getRepository(Members::class)->findBy([
+            'guild' => $guild,
+        ]);
+
+        $nbreMembers = 0;
+        $nbreSixStars = 0;
+        foreach($members as $member){
+            if($member->getUser()->getScores() !== null){
+                $sixStars = $member->getUser()->getScores()->getNbSixStars();
+                if($sixStars !== null){
+                    $nbreMembers ++;
+                    $nbreSixStars += $sixStars;
+                }
+            }
+        }
+
+        return ($nbreMembers !== 0 ? $nbreSixStars / $nbreMembers : 0);
+    }
+
+    private function calculateSpeedMoyenneOfGuild($guild)
+    {
+        $members = $this->doctrine->getRepository(Members::class)->findBy([
+            'guild' => $guild,
+        ]);
+
+        $nbreMembers = 0;
+        $speedValue = 0;
+        foreach($members as $member){
+            if($member->getUser()->getScores() !== null){
+                $speed = $member->getUser()->getScores()->getMinSpeed();
+                if($speed !== null){
+                    $nbreMembers ++;
+                    $speedValue += $speed;
+                }
+            }
+        }
+
+        return ($nbreMembers !== 0 ? $speedValue / $nbreMembers : 0);
     }
 }
