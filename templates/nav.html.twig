@@ -13,6 +13,7 @@
                         <li><a href="{{ path('guild_achievements_top') }}" class="text-uppercase">Classement des défis</a></li>
                         {% if app.user.member.isLeader %}
                             <li><a href="{{ path('guild_manage_infos') }}" class="text-uppercase">Infos de guilde</a></li>
+                            <li><a href="{{ path('guild_register_gvg_scores') }}" class="text-uppercase">Scores GvG</a></li>
                             <li><a href="{{ path('guild_stats') }}" class="text-uppercase">Statistiques</a></li>
                         {% endif %}
                     </ul>

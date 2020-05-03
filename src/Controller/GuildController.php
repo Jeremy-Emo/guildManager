@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Form\Type\GuildInfosType;
 use App\Form\Type\LeaderNoteType;
 use App\Form\Type\PlayerNoteType;
+use App\Form\Type\SelectTimeType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,16 +38,10 @@ class GuildController extends GenericController
 
         $members = $this->getDoctrine()->getRepository(User::class)->getMembers($guild);
 
-        $scores = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
-            'year' => date("Y"),
-            'semaine' => date("W"),
-        ]);
-
         return $this->render('guild/index.html.twig', [
             'guild' => $guild,
             'isGuildManagement' => true,
             'members' => $members,
-            'needScores' => count($scores) > 0 ? false : true,
             'leader' => $this->getUser()->getMember()->getIsLeader(),
         ]);
     }
@@ -91,44 +86,89 @@ class GuildController extends GenericController
     {
         $this->checkLeader();
 
+        //Getting infos guild
         $guild = $this->getUser()->getMember()->getGuild();
         $members = $this->getDoctrine()->getRepository(Guild::class)->getMembersInGvG($guild);
 
-        $form = $this->createFormBuilder();
-        foreach($members as $member) {
-            $form->add('score'.$member->getId(), IntegerType::class, [
-                'required' => false,
-                'label' => $member->getUser()->getUsername(),
-                'attr' => [
-                    'data-id' => $member->getId(),
-                    'min' => 0,
-                    'max' => 36,
-                ],
-            ]);
+
+        //Checking if need scores
+        $scores = $this->getDoctrine()->getRepository(GvGScores::class)->findBy([
+            'year' => date("Y"),
+            'semaine' => date("W"),
+        ]);
+
+        $needScores = true;
+        foreach($scores as $score){
+            if(in_array($score->getUser(), $members)){
+                $needScores = false;
+            }
         }
-        $formFinal = $form->getForm();
 
-        $formFinal->handleRequest($request);
+        //form stats
+        $critical = $guild->getGvgCritical() ?? 20;
+        $warning = $guild->getGvgWarning() ?? 25;
 
-        if($formFinal->isSubmitted() && $formFinal->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            foreach($formFinal->getData() as $key => $data) {
-                if($data !== "" && $data !== null){
-                    $scores = new GvGScores();
-                    $scores->setYear(date('Y'))->setSemaine(date('W'));
-                    $scores->setUser($this->getDoctrine()->getRepository(Members::class)->find((int) str_replace('score', '', $key)));
-                    $scores->setAttackNumber($data);
-                    $em->persist($scores);
-                    $em->flush();
+        $form = $this->createForm(SelectTimeType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $week = $form->get('week')->getData()->format("W");
+            $year = $form->get('week')->getData()->format("Y");
+            $scores = $this->getDoctrine()->getRepository(GvGScores::class)->getScoresForWeekAndGuild($week, $year, $guild);
+            $users = [];
+            $users['critical'] = [];
+            $users['warning'] = [];
+            foreach($scores as $score){
+                if($score->getAttackNumber() < $critical){
+                    $users['critical'][] = $score->getUser()->getUser();
+                } else if($score->getAttackNumber() < $warning) {
+                    $users['warning'][] = $score->getUser()->getUser();
                 }
             }
+        }
 
-            return $this->redirectToRoute('guild_management');
+        //form stats
+        if($needScores){
+            $formScore = $this->createFormBuilder();
+            foreach($members as $member) {
+                $formScore->add('score'.$member->getId(), IntegerType::class, [
+                    'required' => false,
+                    'label' => $member->getUser()->getUsername(),
+                    'attr' => [
+                        'data-id' => $member->getId(),
+                        'min' => 0,
+                        'max' => 36,
+                    ],
+                ]);
+            }
+            $formFinal = $formScore->getForm();
+
+            $formFinal->handleRequest($request);
+
+            if($formFinal->isSubmitted() && $formFinal->isValid())
+            {
+                $em = $this->getDoctrine()->getManager();
+                foreach($formFinal->getData() as $key => $data) {
+                    if($data !== "" && $data !== null){
+                        $scores = new GvGScores();
+                        $scores->setYear(date('Y'))->setSemaine(date('W'));
+                        $scores->setUser($this->getDoctrine()->getRepository(Members::class)->find((int) str_replace('score', '', $key)));
+                        $scores->setAttackNumber($data);
+                        $em->persist($scores);
+                        $em->flush();
+                    }
+                }
+
+                return $this->redirectToRoute('guild_register_gvg_scores');
+            }
         }
 
         return $this->render('guild/gvgScores.html.twig', [
-            'form' => $formFinal->createView(),
+            'formScore' => isset($formFinal) ? $formFinal->createView() : null,
+            'form' => $form->createView(),
+            'users' => $users ?? null,
+            'critical' => $critical,
+            'warning' => $warning,
+            'needScores' => $needScores,
         ]);
     }
 
