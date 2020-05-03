@@ -46,6 +46,7 @@
                 <div class="pa-20 bg-white full-height">
                     {% if guildInfos %}
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
+                        <p><span class="bold">Niveau de la guilde</span> : {{ guildInfos.level ? guildInfos.level : 'Non renseigné'  }}</p>
                         {% if guildInfos.message %}
                             <p class="ma-20-bottom"><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
                         {% endif %}
