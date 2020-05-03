@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="pa-20 bg-note">
                         <p class="ma-5-bottom"><span class="bold">Note au joueur : </span></p>
-                        <p>{{ memberInfos.baseNote }}</p>
+                        <p>{{ memberInfos.baseNote|nl2br }}</p>
                     </div>
                 </div>
             {% endif %}
@@ -58,7 +58,7 @@
                         <p><span class="bold">Nom de la guilde</span> : {{ guildInfos.name }}</p>
                         <p><span class="bold">Niveau de la guilde</span> : {{ guildInfos.level ? guildInfos.level : 'Non renseigné'  }}</p>
                         {% if guildInfos.message %}
-                            <p class="ma-20-bottom"><span class="bold">Message de guilde :</span> {{ guildInfos.message }}</p>
+                            <p class="ma-20-bottom"><span class="bold">Message de guilde :</span><br> {{ guildInfos.message|nl2br }}</p>
                         {% endif %}
                         {% if guildInfos.websiteLink %}
                             <p>Site web : <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
