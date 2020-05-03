@@ -16,7 +16,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Date</th>
+                            <th scope="col" data-sort="int" class="cursor-click"><i class="fas fa-caret-down"></i> Date</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Rang</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Guilde ennemie 1</th>
                             <th scope="col" data-sort="string" class="cursor-click"><i class="fas fa-caret-down"></i> Guilde ennemie 2</th>
@@ -26,7 +26,7 @@
                         <tbody>
                         {% for siege in sieges %}
                             <tr>
-                                <td>{{ siege.date|date("d/m/Y") }}</td>
+                                <td data-sort-value="{{ siege.date|date("U") }}">{{ siege.date|date("d/m/Y") }}</td>
                                 <td>{{ siege.rank }} <img src="{{ siege.rank.getImage() }}"></td>
                                 <td><a href="{{ path('enemy_guild_defenses', {'id':siege.enemyGuildOne.id}) }}">{{ siege.enemyGuildOne.name }}</a></td>
                                 <td><a href="{{ path('enemy_guild_defenses', {'id':siege.enemyGuildTwo.id}) }}">{{ siege.enemyGuildTwo.name }}</a></td>
