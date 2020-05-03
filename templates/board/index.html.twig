@@ -79,6 +79,14 @@
             <div class="col-md-6 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2 class="ma-20-bottom">Défis :</h2>
+
+                    {% for cat in hfsCat %}
+                        <p class="ma-10-bottom ma-10-top">{{ cat.name }} :</p>
+                        {% for hf in cat.achievements %}
+                            <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="ma-10-bottom ma-10-top">Sans catégorie :</p>
                     {% for hf in hfs %}
                         <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
                     {% endfor %}

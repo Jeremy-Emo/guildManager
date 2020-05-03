@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Achievement;
+use App\Entity\AchievementsCategory;
 use App\Entity\Event;
 use App\Form\Type\GuildContentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -40,7 +41,8 @@ class BoardController extends GenericController
 
         $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
 
-        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->getWhereNoCategory();
+        $hfsCat = $this->getDoctrine()->getRepository(AchievementsCategory::class)->findAll();
 
         return $this->render('board/index.html.twig', [
             'memberInfos' => $this->getUser()->getMember(),
@@ -49,6 +51,7 @@ class BoardController extends GenericController
             'isDashboard' => true,
             'events' => $events,
             'hfs' => $hfs,
+            'hfsCat' => $hfsCat,
         ]);
     }
 }
