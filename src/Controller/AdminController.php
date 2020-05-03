@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Achievement;
+use App\Entity\AchievementsCategory;
 use App\Entity\Buildings;
 use App\Entity\Guild;
 use App\Entity\Members;
@@ -12,6 +13,7 @@ use App\Entity\Scores;
 use App\Entity\User;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditPasswordType;
+use App\Form\Type\HFCategoryType;
 use App\Form\Type\HfType;
 use App\Form\Type\LeadersType;
 use App\Form\Type\MembersType;
@@ -301,6 +303,19 @@ class AdminController extends GenericController
             return $this->redirectToRoute('admin_hf');
         }
 
+        $hfCat = new AchievementsCategory();
+        $formCat = $this->createForm(HFCategoryType::class, $hfCat);
+
+        $formCat->handleRequest($request);
+
+        if($formCat->isSubmitted() && $formCat->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hfCat);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_hf');
+        }
+
         $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findBy([], [
             'name' => 'ASC'
         ]);
@@ -308,6 +323,7 @@ class AdminController extends GenericController
         return $this->render('admin/hfs.html.twig', [
             'form' => $form->createView(),
             'hfs' => $hfs,
+            'formCat' => $formCat->createView(),
         ]);
     }
 

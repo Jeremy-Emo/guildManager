@@ -35,6 +35,7 @@ class HfType extends AbstractType
             ])
             ->add('name')
             ->add('text')
+            ->add('achievementsCategories')
         ;
     }
 

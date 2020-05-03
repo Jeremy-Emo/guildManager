@@ -135,6 +135,12 @@ class User implements UserInterface
      */
     private $discordTag;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Achievement", mappedBy="usersInValidation")
+     * @ORM\JoinTable(name="users_in_validation")
+     */
+    private $achivementsInValidation;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -142,6 +148,7 @@ class User implements UserInterface
         $this->defenses = new ArrayCollection();
         $this->achievements = new ArrayCollection();
         $this->offenses = new ArrayCollection();
+        $this->achivementsInValidation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -462,6 +469,34 @@ class User implements UserInterface
     public function setDiscordTag(?string $discordTag): self
     {
         $this->discordTag = $discordTag;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Achievement[]
+     */
+    public function getAchivementsInValidation(): Collection
+    {
+        return $this->achivementsInValidation;
+    }
+
+    public function addAchivementsInValidation(Achievement $achivementsInValidation): self
+    {
+        if (!$this->achivementsInValidation->contains($achivementsInValidation)) {
+            $this->achivementsInValidation[] = $achivementsInValidation;
+            $achivementsInValidation->addUsersInValidation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAchivementsInValidation(Achievement $achivementsInValidation): self
+    {
+        if ($this->achivementsInValidation->contains($achivementsInValidation)) {
+            $this->achivementsInValidation->removeElement($achivementsInValidation);
+            $achivementsInValidation->removeUsersInValidation($this);
+        }
 
         return $this;
     }

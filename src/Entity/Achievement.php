@@ -132,9 +132,22 @@ class Achievement
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="achivementsInValidation")
+     * @ORM\JoinTable(name="users_in_validation")
+     */
+    private $usersInValidation;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\AchievementsCategory", mappedBy="achievements")
+     */
+    private $achievementsCategories;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->usersInValidation = new ArrayCollection();
+        $this->achievementsCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +219,60 @@ class Achievement
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsersInValidation(): Collection
+    {
+        return $this->usersInValidation;
+    }
+
+    public function addUsersInValidation(User $usersInValidation): self
+    {
+        if (!$this->usersInValidation->contains($usersInValidation)) {
+            $this->usersInValidation[] = $usersInValidation;
+        }
+
+        return $this;
+    }
+
+    public function removeUsersInValidation(User $usersInValidation): self
+    {
+        if ($this->usersInValidation->contains($usersInValidation)) {
+            $this->usersInValidation->removeElement($usersInValidation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AchievementsCategory[]
+     */
+    public function getAchievementsCategories(): Collection
+    {
+        return $this->achievementsCategories;
+    }
+
+    public function addAchievementsCategory(AchievementsCategory $achievementsCategory): self
+    {
+        if (!$this->achievementsCategories->contains($achievementsCategory)) {
+            $this->achievementsCategories[] = $achievementsCategory;
+            $achievementsCategory->addAchievement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAchievementsCategory(AchievementsCategory $achievementsCategory): self
+    {
+        if ($this->achievementsCategories->contains($achievementsCategory)) {
+            $this->achievementsCategories->removeElement($achievementsCategory);
+            $achievementsCategory->removeAchievement($this);
         }
 
         return $this;

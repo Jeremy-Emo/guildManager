@@ -7,6 +7,17 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
+                    <h2>Créer une catégorie de défis :</h2>
+                    {{ form_start(formCat) }}
+                    {{ form_widget(formCat) }}
+                    <input type="submit" value="Créer">
+                    {{ form_end(formCat) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
                     <h2>Créer un défi :</h2>
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
