@@ -10,7 +10,7 @@
                     <h2 class="ma-10-bottom">Evènement : {{ event.name }}</h2>
                     <p class="ma-10-bottom">Créé par {{ event.owner.username }}</p>
                     <p>Date de début : {{ event.beginDate|date("d/m/Y") }}</p>
-                    <p>{{ event.description }}</p>
+                    <p>{{ event.description|nl2br }}</p>
                 </div>
             </div>
 
