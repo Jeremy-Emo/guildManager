@@ -139,7 +139,7 @@ class Achievement
     private $usersInValidation;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\AchievementsCategory", mappedBy="achievements")
+     * @ORM\ManyToMany(targetEntity="App\Entity\AchievementsCategory", inversedBy="achievements", cascade={"persist", "remove"})
      */
     private $achievementsCategories;
 
@@ -262,7 +262,6 @@ class Achievement
     {
         if (!$this->achievementsCategories->contains($achievementsCategory)) {
             $this->achievementsCategories[] = $achievementsCategory;
-            $achievementsCategory->addAchievement($this);
         }
 
         return $this;
@@ -272,7 +271,6 @@ class Achievement
     {
         if ($this->achievementsCategories->contains($achievementsCategory)) {
             $this->achievementsCategories->removeElement($achievementsCategory);
-            $achievementsCategory->removeAchievement($this);
         }
 
         return $this;

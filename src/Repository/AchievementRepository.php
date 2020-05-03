@@ -19,6 +19,16 @@ class AchievementRepository extends ServiceEntityRepository
         parent::__construct($registry, Achievement::class);
     }
 
+    public function getWhereNoCategory()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->leftJoin('a.achievementsCategories', 'ac')
+            ->where('ac.id is null')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Achievement[] Returns an array of Achievement objects
     //  */

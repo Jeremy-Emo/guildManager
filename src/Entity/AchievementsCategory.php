@@ -29,7 +29,7 @@ class AchievementsCategory
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Achievement", inversedBy="achievementsCategories")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Achievement", mappedBy="achievementsCategories", cascade={"persist", "remove"})
      */
     private $achievements;
 
@@ -67,6 +67,7 @@ class AchievementsCategory
     {
         if (!$this->achievements->contains($achievement)) {
             $this->achievements[] = $achievement;
+            $achievement->addAchievementsCategory($this);
         }
 
         return $this;
@@ -76,6 +77,7 @@ class AchievementsCategory
     {
         if ($this->achievements->contains($achievement)) {
             $this->achievements->removeElement($achievement);
+            $achievement->removeAchievementsCategory($this);
         }
 
         return $this;

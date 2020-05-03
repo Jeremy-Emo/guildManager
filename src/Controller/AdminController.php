@@ -316,14 +316,50 @@ class AdminController extends GenericController
             return $this->redirectToRoute('admin_hf');
         }
 
-        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findBy([], [
+        $hfsCat = $this->getDoctrine()->getRepository(AchievementsCategory::class)->findBy([], [
             'name' => 'ASC'
         ]);
 
+        $hfsNoCat = $this->getDoctrine()->getRepository(Achievement::class)->getWhereNoCategory();
+
         return $this->render('admin/hfs.html.twig', [
             'form' => $form->createView(),
-            'hfs' => $hfs,
+            'hfs' => $hfsCat,
+            'hfsNoCat' => $hfsNoCat,
             'formCat' => $formCat->createView(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/admin/editer-defi/{id}", name="admin_hf_edit", methods={"GET", "POST"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function editHf(Request $request, int $id) : Response
+    {
+        $this->checkAdmin();
+
+        $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($id);
+
+        if($hf === null){
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(HfType::class, $hf, ['edit' => true]);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hf);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_hf');
+        }
+
+        return $this->render('hfs/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 

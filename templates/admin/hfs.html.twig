@@ -29,11 +29,23 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2 class="ma-20-bottom">Liste des défis :</h2>
-                    {% for hf in hfs %}
-                        <p class="border-bottom pa-10-bottom">
+                    <h2 class="ma-20-bottom">Liste des défis par catégories :</h2>
+                    {% for cat in hfs %}
+                        <h2 class="ma-20-bottom ma-20-top">{{ cat.name }} :</h2>
+                        {% for hf in cat.achievements %}
+                        <p class="border-bottom pa-10-bottom ma-15-left">
                             <span>{{ hf.name }} ({{ hf.text }})</span>
                             <span class="f-right"><a href="{{ path('admin_hf_delete', {'id':hf.id}) }}">Supprimer</a></span>
+                            <span class="f-right ma-10-right"><a href="{{ path('admin_hf_edit', {'id':hf.id}) }}">Modifier</a></span>
+                        </p>
+                        {% endfor %}
+                    {% endfor %}
+                    <h2 class="ma-20-bottom ma-20-top">Sans catégorie :</h2>
+                    {% for hf in hfsNoCat %}
+                        <p class="border-bottom pa-10-bottom ma-15-left">
+                            <span>{{ hf.name }} ({{ hf.text }})</span>
+                            <span class="f-right"><a href="{{ path('admin_hf_delete', {'id':hf.id}) }}">Supprimer</a></span>
+                            <span class="f-right ma-10-right"><a href="{{ path('admin_hf_edit', {'id':hf.id}) }}">Modifier</a></span>
                         </p>
                     {% endfor %}
                 </div>
