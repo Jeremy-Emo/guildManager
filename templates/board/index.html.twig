@@ -61,7 +61,7 @@
                             <p class="ma-20-bottom"><span class="bold">Message de guilde :</span><br> {{ guildInfos.message|nl2br }}</p>
                         {% endif %}
                         {% if guildInfos.websiteLink %}
-                            <p>Site web : <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
+                            <p><i class="fas fa-at"></i> <span class="bold">Site web :</span> <a href="{{ guildInfos.websiteLink }}">{{ guildInfos.websiteLink }}</a></p>
                         {% endif %}
                         {% if guildInfos.discordLink %}
                             <p><a href="{{ guildInfos.discordLink }}"><i class="fab fa-discord"></i> Discord</a></p>
