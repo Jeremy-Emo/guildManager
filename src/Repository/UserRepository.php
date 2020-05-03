@@ -56,6 +56,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $qb->getQuery()->execute();
     }
 
+    public function getMembersInValidation(Guild $guild)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+            ->join('u.member', 'm')
+            ->join('m.guild', 'g')
+            ->join('u.achivementsInValidation', 'uv')
+            ->orderBy('u.username', 'ASC')
+            ->where('g.id = :id')
+            ->andWhere('uv.id is not null')
+            ->setParameter('id', $guild->getId())
+        ;
+        return $qb->getQuery()->execute();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

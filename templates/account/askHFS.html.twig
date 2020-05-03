@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Demander la validation de défis{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2 class="ma-20-bottom">Demander la validation de défis :</h2>
+                    <p class="ma-20-bottom small">Un défi allumé est un défi dont vous avez demandé la validation. N'apparaissent que les défis qu'il vous manque.</p>
+                    {% for cat in hfsCat %}
+                        {% if cat.achievements|length > 0 %}
+                            <p class="ma-10-top">{{ cat.name }}</p>
+                            {% for hf in cat.achievements %}
+                                {% if hf not in app.user.achievements %}
+                                <div class="row align-items-center border-bottom pa-5-left">
+                                    <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achivementsInValidation ? ' inactive' : '' }}" data-id="{{ hf.id }}"><p class="ma-10-top">{{ hf.text }}</p>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if hfs|length > 0 %}
+                        <p class="ma-10-top">Sans catégorie :</p>
+                        {% for hf in hfs %}
+                            {% if hf not in app.user.achievements %}
+                                <div class="row align-items-center border-bottom pa-5-left">
+                                    <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achivementsInValidation ? ' inactive' : '' }}" data-id="{{ hf.id }}"><p class="ma-10-top">{{ hf.text }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('askHfs') }}
+{% endblock %}

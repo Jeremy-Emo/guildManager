@@ -7,6 +7,16 @@
 {% block content %}
     <div class="container">
         <div class="row">
+            {% if membersInValidation %}
+                <div class="col-12">
+                    <div class="pa-20 bg-note">
+                        <h2 class="ma-10-bottom">Il y a des membres en attente de validation de défis !</h2>
+                        {% for member in membersInValidation %}
+                            <p><a href="{{ path('edit_hfs_in_validation', {'id':member.id}) }}">{{ member.username }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
             {% if memberInfos and memberInfos.baseNote %}
                 <div class="col-12">
                     <div class="pa-20 bg-note">
@@ -82,16 +92,20 @@
                     <h2 class="ma-20-bottom">Défis :</h2>
 
                     {% for cat in hfsCat %}
-                        <p class="ma-10-bottom ma-10-top">{{ cat.name }} :</p>
-                        {% for hf in cat.achievements %}
+                        {% if cat.achievements|length > 0 %}
+                            <p class="ma-10-bottom ma-10-top">{{ cat.name }} :</p>
+                            {% for hf in cat.achievements %}
+                                <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if hfs|length > 0 %}
+                        <p class="ma-10-bottom ma-10-top">Sans catégorie :</p>
+                        {% for hf in hfs %}
                             <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
                         {% endfor %}
-                    {% endfor %}
-                    <p class="ma-10-bottom ma-10-top">Sans catégorie :</p>
-                    {% for hf in hfs %}
-                        <img src="{{ hf.getImagePath() }}" class="hf_box{{ hf not in app.user.achievements ? ' inactive' : '' }}" title="{{ hf.name }}" data-content="{{ hf.text }}" data-toggle="popover">
-                    {% endfor %}
-                    <p class="ma-10-top">Les défis doivent être validés par les admins de la guilde, n'hésitez pas à leur demander !</p>
+                    {% endif %}
+                    <p class="ma-10-top">Les défis doivent être validés par les admins de la guilde, n'hésitez pas <a href="{{ path('ask_validation_defi') }}">à demander leur validation</a>.</p>
                     {% if app.user.isAdmin %}
                         <p class="t-align-right ma-25-top"><a href="{{ path('edit_hfs', {'id':app.user.id}) }}">Modifier</a></p>
                     {% endif %}

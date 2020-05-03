@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Achievement;
 use App\Entity\AchievementsCategory;
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\Type\GuildContentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +38,10 @@ class BoardController extends GenericController
 
             $guild = $this->getUser()->getMember()->getGuild();
 
+            if($this->getUser()->getMember()->getIsLeader()){
+                $membersInValidation = $this->getDoctrine()->getRepository(User::class)->getMembersInValidation($this->getUser()->getMember()->getGuild());
+            }
+
         }
 
         $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
@@ -52,6 +57,7 @@ class BoardController extends GenericController
             'events' => $events,
             'hfs' => $hfs,
             'hfsCat' => $hfsCat,
+            'membersInValidation' => $membersInValidation ?? null,
         ]);
     }
 }

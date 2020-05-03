@@ -152,6 +152,9 @@ class AccountController extends GenericController
                 $user->removeAchievement($hf);
             } else {
                 $user->addAchievement($hf);
+                if($user->getAchivementsInValidation()->contains($hf)){
+                    $user->removeAchivementsInValidation($hf);
+                }
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -165,4 +168,82 @@ class AccountController extends GenericController
             throw new NotFoundHttpException();
         }
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/demander-validation-defis", name="ask_validation_defi", methods={"GET", "POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function askValidation(Request $request) : Response
+    {
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->getWhereNoCategory();
+        $hfsCat = $this->getDoctrine()->getRepository(AchievementsCategory::class)->findAll();
+
+        return $this->render('account/askHFS.html.twig', [
+            'hfs' => $hfs,
+            'hfsCat' => $hfsCat,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/demander-defi", name="ask_defi", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function askHF(Request $request) : Response
+    {
+        if($request->isXmlHttpRequest()){
+
+            $hf = $request->request->get('hf');
+
+            if($hf === null) {
+                throw new NotFoundHttpException();
+            }
+            $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($hf);
+
+            if($this->getUser()->getAchivementsInValidation()->contains($hf)){
+                $this->getUser()->removeAchivementsInValidation($hf);
+            } else {
+                $this->getUser()->addAchivementsInValidation($hf);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->getUser());
+            $em->flush();
+
+            return new JsonResponse([
+                "success" => true,
+            ]);
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/editer-defis-en-attente/{id}", name="edit_hfs_in_validation", methods={"GET"})
+     * @param int $id
+     * @return Response
+     */
+    public function updateHFSinValidation(int $id) : Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        if($user === null || !$this->getUser()->getIsAdmin()){
+            throw new NotFoundHttpException();
+        }
+
+        $hfs = $this->getDoctrine()->getRepository(Achievement::class)->getWhereNoCategory();
+        $hfsCat = $this->getDoctrine()->getRepository(AchievementsCategory::class)->findAll();
+
+        return $this->render('account/updateHFSinValidation.html.twig', [
+            'user' => $user,
+            'hfs' => $hfs,
+            'hfsCat' => $hfsCat,
+        ]);
+    }
+
+
 }
