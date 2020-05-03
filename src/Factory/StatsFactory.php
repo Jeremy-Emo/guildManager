@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Guild;
+use App\Entity\GvGScores;
 use App\Entity\Members;
 
 class StatsFactory extends GenericFactory
@@ -15,6 +16,7 @@ class StatsFactory extends GenericFactory
         $return['levelMoyen'] = $this->calculateLevelOfGuild($guild);
         $return['nbSixStarsMoyen'] = $this->calculateSixStarsOfGuild($guild);
         $return['speedMoyenne'] = $this->calculateSpeedMoyenneOfGuild($guild);
+        $return['atkNumber'] = $this->calculateAtkNumberOfGuild($guild);
 
         return $return;
     }
@@ -144,5 +146,33 @@ class StatsFactory extends GenericFactory
         }
 
         return ($nbreMembers !== 0 ? $speedValue / $nbreMembers : 0);
+    }
+
+    private function calculateAtkNumberOfGuild($guild)
+    {
+        $members = $this->doctrine->getRepository(Members::class)->findBy([
+            'guild' => $guild,
+        ]);
+
+        $weeks = [];
+
+        for($i = 4; $i >= 0; $i--){
+            $nbreMembres = 0;
+            $nbreAtk = 0;
+            foreach($members as $member){
+                $scores = $this->doctrine->getRepository(GvGScores::class)->findOneBy([
+                    'year' => date("Y"),
+                    'semaine' => (date("W") - $i),
+                    'user' => $member,
+                ]);
+                if($scores !== null){
+                    $nbreMembres ++;
+                    $nbreAtk += $scores->getAttackNumber();
+                }
+            }
+            $weeks[(date("W") - $i)] = $nbreMembres !== 0 ? $nbreAtk / $nbreMembres : 0;
+        }
+
+        return $weeks;
     }
 }

@@ -25,6 +25,13 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <canvas id="atkNumber"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
@@ -49,6 +56,28 @@
                         'rgba(255, 0, 0, 0.1)',
                         'rgba(255, 0, 0, 0.1)'
                     ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        let ctx2 = document.getElementById('atkNumber');
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: [{% for key, stat in baseStats.atkNumber %}'S{{ key }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: "Nombre d'attaques moyen en GvG sur les 5 dernières semaines",
+                    data: [{% for stat in baseStats.atkNumber %}{{ stat|number_format(0, ',', ' ') }}{% if not loop.last %}, {% endif %}{% endfor %}],
                     borderWidth: 1
                 }]
             },
