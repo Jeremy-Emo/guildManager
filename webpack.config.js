@@ -19,6 +19,7 @@ Encore
     .addEntry('hfs', './assets/js/hfs.js')
     .addEntry('askHfs', './assets/js/askHfs.js')
     .addEntry('gvo', './assets/js/gvo.js')
+    .addEntry('wishlist', './assets/js/wishlist.js')
 
     .splitEntryChunks()
     .enableSingleRuntimeChunk()

@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Ma wishlist{% endblock %}
+
+{% block moreCSS %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('wishlist') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Liste des monstres :</h2>
+                    <div class="monsters-box category" data-id="0">
+                        {% for monster in monsters %}
+                            <img class="monster-img" data-id="{{ monster.id }}" src="{{ monster.image }}">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Ma wishlist :</h2>
+                    {% for category in categories %}
+                        <div class="card ma-20-bottom">
+                            <div class="card-header">
+                                {{ category.name }}
+                            </div>
+                            <div class="card-body category" data-id="{{ category.id }}">
+                                {% for monster in category.monsters %}
+                                    <img class="monster-img" data-id="{{ monster.id }}" src="{{ monster.image }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block moreJS %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('wishlist') }}
+{% endblock %}

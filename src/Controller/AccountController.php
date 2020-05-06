@@ -5,12 +5,15 @@ namespace App\Controller;
 use App\Entity\Achievement;
 use App\Entity\AchievementsCategory;
 use App\Entity\Buildings;
+use App\Entity\Monster;
 use App\Entity\Scores;
 use App\Entity\User;
+use App\Entity\WishlistCategory;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditAccountInfosType;
 use App\Form\Type\EditPasswordType;
 use App\Form\Type\RecordsType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -245,5 +248,109 @@ class AccountController extends GenericController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/ma-wishlist", name="wishlist", methods={"GET"})
+     * @return Response
+     * @throws \Exception
+     */
+    public function wishlist() : Response
+    {
+        //Get categories and create them if they don't exist
+        $userCategories = $this->getUser()->getWishlistCategories();
+        if($userCategories->count() === 0){
+            $em = $this->getDoctrine()->getManager();
+            //Génération catégories wishlist
+            $cat1 = new WishlistCategory();
+            $cat1->setPriority(25)->setName("Les monstres de mes rêves *_*")->setUser($this->getUser());
+            $em->persist($cat1);
+            $cat2 = new WishlistCategory();
+            $cat2->setPriority(20)->setName("Je le veux dans mon équipe !")->setUser($this->getUser());
+            $em->persist($cat2);
+            $cat3 = new WishlistCategory();
+            $cat3->setPriority(15)->setName("Mouais, si je l'ai je lui trouverai des runes quand même")->setUser($this->getUser());
+            $em->persist($cat3);
+            $cat4 = new WishlistCategory();
+            $cat4->setPriority(10)->setName("Bof, juste parce que je l'ai pas")->setUser($this->getUser());
+            $em->persist($cat4);
+
+            $em->flush();
+            return $this->redirectToRoute('wishlist');
+        }
+
+        //Re-order categories
+        $iterator = $userCategories->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getPriority() > $b->getPriority()) ? -1 : 1;
+        });
+        $userCategories = new ArrayCollection(iterator_to_array($iterator));
+
+        //Getting monsters without categories
+        $monsters = $this->getDoctrine()->getRepository(User::class)->getMonstersNotInWishlist($this->getUser());
+
+        return $this->render('account/wishlist.html.twig', [
+            'categories' => $userCategories,
+            'monsters' => $monsters,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/change-wishlist", name="change_wishlist", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function changeWishlist(Request $request) : Response
+    {
+        if($request->isXmlHttpRequest()){
+
+            $catId = $request->request->get('catId');
+            $mobId = $request->request->get('mobId');
+
+            if($catId === null || $mobId === null) {
+                throw new NotFoundHttpException();
+            }
+
+            $mob = $this->getDoctrine()->getRepository(Monster::class)->find($mobId);
+            if($mob === null){
+                throw new NotFoundHttpException();
+            }
+
+            $userCategories = $this->getDoctrine()->getRepository(WishlistCategory::class)->findBy([
+                'user' => $this->getUser()
+            ]);
+
+            $previousCatOfMonster = null;
+            foreach($userCategories as $category){
+                if($category->getMonsters()->contains($mob)){
+                    $previousCatOfMonster = $category;
+                }
+            }
+
+            $em = $this->getDoctrine()->getManager();
+
+            if($previousCatOfMonster !== null){
+                $previousCatOfMonster->removeMonster($mob);
+                $em->persist($previousCatOfMonster);
+                $em->flush();
+            }
+
+            if($catId !== 0){
+                $cat = $this->getDoctrine()->getRepository(WishlistCategory::class)->find($catId);
+                if(! in_array($cat, $userCategories)){
+                    throw new NotFoundHttpException();
+                }
+                $cat->addMonster($mob);
+                $em->persist($cat);
+                $em->flush();
+            }
+
+            return new JsonResponse([
+                "success" => true,
+            ]);
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
 
 }

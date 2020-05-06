@@ -6,6 +6,7 @@
     {{ parent() }}
     {{ encore_entry_link_tags('guild') }}
     {{ encore_entry_link_tags('defense') }}
+    {{ encore_entry_link_tags('wishlist') }}
 {% endblock %}
 
 {% block content %}
@@ -116,6 +117,19 @@
                     {% else %}
                         <p class="ma-25-top">Non renseignées</p>
                     {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 ma-25-top">
+                <div class="pa-20 bg-white">
+                    <h2>Les monstres de ses rêves :</h2>
+                    <div>
+                        {% for monster in wishlist.monsters %}
+                            <img class="monster-img" src="{{ monster.image }}">
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

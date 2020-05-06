@@ -224,6 +224,8 @@ class GuildController extends GenericController
 
         $hfs = $this->getDoctrine()->getRepository(Achievement::class)->findAll();
 
+        $wishlist = $this->getDoctrine()->getRepository(User::class)->getWishlist($user);
+
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member,
             'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
@@ -231,6 +233,7 @@ class GuildController extends GenericController
             'hfs' => $hfs,
             'formLeaderNote' => $formLeaderNote->createView(),
             'formPlayerNote' => $formPlayerNote->createView(),
+            'wishlist' => $wishlist[0],
         ]);
     }
 

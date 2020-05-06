@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -39,5 +40,12 @@ class GenericController extends AbstractController
         } catch(\Exception $e) {
             return false;
         }
+    }
+
+    protected function getUser()
+    {
+        $user = parent::getUser();
+
+        return ($user instanceof User) ? $user : null;
     }
 }

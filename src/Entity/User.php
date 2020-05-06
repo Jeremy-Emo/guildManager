@@ -141,6 +141,11 @@ class User implements UserInterface
      */
     private $achivementsInValidation;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\WishlistCategory", mappedBy="user")
+     */
+    private $wishlistCategories;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -149,6 +154,7 @@ class User implements UserInterface
         $this->achievements = new ArrayCollection();
         $this->offenses = new ArrayCollection();
         $this->achivementsInValidation = new ArrayCollection();
+        $this->wishlistCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -496,6 +502,37 @@ class User implements UserInterface
         if ($this->achivementsInValidation->contains($achivementsInValidation)) {
             $this->achivementsInValidation->removeElement($achivementsInValidation);
             $achivementsInValidation->removeUsersInValidation($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WishlistCategory[]
+     */
+    public function getWishlistCategories(): Collection
+    {
+        return $this->wishlistCategories;
+    }
+
+    public function addWishlistCategory(WishlistCategory $wishlistCategory): self
+    {
+        if (!$this->wishlistCategories->contains($wishlistCategory)) {
+            $this->wishlistCategories[] = $wishlistCategory;
+            $wishlistCategory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWishlistCategory(WishlistCategory $wishlistCategory): self
+    {
+        if ($this->wishlistCategories->contains($wishlistCategory)) {
+            $this->wishlistCategories->removeElement($wishlistCategory);
+            // set the owning side to null (unless already changed)
+            if ($wishlistCategory->getUser() === $this) {
+                $wishlistCategory->setUser(null);
+            }
         }
 
         return $this;

@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Guild;
+use App\Entity\Monster;
 use App\Entity\User;
+use App\Entity\WishlistCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\OptimisticLockException;
@@ -68,6 +70,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('uv.id is not null')
             ->setParameter('id', $guild->getId())
         ;
+        return $qb->getQuery()->execute();
+    }
+
+    public function getMonstersNotInWishlist(User $user)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $sub = $this->createQueryBuilder('u')
+            ->select('ms')
+            ->join('u.wishlistCategories', 'wl')
+            ->join('wl.monsters', 'ms')
+            ->where('u.id = :id')
+        ;
+
+        $qb
+            ->from(Monster::class, 'm')
+            ->select('m')
+            ->where($qb->expr()->notIn('m', $sub->getDQL()))
+            ->setParameter('id', $user->getId())
+        ;
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function getWishlist(User $user)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb
+            ->from(WishlistCategory::class, 'wl')
+            ->join('wl.user', 'u')
+            ->select('wl')
+            ->orderBy('wl.priority', 'DESC')
+            ->where('u.id = :id')
+            ->setParameter('id', $user->getId())
+            ->setMaxResults(1)
+        ;
+
         return $qb->getQuery()->execute();
     }
 
