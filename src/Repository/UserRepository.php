@@ -87,6 +87,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $qb
             ->from(Monster::class, 'm')
             ->select('m')
+            ->join('m.monsterFamily', 'f')
+            ->orderBy('f.name', 'ASC')
             ->where($qb->expr()->notIn('m', $sub->getDQL()))
             ->setParameter('id', $user->getId())
         ;
