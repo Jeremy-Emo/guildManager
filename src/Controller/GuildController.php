@@ -233,7 +233,7 @@ class GuildController extends GenericController
             'hfs' => $hfs,
             'formLeaderNote' => $formLeaderNote->createView(),
             'formPlayerNote' => $formPlayerNote->createView(),
-            'wishlist' => $wishlist[0],
+            'wishlist' => $wishlist[0] ?? null,
         ]);
     }
 

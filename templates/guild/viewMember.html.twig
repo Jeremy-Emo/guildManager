@@ -124,11 +124,15 @@
         <div class="row">
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
-                    <h2>Les monstres de ses rêves :</h2>
+                    <h2 class="ma-20-bottom">Les monstres de ses rêves :</h2>
                     <div>
-                        {% for monster in wishlist.monsters %}
-                            <img class="monster-img" src="{{ monster.image }}">
-                        {% endfor %}
+                        {% if wishlist %}
+                            {% for monster in wishlist.monsters %}
+                                <img class="monster-img" src="{{ monster.image }}">
+                            {% endfor %}
+                        {% else %}
+                            <p>Non renseigné</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
