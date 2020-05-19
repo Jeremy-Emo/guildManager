@@ -81,11 +81,6 @@ class User implements UserInterface
     private $swarfarm;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isAdmin;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Members", mappedBy="user", cascade={"persist", "remove"})
      */
     private $member;
@@ -198,6 +193,13 @@ class User implements UserInterface
         return $this;
     }
 
+    public function addRole(string $role) : self
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
     /**
      * @see UserInterface
      */
@@ -238,18 +240,6 @@ class User implements UserInterface
     public function setSwarfarm(?string $swarfarm): self
     {
         $this->swarfarm = $swarfarm;
-
-        return $this;
-    }
-
-    public function getIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
 
         return $this;
     }

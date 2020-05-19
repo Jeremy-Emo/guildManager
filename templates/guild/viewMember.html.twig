@@ -15,7 +15,7 @@
             <div class="col-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Profil de <strong>{{ member.user.username }}</strong></h2>
-                    {% if app.user.isAdmin %}
+                    {% if is_granted("ROLE_ADMIN") %}
                         <p>Dernière connexion : {{ member.user.lastVisitAt ? member.user.lastVisitAt|date("d/m/Y H:i:s") : 'Jamais' }}</p>
                     {% endif %}
                 </div>

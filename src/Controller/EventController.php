@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EventController extends GenericController
@@ -62,6 +63,11 @@ class EventController extends GenericController
     public function delete(int $id) : Response
     {
         $event = $this->getDoctrine()->getRepository(Event::class)->find($id);
+
+        if($event === null || ($event->getOwner() !== $this->getUser() && !in_array("ROLE_ADMIN", $this->getUser()->getRoles()) )){
+            throw new NotFoundHttpException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $em->remove($event);

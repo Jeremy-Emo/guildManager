@@ -35,7 +35,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminController extends GenericController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/comptes", name="admin_accounts", methods={"GET", "POST"})
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -43,8 +43,6 @@ class AdminController extends GenericController
      */
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
-        $this->checkAdmin();
-
         $user = new User();
         $form = $this->createForm(NewUserType::class, $user);
 
@@ -75,7 +73,7 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/compte/{id}", name="admin_edit_account", methods={"GET", "POST"})
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -85,8 +83,6 @@ class AdminController extends GenericController
      */
     public function editAccount(Request $request, UserPasswordEncoderInterface $passwordEncoder, int $id) : Response
     {
-        $this->checkAdmin();
-
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         if($user->getScores() === null) {
@@ -162,7 +158,7 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/supprimer-compte/{id}", name="admin_delete_account", methods={"GET"})
      * @param Request $request
      * @param int $id
@@ -170,8 +166,6 @@ class AdminController extends GenericController
      */
     public function deleteAccount(Request $request, int $id) : Response
     {
-        $this->checkAdmin();
-
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         if(!$user->getIsAdmin()){
             $entityManager = $this->getDoctrine()->getManager();
@@ -197,15 +191,13 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/guildes", name="admin_guilds", methods={"GET", "POST"})
      * @param Request $request
      * @return Response
      */
     public function indexGuilds(Request $request) : Response
     {
-        $this->checkAdmin();
-
         $guild = new Guild();
         $form = $this->createForm(NewGuildType::class, $guild);
 
@@ -230,7 +222,7 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/guilde/leaders/{id}", name="admin_guild_leaders", methods={"GET", "POST"})
      * @param Request $request
      * @param int $id
@@ -238,8 +230,6 @@ class AdminController extends GenericController
      */
     public function guildLeaders(Request $request, int $id) : Response
     {
-        $this->checkAdmin();
-
         $guild = $this->getDoctrine()->getRepository(Guild::class)->find($id);
 
         if($guild === null) {
@@ -281,15 +271,13 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/defis", name="admin_hf", methods={"GET", "POST"})
      * @param Request $request
      * @return Response
      */
     public function hf(Request $request) : Response
     {
-        $this->checkAdmin();
-
         $hf = new Achievement();
         $form = $this->createForm(HfType::class, $hf);
 
@@ -331,7 +319,7 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/editer-defi/{id}", name="admin_hf_edit", methods={"GET", "POST"})
      * @param Request $request
      * @param int $id
@@ -339,8 +327,6 @@ class AdminController extends GenericController
      */
     public function editHf(Request $request, int $id) : Response
     {
-        $this->checkAdmin();
-
         $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($id);
 
         if($hf === null){
@@ -364,15 +350,13 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/supprimer-defi/{id}", name="admin_hf_delete", methods={"GET"})
      * @param int $id
      * @return Response
      */
     public function hfDelete(int $id) : Response
     {
-        $this->checkAdmin();
-
         $hf = $this->getDoctrine()->getRepository(Achievement::class)->find($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($hf);
@@ -382,14 +366,12 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/monstres", name="admin_monsters", methods={"GET"})
      * @return Response
      */
     public function monsters() : Response
     {
-        $this->checkAdmin();
-
         $monsters = $this->getDoctrine()->getRepository(Monster::class)->findBy([], [
             'name' => 'ASC'
         ]);
@@ -400,7 +382,7 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/editer-monstre/{id}", name="admin_monster_edit", methods={"GET", "POST"})
      * @param Request $request
      * @param int $id
@@ -408,8 +390,6 @@ class AdminController extends GenericController
      */
     public function editMonster(Request $request, int $id) : Response
     {
-        $this->checkAdmin();
-
         $monster = $this->getDoctrine()->getRepository(Monster::class)->find($id);
 
         if($monster === null){
@@ -433,15 +413,13 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/nouveau-monstre", name="admin_monster_new", methods={"GET", "POST"})
      * @param Request $request
      * @return Response
      */
     public function newMonster(Request $request) : Response
     {
-        $this->checkAdmin();
-
         $monster = new Monster();
 
         $form = $this->createForm(NewMonsterType::class, $monster);
@@ -461,15 +439,13 @@ class AdminController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/nouvelle-famille", name="admin_monsterFamily_new", methods={"GET", "POST"})
      * @param Request $request
      * @return Response
      */
     public function newMonsterFamily(Request $request) : Response
     {
-        $this->checkAdmin();
-
         $mf = new MonsterFamily();
 
         $form = $this->createForm(NewFamilyType::class, $mf);

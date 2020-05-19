@@ -109,7 +109,7 @@ class AccountController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/editer-defis/{id}", name="edit_hfs", methods={"GET"})
      * @param int $id
      * @return Response
@@ -118,7 +118,7 @@ class AccountController extends GenericController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
-        if($user === null || !$this->getUser()->getIsAdmin()){
+        if($user === null){
             throw new NotFoundHttpException();
         }
 
@@ -133,7 +133,7 @@ class AccountController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/toggle-defi", name="toggle_defi", methods={"POST"})
      * @param Request $request
      * @return Response
@@ -145,7 +145,7 @@ class AccountController extends GenericController
             $id = $request->request->get('id');
             $hf = $request->request->get('hf');
 
-            if($id === null || $hf === null || !$this->getUser()->getIsAdmin()) {
+            if($id === null || $hf === null) {
                 throw new NotFoundHttpException();
             }
             $user = $this->getDoctrine()->getRepository(User::class)->find($id);
@@ -225,7 +225,7 @@ class AccountController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/editer-defis-en-attente/{id}", name="edit_hfs_in_validation", methods={"GET"})
      * @param int $id
      * @return Response
@@ -234,7 +234,7 @@ class AccountController extends GenericController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
-        if($user === null || !$this->getUser()->getIsAdmin()){
+        if($user === null){
             throw new NotFoundHttpException();
         }
 

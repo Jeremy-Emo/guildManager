@@ -31,15 +31,13 @@ class OffensesController extends GenericController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ajouter-defense-courante-gvo", name="gvo_def_example_add", methods={"GET", "POST"})
      * @param Request $request
      * @return Response
      */
     public function addDef(Request $request) : Response
     {
-        $this->checkAdmin();
-
         $defense = new Defense();
 
         $form = $this->createForm(DefenseType::class, $defense);
@@ -106,15 +104,13 @@ class OffensesController extends GenericController
 
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/supprimer-offense-gvo/{id}", name="gvo_off_delete", methods={"GET"})
      * @param int $id
      * @return Response
      */
     public function delete(int $id) : Response
     {
-        $this->checkAdmin();
-        
         $offense = $this->getDoctrine()->getRepository(Offense::class)->findOneBy([
             'id' => $id,
         ]);

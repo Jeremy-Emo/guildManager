@@ -8,12 +8,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GenericController extends AbstractController
 {
-    protected function checkAdmin()
-    {
-        if(!$this->getUser()->getIsAdmin()){
-            throw new NotFoundHttpException();
-        }
-    }
 
     protected function checkLeader()
     {
@@ -32,7 +26,7 @@ class GenericController extends AbstractController
     protected function getIfLeaderOrAdmin()
     {
         try {
-            if($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()){
+            if($this->getUser()->getMember()->getIsLeader() || in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
                 return true;
             } else {
                 return false;

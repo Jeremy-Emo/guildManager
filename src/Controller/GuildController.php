@@ -30,9 +30,7 @@ class GuildController extends GenericController
      */
     public function index() : Response
     {
-        if($this->getUser()->getMember() === null) {
-            throw new NotFoundHttpException();
-        }
+        $this->checkMemberOfGuild();
 
         $guild = $this->getUser()->getMember()->getGuild();
 
@@ -228,7 +226,7 @@ class GuildController extends GenericController
 
         return $this->render('guild/viewMember.html.twig', [
             'member' => $member,
-            'leader' => ($this->getUser()->getMember()->getIsLeader() || $this->getUser()->getIsAdmin()),
+            'leader' => $this->getIfLeaderOrAdmin(),
             'activity' => $activity,
             'hfs' => $hfs,
             'formLeaderNote' => $formLeaderNote->createView(),
@@ -250,7 +248,7 @@ class GuildController extends GenericController
             $id = $request->request->get('id');
             $type = $request->request->get('type');
 
-            if($id === null || $type === null || !$this->getUser()->getIsAdmin()) {
+            if($id === null || $type === null || !$this->getIfLeaderOrAdmin()) {
                 throw new NotFoundHttpException();
             }
             $user = $this->getDoctrine()->getRepository(Members::class)->find($id);

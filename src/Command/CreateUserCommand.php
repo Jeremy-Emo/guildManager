@@ -48,7 +48,7 @@ class CreateUserCommand extends Command
         $user = new User();
         $user->setUsername($name);
         $pwd = $this->passwordEncoder->encodePassword($user, $input->getArgument('password'));
-        $user->setPassword($pwd)->setIsAdmin(true);
+        $user->setPassword($pwd)->setIsAdmin(true)->addRole("ROLE_ADMIN")->addRole("ROLE_SUPERADMIN");
         $em->persist($user);
 
         $member = new Members();
