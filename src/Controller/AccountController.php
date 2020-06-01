@@ -12,6 +12,7 @@ use App\Entity\WishlistCategory;
 use App\Form\Type\BuildingsType;
 use App\Form\Type\EditAccountInfosType;
 use App\Form\Type\EditPasswordType;
+use App\Form\Type\NewPasswordType;
 use App\Form\Type\RecordsType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -351,6 +352,38 @@ class AccountController extends GenericController
         } else {
             throw new NotFoundHttpException();
         }
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/nouveau-mot-de-passe", name="newPassword", methods={"GET", "POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
+     */
+    public function newPasswordNeverLogged(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
+    {
+        $form = $this->createForm(NewPasswordType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            )->setNeverLogged(false);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('account/newPwd.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
 }

@@ -16,6 +16,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    /**
+     * @PrePersist
+     */
+    public function setDefaults(): void
+    {
+        if($this->getNeverLogged() === null) {
+            $this->neverLogged = true;
+        }
+    }
+
     public function __toString()
     {
         return $this->getUsername();
@@ -131,6 +141,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\WishlistCategory", mappedBy="user")
      */
     private $wishlistCategories;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $neverLogged;
 
     public function __construct()
     {
@@ -515,6 +530,18 @@ class User implements UserInterface
                 $wishlistCategory->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNeverLogged(): ?bool
+    {
+        return $this->neverLogged;
+    }
+
+    public function setNeverLogged(bool $neverLogged): self
+    {
+        $this->neverLogged = $neverLogged;
 
         return $this;
     }
