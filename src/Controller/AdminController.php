@@ -23,6 +23,8 @@ use App\Form\Type\NewGuildType;
 use App\Form\Type\NewMonsterType;
 use App\Form\Type\NewUserType;
 use App\Form\Type\RecordsType;
+use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -427,6 +429,10 @@ class AdminController extends GenericController
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($monster);
+
+            $metadata = $em->getClassMetaData(get_class($monster));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
             $em->flush();
 
             return $this->redirectToRoute('admin_monsters');
@@ -453,6 +459,10 @@ class AdminController extends GenericController
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($mf);
+
+            $metadata = $em->getClassMetaData(get_class($mf));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
             $em->flush();
 
             return $this->redirectToRoute('admin_monsters');

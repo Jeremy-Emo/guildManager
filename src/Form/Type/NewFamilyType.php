@@ -15,6 +15,7 @@ class NewFamilyType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('id')
         ;
     }
 

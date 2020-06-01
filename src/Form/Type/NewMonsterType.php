@@ -18,6 +18,7 @@ class NewMonsterType extends AbstractType
             ->add('monsterFamily')
             ->add('element')
             ->add('naturalStars')
+            ->add('id')
             ->add('file', FileType::class, [
                 'constraints' => [
                     new File([
