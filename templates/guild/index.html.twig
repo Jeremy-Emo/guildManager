@@ -26,7 +26,7 @@
                         </thead>
                         <tbody>
                         {% for member in members %}
-                            <tr{{ (member.member.getCritical() and app.user.isAdmin) ? (' class="' ~ member.member.getCritical() ~ 'Scores"')|raw : '' }}>
+                            <tr{{ (member.member.getCritical() and is_granted("ROLE_ADMIN")) ? (' class="' ~ member.member.getCritical() ~ 'Scores"')|raw : '' }}>
                                 <td>
                                     {% if member.member.isLeader %}
                                         <img class="leader_box" src="{{ asset('build/assets/img/leader_skill.png') }}">

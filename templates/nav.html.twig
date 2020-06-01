@@ -35,7 +35,7 @@
                     <li><a href="{{ path('wishlist') }}" class="text-uppercase">Ma wishlist</a></li>
                 </ul>
             </li>
-            {% if app.user.isAdmin %}
+            {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"> Administration <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">

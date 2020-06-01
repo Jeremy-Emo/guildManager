@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            {% if event.owner == app.user or app.user.isAdmin %}
+            {% if event.owner == app.user or is_granted("ROLE_ADMIN") %}
             <div class="col-md-12 ma-25-top">
                 <div class="pa-20 bg-white">
                     <p><a href="{{ path('delete_event', {'id':event.id}) }}">Clôturer l'évènement</a></p>

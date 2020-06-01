@@ -106,7 +106,7 @@
                         {% endfor %}
                     {% endif %}
                     <p class="ma-10-top">Les défis doivent être validés par les admins de la guilde, n'hésitez pas <a href="{{ path('ask_validation_defi') }}">à demander leur validation</a>.</p>
-                    {% if app.user.isAdmin %}
+                    {% if is_granted("ROLE_ADMIN") %}
                         <p class="t-align-right ma-25-top"><a href="{{ path('edit_hfs', {'id':app.user.id}) }}">Modifier</a></p>
                     {% endif %}
                 </div>
