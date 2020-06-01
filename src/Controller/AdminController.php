@@ -46,7 +46,9 @@ class AdminController extends GenericController
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
         $user = new User();
-        $form = $this->createForm(NewUserType::class, $user);
+        $form = $this->createForm(NewUserType::class, $user, [
+            'adminUser' => (in_array("ROLE_SUPERADMIN", $this->getUser()->getRoles()) ? true : false)
+        ]);
 
         $form->handleRequest($request);
 
@@ -58,6 +60,11 @@ class AdminController extends GenericController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            if($form->get('isAdmin')->getData() === true) {
+                $user->addRole("ROLE_ADMIN");
+            }
+
             $em->persist($user);
             $em->flush();
 
