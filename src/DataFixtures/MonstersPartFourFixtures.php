@@ -1098,6 +1098,36 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
                 'family' => $this->getReference("pretreEpikion"),
                 'element' => $this->getReference("ELEM_LIGHT")
             ],
+            [
+                'name' => 'Dongbaek',
+                'img' => 'dongbaek',
+                'family' => $this->getReference("stringMaster"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Hongyeon',
+                'img' => 'hongyeon',
+                'family' => $this->getReference("stringMaster"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Songseol',
+                'img' => 'songseol',
+                'family' => $this->getReference("stringMaster"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Yeonhwa',
+                'img' => 'yeonhwa',
+                'family' => $this->getReference("stringMaster"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Mirinae',
+                'img' => 'mirinae',
+                'family' => $this->getReference("stringMaster"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
         ];
 
         foreach ($fourStars as $fourStar) {

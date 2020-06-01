@@ -451,6 +451,18 @@ class FamilyFixtures extends Fixture implements FixtureGroupInterface
                 'name' => 'Yéti',
                 'ref' => 'yeti',
             ],
+            [
+                'name' => 'Yéti',
+                'ref' => 'yeti',
+            ],
+            [
+                'name' => 'Virtuose à la cithare',
+                'ref' => 'stringMaster',
+            ],
+            [
+                'name' => 'Peintre',
+                'ref' => 'peintre',
+            ],
         ];
 
         foreach ($families as $family) {

@@ -810,6 +810,36 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
                 'family' => $this->getReference("ifrit"),
                 'element' => $this->getReference("ELEM_LIGHT")
             ],
+            [
+                'name' => 'Hanwul',
+                'img' => 'hanwul',
+                'family' => $this->getReference("peintre"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Jeogul',
+                'img' => 'jeogul',
+                'family' => $this->getReference("peintre"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Haegang',
+                'img' => 'haegang',
+                'family' => $this->getReference("peintre"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Cheongpung',
+                'img' => 'cheongpung',
+                'family' => $this->getReference("peintre"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Mookwol',
+                'img' => 'mookwol',
+                'family' => $this->getReference("peintre"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
         ];
 
         foreach ($fiveStars as $fiveStar) {
