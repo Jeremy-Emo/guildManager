@@ -13,7 +13,7 @@
             <div class="col-6 ma-25-top">
                 <div class="pa-20 bg-white">
                     <h2>Liste des monstres :</h2>
-                    <div class="monsters-box category" data-id="0">
+                    <div class="monsters-box category monster-megabox" data-id="0">
                         {% for monster in monsters %}
                             <img class="monster-img" data-id="{{ monster.id }}" src="{{ monster.image }}">
                         {% endfor %}
