@@ -6,6 +6,8 @@ use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
@@ -45,7 +47,7 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
             [
                 'name' => 'Fami',
                 'img' => 'fami',
-                'family' => $this->getReference("archerMagique"),
+                'family' => $this->getReference("archerMagiquePromo"),
                 'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
@@ -942,7 +944,14 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
             if(isset($threeStar['element'])){
                 $mon->setElement($threeStar['element']);
             }
+
+            $id = $threeStar['family']->getId() . "1" . $threeStar['element']->getId();
+            $mon->setId($id);
             $manager->persist($mon);
+
+            $metadata = $manager->getClassMetaData(get_class($mon));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
         }
 
         $manager->flush();
@@ -950,7 +959,7 @@ class MonstersPartThreeFixtures extends Fixture implements DependentFixtureInter
 
     public static function getGroups(): array
     {
-        return ['toProd', 'monsters', 'part3'];
+        return ['toProd', 'monsters'];
     }
 
     public function getDependencies()

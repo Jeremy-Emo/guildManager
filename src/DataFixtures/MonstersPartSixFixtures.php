@@ -8,6 +8,8 @@ use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 class MonstersPartSixFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
@@ -270,7 +272,14 @@ class MonstersPartSixFixtures extends Fixture implements DependentFixtureInterfa
             if(isset($secondAwake['element'])){
                 $mon->setElement($secondAwake['element']);
             }
+
+            $id = $secondAwake['family']->getId() . "3" . $secondAwake['element']->getId();
+            $mon->setId($id);
             $manager->persist($mon);
+
+            $metadata = $manager->getClassMetaData(get_class($mon));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
         }
     }
 

@@ -6,6 +6,8 @@ use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
@@ -851,7 +853,14 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
             if(isset($fiveStar['element'])){
                 $mon->setElement($fiveStar['element']);
             }
+
+            $id = $fiveStar['family']->getId() . "1" . $fiveStar['element']->getId();
+            $mon->setId($id);
             $manager->persist($mon);
+
+            $metadata = $manager->getClassMetaData(get_class($mon));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
         }
 
 
@@ -859,31 +868,31 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
             [
                 'name' => 'Eau',
                 'img' => 'water',
-                'family' => $this->getReference("homonculus"),
+                'family' => $this->getReference("homonculusAtk"),
                 'element' => $this->getReference("ELEM_WATER")
             ],
             [
                 'name' => 'Feu',
                 'img' => 'fire',
-                'family' => $this->getReference("homonculus"),
+                'family' => $this->getReference("homonculusAtk"),
                 'element' => $this->getReference("ELEM_FIRE")
             ],
             [
                 'name' => 'Vent',
                 'img' => 'wind',
-                'family' => $this->getReference("homonculus"),
+                'family' => $this->getReference("homonculusAtk"),
                 'element' => $this->getReference("ELEM_WIND")
             ],
             [
                 'name' => 'Light',
                 'img' => 'light',
-                'family' => $this->getReference("homonculus"),
+                'family' => $this->getReference("homonculusSupport"),
                 'element' => $this->getReference("ELEM_LIGHT")
             ],
             [
                 'name' => 'Dark',
                 'img' => 'dark',
-                'family' => $this->getReference("homonculus"),
+                'family' => $this->getReference("homonculusSupport"),
                 'element' => $this->getReference("ELEM_DARK")
             ],
         ];
@@ -897,7 +906,14 @@ class MonstersPartFiveFixtures extends Fixture implements DependentFixtureInterf
             if(isset($homie['element'])){
                 $mon->setElement($homie['element']);
             }
+
+            $id = $homie['family']->getId() . "1" . $homie['element']->getId();
+            $mon->setId($id);
             $manager->persist($mon);
+
+            $metadata = $manager->getClassMetaData(get_class($mon));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
         }
 
         $manager->flush();

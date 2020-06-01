@@ -6,6 +6,8 @@ use App\Entity\Monster;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
@@ -252,7 +254,15 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             if(isset($twoStar['element'])){
                 $mon->setElement($twoStar['element']);
             }
+
+            $id = $twoStar['family']->getId() . "1" . $twoStar['element']->getId();
+
+            $mon->setId($id);
             $manager->persist($mon);
+
+            $metadata = $manager->getClassMetaData(get_class($mon));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
         }
 
         $manager->flush();
@@ -260,7 +270,7 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 
     public static function getGroups(): array
     {
-        return ['toProd', 'monsters', 'part2'];
+        return ['toProd', 'monsters'];
     }
 
     public function getDependencies()
