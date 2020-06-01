@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,16 +16,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    /**
-     * @PrePersist
-     */
-    public function setDefaults(): void
-    {
-        if ($this->getIsAdmin() === null) {
-            $this->setIsAdmin(false);
-        }
-    }
-
     public function __toString()
     {
         return $this->getUsername();
@@ -306,12 +297,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastVisitAt(): ?\DateTimeInterface
+    public function getLastVisitAt(): ?DateTimeInterface
     {
         return $this->lastVisitAt;
     }
 
-    public function setLastVisitAt(?\DateTimeInterface $lastVisitAt): self
+    public function setLastVisitAt(?DateTimeInterface $lastVisitAt): self
     {
         $this->lastVisitAt = $lastVisitAt;
 
