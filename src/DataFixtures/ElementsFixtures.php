@@ -47,7 +47,7 @@ class ElementsFixtures extends Fixture implements FixtureGroupInterface
 
         foreach ($elements as $element) {
             $elem = new Element();
-            $elem->setName($element['name'])->setImage('/img/icons/' . $element['image'] . '.png');
+            $elem->setName($element['name'])->setImage('/img/icons/' . $element['image'] . '.png')->setId($element['id']);
             $manager->persist($elem);
 
             $this->setReference($element['ref'], $elem);
