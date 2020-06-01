@@ -11,672 +11,6 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
 {
     public function load($manager)
     {
-        $oneStars = [
-            [
-                'name' => 'Havana',
-                'img' => 'havana',
-                'family' => $this->getReference("elementaireFaible"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Lamor',
-                'img' => 'lamor',
-                'family' => $this->getReference("elementaireFaible"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Samour',
-                'img' => 'samour',
-                'family' => $this->getReference("elementaireFaible"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Tigryss',
-                'img' => 'tigryss',
-                'family' => $this->getReference("elementaireFaible"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Varis',
-                'img' => 'varis',
-                'family' => $this->getReference("elementaireFaible"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-        ];
-
-        foreach ($oneStars as $oneStar) {
-            $mon = new Monster();
-            $mon->setName($oneStar['name'])->setImage('/img/1nat/' . $oneStar['img'] . '.png')->setNaturalStars(1);
-            if(isset($oneStar['family'])){
-                $mon->setMonsterFamily($oneStar['family']);
-            }
-            if(isset($oneStar['element'])){
-                $mon->setElement($oneStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-
-        $twoStars = [
-            [
-                'name' => 'Arkajan',
-                'img' => 'arkajan',
-                'family' => $this->getReference("yeti"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Cogma',
-                'img' => 'cogma',
-                'family' => $this->getReference("diablotin"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Fynn',
-                'img' => 'fynn',
-                'family' => $this->getReference("diablotin"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Garok',
-                'img' => 'garok',
-                'family' => $this->getReference("diablotin"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Kunda',
-                'img' => 'kunda',
-                'family' => $this->getReference("yeti"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Rakaja',
-                'img' => 'rakaja',
-                'family' => $this->getReference("yeti"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Ralph',
-                'img' => 'ralph',
-                'family' => $this->getReference("diablotin"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Tantra',
-                'img' => 'tantra',
-                'family' => $this->getReference("yeti"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Bremis',
-                'img' => 'bremis',
-                'family' => $this->getReference("elementaire"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Daharenos',
-                'img' => 'daharenos',
-                'family' => $this->getReference("elementaire"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Taharus',
-                'img' => 'taharus',
-                'family' => $this->getReference("elementaire"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Seal',
-                'img' => 'seal',
-                'family' => $this->getReference("harpu"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Sisroo',
-                'img' => 'sisroo',
-                'family' => $this->getReference("harpu"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Kaimann',
-                'img' => 'kaimann',
-                'family' => $this->getReference("salamandre"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Decamaron',
-                'img' => 'decamaron',
-                'family' => $this->getReference("salamandre"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Lukan',
-                'img' => 'lukan',
-                'family' => $this->getReference("salamandre"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Sharman',
-                'img' => 'sharman',
-                'family' => $this->getReference("salamandre"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-        ];
-
-        foreach ($twoStars as $twoStar) {
-            $mon = new Monster();
-            $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png')->setNaturalStars(2);
-            if(isset($twoStar['family'])){
-                $mon->setMonsterFamily($twoStar['family']);
-            }
-            if(isset($twoStar['element'])){
-                $mon->setElement($twoStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-
-        $threeStars = [
-            [
-                'name' => 'Bagir',
-                'img' => 'bagir',
-                'family' => $this->getReference("guerrierGeant"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Vidurr',
-                'img' => 'vidurr',
-                'family' => $this->getReference("guerrierGeant"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Priz',
-                'img' => 'priz',
-                'family' => $this->getReference("elementaire"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Camules',
-                'img' => 'camules',
-                'family' => $this->getReference("elementaire"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Seren',
-                'img' => 'seren',
-                'family' => $this->getReference("harpu"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Sia',
-                'img' => 'sia',
-                'family' => $this->getReference("harpu"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Krakdon',
-                'img' => 'krakdon',
-                'family' => $this->getReference("salamandre"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Prilea',
-                'img' => 'prilea',
-                'family' => $this->getReference("harpie"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Ramira',
-                'img' => 'ramira',
-                'family' => $this->getReference("harpie"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Anduril',
-                'img' => 'anduril',
-                'family' => $this->getReference("inferno"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Cassandre',
-                'img' => 'cassandre',
-                'family' => $this->getReference("archerMagique"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Dagorr',
-                'img' => 'dagorr',
-                'family' => $this->getReference("bearman"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Drogan',
-                'img' => 'drogan',
-                'family' => $this->getReference("inferno"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Ellena',
-                'img' => 'ellena',
-                'family' => $this->getReference("hautElementaire"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Eludain',
-                'img' => 'eludain',
-                'family' => $this->getReference("inferno"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Ermeda',
-                'img' => 'ermeda',
-                'family' => $this->getReference("serpent"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Fao',
-                'img' => 'fao',
-                'family' => $this->getReference("serpent"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Gruda',
-                'img' => 'gruda',
-                'family' => $this->getReference("bearman"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Haken',
-                'img' => 'haken',
-                'family' => $this->getReference("bearman"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Jumaline',
-                'img' => 'jumaline',
-                'family' => $this->getReference("hautElementaire"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Kugo',
-                'img' => 'kugo',
-                'family' => $this->getReference("golem"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Kuhn',
-                'img' => 'kuhn',
-                'family' => $this->getReference("golem"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Kungen',
-                'img' => 'kungen',
-                'family' => $this->getReference("bearman"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Maggi',
-                'img' => 'maggi',
-                'family' => $this->getReference("golem"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Moria',
-                'img' => 'moria',
-                'family' => $this->getReference("hautElementaire"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Purian',
-                'img' => 'purian',
-                'family' => $this->getReference("inferno"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Ragion',
-                'img' => 'ragion',
-                'family' => $this->getReference("golem"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Shailoq',
-                'img' => 'shailoq',
-                'family' => $this->getReference("serpent"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Shamann',
-                'img' => 'shamann',
-                'family' => $this->getReference("griffon"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Sharron',
-                'img' => 'sharron',
-                'family' => $this->getReference("archerMagique"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Shren',
-                'img' => 'shren',
-                'family' => $this->getReference("hautElementaire"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Tagaros',
-                'img' => 'tagaros',
-                'family' => $this->getReference("inferno"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Argent',
-                'img' => 'argent',
-                'family' => $this->getReference("armureVivante"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Fer',
-                'img' => 'fer',
-                'family' => $this->getReference("armureVivante"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Hemos',
-                'img' => 'hemos',
-                'family' => $this->getReference("faucheuse"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Hiva',
-                'img' => 'hiva',
-                'family' => $this->getReference("faucheuse"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Nickel',
-                'img' => 'nickel',
-                'family' => $this->getReference("armureVivante"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Sath',
-                'img' => 'sath',
-                'family' => $this->getReference("faucheuse"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Huan',
-                'img' => 'huan',
-                'family' => $this->getReference("maitreIvre"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Mao',
-                'img' => 'mao',
-                'family' => $this->getReference("maitreIvre"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Wei Shin',
-                'img' => 'weishin',
-                'family' => $this->getReference("maitreIvre"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Xiao Chun',
-                'img' => 'xiaochun',
-                'family' => $this->getReference("maitreIvre"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Anne',
-                'img' => 'anne',
-                'family' => $this->getReference("cowgirl"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Aqcus',
-                'img' => 'aqcus',
-                'family' => $this->getReference("requinCoursier"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Baekdu',
-                'img' => 'baekdu',
-                'family' => $this->getReference("chasseurDeBetes"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Burentau',
-                'img' => 'burentau',
-                'family' => $this->getReference("minotaure"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Devinodon',
-                'img' => 'devinodon',
-                'family' => $this->getReference("hommeLezard"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Eintau',
-                'img' => 'eintau',
-                'family' => $this->getReference("minotaure"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Eluin',
-                'img' => 'eluin',
-                'family' => $this->getReference("elfePatrouilleur"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Erwin',
-                'img' => 'erwin',
-                'family' => $this->getReference("elfePatrouilleur"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Gangchun',
-                'img' => 'gangchun',
-                'family' => $this->getReference("chasseurDeBetes"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Grotau',
-                'img' => 'grotau',
-                'family' => $this->getReference("minotaure"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Grue',
-                'img' => 'grue',
-                'family' => $this->getReference("frankenstein"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Gunpyeong',
-                'img' => 'gunpyeong',
-                'family' => $this->getReference("taoiste"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Hannah',
-                'img' => 'hannah',
-                'family' => $this->getReference("cowgirl"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Hanra',
-                'img' => 'hanra',
-                'family' => $this->getReference("chasseurDeBetes"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Hiro',
-                'img' => 'hiro',
-                'family' => $this->getReference("martialArtist"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Igmanodon',
-                'img' => 'igmanodon',
-                'family' => $this->getReference("hommeLezard"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Ignicus',
-                'img' => 'ignicus',
-                'family' => $this->getReference("requinCoursier"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Jackie',
-                'img' => 'jackie',
-                'family' => $this->getReference("martialArtist"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Kamatau',
-                'img' => 'kamatau',
-                'family' => $this->getReference("minotaure"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Karakum',
-                'img' => 'karakum',
-                'family' => $this->getReference("momie"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Kernodon',
-                'img' => 'kernodon',
-                'family' => $this->getReference("hommeLezard"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Kroa',
-                'img' => 'kroa',
-                'family' => $this->getReference("harg"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Kuna',
-                'img' => 'kuna',
-                'family' => $this->getReference("chevalierPingouin"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Lo',
-                'img' => 'lo',
-                'family' => $this->getReference("martialArtist"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Luan',
-                'img' => 'luan',
-                'family' => $this->getReference("martialArtist"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Naki',
-                'img' => 'naki',
-                'family' => $this->getReference("chevalierPingouin"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Namib',
-                'img' => 'namib',
-                'family' => $this->getReference("momie"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Nangrim',
-                'img' => 'nangrim',
-                'family' => $this->getReference("chasseurDeBetes"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Nubia',
-                'img' => 'nubia',
-                'family' => $this->getReference("momie"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Remy',
-                'img' => 'remy',
-                'family' => $this->getReference("harg"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Sahara',
-                'img' => 'sahara',
-                'family' => $this->getReference("momie"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Sera',
-                'img' => 'sera',
-                'family' => $this->getReference("cowgirl"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Sin',
-                'img' => 'sin',
-                'family' => $this->getReference("martialArtist"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Sonora',
-                'img' => 'sonora',
-                'family' => $this->getReference("momie"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Suri',
-                'img' => 'suri',
-                'family' => $this->getReference("chasseurDeBetes"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Toma',
-                'img' => 'toma',
-                'family' => $this->getReference("chevalierPingouin"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Urtau',
-                'img' => 'urtau',
-                'family' => $this->getReference("minotaure"),
-                'element' => $this->getReference("ELEM_WATER")
-            ],
-            [
-                'name' => 'Velfinodon',
-                'img' => 'velfinodon',
-                'family' => $this->getReference("hommeLezard"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Zephicus',
-                'img' => 'zephicus',
-                'family' => $this->getReference("requinCoursier"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-        ];
-
-        foreach ($threeStars as $threeStar) {
-            $mon = new Monster();
-            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png')->setNaturalStars(3);
-            if(isset($threeStar['family'])){
-                $mon->setMonsterFamily($threeStar['family']);
-            }
-            if(isset($threeStar['element'])){
-                $mon->setElement($threeStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-
         $fourStars = [
             [
                 'name' => 'Luer',
@@ -887,6 +221,882 @@ class MonstersPartFourFixtures extends Fixture implements DependentFixtureInterf
                 'img' => 'su',
                 'family' => $this->getReference("rakshasa"),
                 'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Abigail',
+                'img' => 'abigail',
+                'family' => $this->getReference("cannonGirl"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Acasis',
+                'img' => 'acasis',
+                'family' => $this->getReference("sylphide"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Aegir',
+                'img' => 'aegir',
+                'family' => $this->getReference("roiBarbare"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Amarna',
+                'img' => 'amarna',
+                'family' => $this->getReference("anubis"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Amduat',
+                'img' => 'amduat',
+                'family' => $this->getReference("horus"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Antarès',
+                'img' => 'antares',
+                'family' => $this->getReference("liche"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Aria',
+                'img' => 'aria',
+                'family' => $this->getReference("succube"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Baretta',
+                'img' => 'baretta',
+                'family' => $this->getReference("sylphe"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Bethony',
+                'img' => 'bethony',
+                'family' => $this->getReference("archerMagique"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Chasun',
+                'img' => 'chasun',
+                'family' => $this->getReference("danseuseDuCiel"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Chloe',
+                'img' => 'chloe',
+                'family' => $this->getReference("pretreEpikion"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Delphoi',
+                'img' => 'delphoi',
+                'family' => $this->getReference("ondine"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Dover',
+                'img' => 'dover',
+                'family' => $this->getReference("koboldBomber"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Draco',
+                'img' => 'draco',
+                'family' => $this->getReference("brownieMagicien"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Eva',
+                'img' => 'eva',
+                'family' => $this->getReference("pierrette"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Fei',
+                'img' => 'fei',
+                'family' => $this->getReference("kungfuGirl"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Férelia',
+                'img' => 'felleria',
+                'family' => $this->getReference("dryade"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Frégate',
+                'img' => 'fregate',
+                'family' => $this->getReference("capitainePirate"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Fuco',
+                'img' => 'fuco',
+                'family' => $this->getReference("liche"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Galion',
+                'img' => 'galleon',
+                'family' => $this->getReference("capitainePirate"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Garo',
+                'img' => 'garo',
+                'family' => $this->getReference("ninja"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Gemini',
+                'img' => 'gemini',
+                'family' => $this->getReference("brownieMagicien"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Jin',
+                'img' => 'gin',
+                'family' => $this->getReference("ninja"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Grego',
+                'img' => 'grego',
+                'family' => $this->getReference("liche"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Halphas',
+                'img' => 'halphas',
+                'family' => $this->getReference("liche"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Harmonia',
+                'img' => 'harmonia',
+                'family' => $this->getReference("joueuseDeHarpe"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Hraesvelg',
+                'img' => 'hraesvelg',
+                'family' => $this->getReference("roiBarbare"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Hrungnir',
+                'img' => 'hrungnir',
+                'family' => $this->getReference("roiBarbare"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Hwa',
+                'img' => 'hwa',
+                'family' => $this->getReference("rakshasa"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Hwadam',
+                'img' => 'hwadam',
+                'family' => $this->getReference("taoiste"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Icarès',
+                'img' => 'icares',
+                'family' => $this->getReference("sylphide"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Illiana',
+                'img' => 'illiana',
+                'family' => $this->getReference("agentNeostone"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Imesety',
+                'img' => 'imesety',
+                'family' => $this->getReference("horus"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Iris',
+                'img' => 'iris',
+                'family' => $this->getReference("chevalierMagique"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Khmun',
+                'img' => 'khmun',
+                'family' => $this->getReference("anubis"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Lanett',
+                'img' => 'lanett',
+                'family' => $this->getReference("chevalierMagique"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Lapis',
+                'img' => 'lapis',
+                'family' => $this->getReference("chevalierMagique"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Liebli',
+                'img' => 'liebli',
+                'family' => $this->getReference("joker"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Lisa',
+                'img' => 'lisa',
+                'family' => $this->getReference("agentNeostone"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Liu Mei',
+                'img' => 'liumei',
+                'family' => $this->getReference("kungfuGirl"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Lucas',
+                'img' => 'lucas',
+                'family' => $this->getReference("combattantNeostone"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Lumirécia',
+                'img' => 'lumirecia',
+                'family' => $this->getReference("sylphide"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Lushen',
+                'img' => 'lushen',
+                'family' => $this->getReference("joker"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Martina',
+                'img' => 'martina',
+                'family' => $this->getReference("guerriereAuBoomerang"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Maruna',
+                'img' => 'maruna',
+                'family' => $this->getReference("guerriereAuBoomerang"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Melissa',
+                'img' => 'melissa',
+                'family' => $this->getReference("danseuseAuxChakrams"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Mihyang',
+                'img' => 'mihyang',
+                'family' => $this->getReference("danseuseDuCiel"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Mimirr',
+                'img' => 'mimirr',
+                'family' => $this->getReference("roiBarbare"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Monte',
+                'img' => 'monte',
+                'family' => $this->getReference("maitreDesDes"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Morris',
+                'img' => 'morris',
+                'family' => $this->getReference("maitreDesDes"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Orion',
+                'img' => 'orion',
+                'family' => $this->getReference("brownieMagicien"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Qebehsenuef',
+                'img' => 'qebehsenuef',
+                'family' => $this->getReference("horus"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Reno',
+                'img' => 'reno',
+                'family' => $this->getReference("maitreDesDes"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Rigel',
+                'img' => 'rigel',
+                'family' => $this->getReference("liche"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Sabrina',
+                'img' => 'sabrina',
+                'family' => $this->getReference("guerriereAuBoomerang"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Shaina',
+                'img' => 'shaina',
+                'family' => $this->getReference("danseuseAuxChakrams"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Sige',
+                'img' => 'sige',
+                'family' => $this->getReference("samourai"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Skogul',
+                'img' => 'skogul',
+                'family' => $this->getReference("guerrierGeant"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Stella',
+                'img' => 'stella',
+                'family' => $this->getReference("assassin"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Susanoo',
+                'img' => 'susanoo',
+                'family' => $this->getReference("ninja"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Talia',
+                'img' => 'talia',
+                'family' => $this->getReference("danseuseAuxChakrams"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Trasar',
+                'img' => 'trasar',
+                'family' => $this->getReference("guerrierGeant"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Trevor',
+                'img' => 'trevor',
+                'family' => $this->getReference("combattantNeostone"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Triana',
+                'img' => 'triana',
+                'family' => $this->getReference("joueuseDeHarpe"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Tyron',
+                'img' => 'tyron',
+                'family' => $this->getReference("sylphe"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Verdehile',
+                'img' => 'verdehile',
+                'family' => $this->getReference("vampire"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Xiao Lin',
+                'img' => 'xiaolin',
+                'family' => $this->getReference("kungfuGirl"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Dias',
+                'img' => 'dias',
+                'family' => $this->getReference("chevalierDeLaMort"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Clara',
+                'img' => 'clara',
+                'family' => $this->getReference("pierrette"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Arnold',
+                'img' => 'arnold',
+                'family' => $this->getReference("chevalierDeLaMort"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Yen',
+                'img' => 'yen',
+                'family' => $this->getReference("rakshasa"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Refroidissement',
+                'img' => 'refroidissement',
+                'family' => $this->getReference("citrouille"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Covenant',
+                'img' => 'covenant',
+                'family' => $this->getReference("sniper"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Deva',
+                'img' => 'deva',
+                'family' => $this->getReference("danseuseAuxChakrams"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Olivia',
+                'img' => 'olivia',
+                'family' => $this->getReference("agentNeostone"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Zenobia',
+                'img' => 'zenobia',
+                'family' => $this->getReference("guerriereAuBoomerang"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Izaria',
+                'img' => 'izaria',
+                'family' => $this->getReference("succube"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Julie',
+                'img' => 'julie',
+                'family' => $this->getReference("pierrette"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Betta',
+                'img' => 'betta',
+                'family' => $this->getReference("sirene"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Isael',
+                'img' => 'isael',
+                'family' => $this->getReference("succube"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Kamiya',
+                'img' => 'kamiya',
+                'family' => $this->getReference("kitsune"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Malite',
+                'img' => 'malite',
+                'family' => $this->getReference("gargouille"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Molly',
+                'img' => 'molly',
+                'family' => $this->getReference("sirene"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Platy',
+                'img' => 'platy',
+                'family' => $this->getReference("sirene"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Einheri',
+                'img' => 'einheri',
+                'family' => $this->getReference("guerrierGeant"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Arang',
+                'img' => 'arang',
+                'family' => $this->getReference("kitsune"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Borsalino',
+                'img' => 'borsalino',
+                'family' => $this->getReference("chevalierDeLaMort"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Briand',
+                'img' => 'briand',
+                'family' => $this->getReference("chevalierDeLaMort"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Emma',
+                'img' => 'emma',
+                'family' => $this->getReference("agentNeostone"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Hwahee',
+                'img' => 'hwahee',
+                'family' => $this->getReference("danseuseDuCiel"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Isabelle',
+                'img' => 'isabelle',
+                'family' => $this->getReference("assassin"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Malaka',
+                'img' => 'malaka',
+                'family' => $this->getReference("koboldBomber"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Shihwa',
+                'img' => 'shihwa',
+                'family' => $this->getReference("kitsune"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Taurus',
+                'img' => 'taurus',
+                'family' => $this->getReference("koboldBomber"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Tetra',
+                'img' => 'tetra',
+                'family' => $this->getReference("sirene"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Luna',
+                'img' => 'luna',
+                'family' => $this->getReference("pierrette"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Karl',
+                'img' => 'karl',
+                'family' => $this->getReference("combattantNeostone"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Sonnet',
+                'img' => 'sonnet',
+                'family' => $this->getReference("joueuseDeHarpe"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Jean',
+                'img' => 'jean',
+                'family' => $this->getReference("voleurFantome"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Brumeux',
+                'img' => 'brumeux',
+                'family' => $this->getReference("citrouille"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Atenai',
+                'img' => 'atenai',
+                'family' => $this->getReference("ondine"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Mihael',
+                'img' => 'mihael',
+                'family' => $this->getReference("sylphide"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Korona',
+                'img' => 'korona',
+                'family' => $this->getReference("brownieMagicien"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Ludo',
+                'img' => 'ludo',
+                'family' => $this->getReference("maitreDesDes"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Guillaume',
+                'img' => 'guillaume',
+                'family' => $this->getReference("voleurFantome"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Aschubel',
+                'img' => 'aschubel',
+                'family' => $this->getReference("sylphe"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Isillen',
+                'img' => 'isillen',
+                'family' => $this->getReference("elfePatrouilleur"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Eredas',
+                'img' => 'eredas',
+                'family' => $this->getReference("sylphe"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Figaro',
+                'img' => 'figaro',
+                'family' => $this->getReference("joker"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Shimitae',
+                'img' => 'shimitae',
+                'family' => $this->getReference("sylphe"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Raviti',
+                'img' => 'raviti',
+                'family' => $this->getReference("harg"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Orochi',
+                'img' => 'orochi',
+                'family' => $this->getReference("ninja"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Ran',
+                'img' => 'ran',
+                'family' => $this->getReference("rakshasa"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Louis',
+                'img' => 'louis',
+                'family' => $this->getReference("voleurFantome"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Iunu',
+                'img' => 'iunu',
+                'family' => $this->getReference("anubis"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Bailey',
+                'img' => 'bailey',
+                'family' => $this->getReference("guerriereAuBoomerang"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Belita',
+                'img' => 'belita',
+                'family' => $this->getReference("danseuseAuxChakrams"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Emily',
+                'img' => 'emily',
+                'family' => $this->getReference("cannonGirl"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Aquila',
+                'img' => 'aquila',
+                'family' => $this->getReference("brownieMagicien"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Avaris',
+                'img' => 'avaris',
+                'family' => $this->getReference("anubis"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Icasha',
+                'img' => 'icasha',
+                'family' => $this->getReference("ondine"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Julien',
+                'img' => 'julien',
+                'family' => $this->getReference("voleurFantome"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Natalie',
+                'img' => 'natalie',
+                'family' => $this->getReference("assassin"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Nisha',
+                'img' => 'nisha',
+                'family' => $this->getReference("dryade"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Soha',
+                'img' => 'soha',
+                'family' => $this->getReference("kitsune"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Tanya',
+                'img' => 'tanya',
+                'family' => $this->getReference("assassin"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Liesel',
+                'img' => 'liesel',
+                'family' => $this->getReference("vampire"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Argen',
+                'img' => 'argen',
+                'family' => $this->getReference("vampire"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Lexy',
+                'img' => 'lexy',
+                'family' => $this->getReference("assassin"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Gildong',
+                'img' => 'gildong',
+                'family' => $this->getReference("taoiste"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Fria',
+                'img' => 'fria',
+                'family' => $this->getReference("sylphide"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Jun',
+                'img' => 'jun',
+                'family' => $this->getReference("samourai"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Kaito',
+                'img' => 'kaito',
+                'family' => $this->getReference("samourai"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Kaz',
+                'img' => 'kaz',
+                'family' => $this->getReference("samourai"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Sian',
+                'img' => 'sian',
+                'family' => $this->getReference("joker"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Surtr',
+                'img' => 'surtr',
+                'family' => $this->getReference("roiBarbare"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Tosi',
+                'img' => 'tosi',
+                'family' => $this->getReference("samourai"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Zibrolta',
+                'img' => 'zibrolta',
+                'family' => $this->getReference("koboldBomber"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Jojo',
+                'img' => 'jojo',
+                'family' => $this->getReference("joker"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Logan',
+                'img' => 'logan',
+                'family' => $this->getReference("combattantNeostone"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Ryan',
+                'img' => 'ryan',
+                'family' => $this->getReference("combattantNeostone"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Herne',
+                'img' => 'herne',
+                'family' => $this->getReference("dryade"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Hyanes',
+                'img' => 'hyanes',
+                'family' => $this->getReference("dryade"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Mellia',
+                'img' => 'mellia',
+                'family' => $this->getReference("dryade"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Tablo',
+                'img' => 'tablo',
+                'family' => $this->getReference("maitreDesDes"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Iona',
+                'img' => 'iona',
+                'family' => $this->getReference("pretreEpikion"),
+                'element' => $this->getReference("ELEM_LIGHT")
             ],
         ];
 

@@ -11,7 +11,49 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
 {
     public function load($manager)
     {
-        $twoStars = [
+        $mobs = [
+            [
+                'name' => 'Colleen',
+                'img' => 'colleen',
+                'family' => $this->getReference("harpu"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Konamiya',
+                'img' => 'konamiya',
+                'family' => $this->getReference("garuda"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Lulu',
+                'img' => 'lulu',
+                'family' => $this->getReference("howl"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Shannon',
+                'img' => 'shannon',
+                'family' => $this->getReference("lutin"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Sieq',
+                'img' => 'sieq',
+                'family' => $this->getReference("cerbere"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Tarq',
+                'img' => 'tarq',
+                'family' => $this->getReference("cerbere"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Taru',
+                'img' => 'taru',
+                'family' => $this->getReference("diablotin"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
             [
                 'name' => 'Shushu',
                 'img' => 'shushu',
@@ -78,10 +120,130 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
                 'family' => $this->getReference("garuda"),
                 'element' => $this->getReference("ELEM_FIRE")
             ],
+            [
+                'name' => 'Huga',
+                'img' => 'huga',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Jansson',
+                'img' => 'jansson',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Walter',
+                'img' => 'walter',
+                'family' => $this->getReference("viking"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Arkajan',
+                'img' => 'arkajan',
+                'family' => $this->getReference("yeti"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
+            [
+                'name' => 'Cogma',
+                'img' => 'cogma',
+                'family' => $this->getReference("diablotin"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Fynn',
+                'img' => 'fynn',
+                'family' => $this->getReference("diablotin"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Garok',
+                'img' => 'garok',
+                'family' => $this->getReference("diablotin"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Kunda',
+                'img' => 'kunda',
+                'family' => $this->getReference("yeti"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Rakaja',
+                'img' => 'rakaja',
+                'family' => $this->getReference("yeti"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Ralph',
+                'img' => 'ralph',
+                'family' => $this->getReference("diablotin"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Tantra',
+                'img' => 'tantra',
+                'family' => $this->getReference("yeti"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Bremis',
+                'img' => 'bremis',
+                'family' => $this->getReference("elementaire"),
+                'element' => $this->getReference("ELEM_FIRE")
+            ],
+            [
+                'name' => 'Daharenos',
+                'img' => 'daharenos',
+                'family' => $this->getReference("elementaire"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Taharus',
+                'img' => 'taharus',
+                'family' => $this->getReference("elementaire"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Seal',
+                'img' => 'seal',
+                'family' => $this->getReference("harpu"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Sisroo',
+                'img' => 'sisroo',
+                'family' => $this->getReference("harpu"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Kaimann',
+                'img' => 'kaimann',
+                'family' => $this->getReference("salamandre"),
+                'element' => $this->getReference("ELEM_WATER")
+            ],
+            [
+                'name' => 'Decamaron',
+                'img' => 'decamaron',
+                'family' => $this->getReference("salamandre"),
+                'element' => $this->getReference("ELEM_DARK")
+            ],
+            [
+                'name' => 'Lukan',
+                'img' => 'lukan',
+                'family' => $this->getReference("salamandre"),
+                'element' => $this->getReference("ELEM_WIND")
+            ],
+            [
+                'name' => 'Sharman',
+                'img' => 'sharman',
+                'family' => $this->getReference("salamandre"),
+                'element' => $this->getReference("ELEM_LIGHT")
+            ],
         ];
 
 
-        foreach ($twoStars as $twoStar) {
+        foreach ($mobs as $twoStar) {
             $mon = new Monster();
             $mon->setName($twoStar['name'])->setImage('/img/2nat/' . $twoStar['img'] . '.png')->setNaturalStars(2);
             if(isset($twoStar['family'])){
@@ -89,144 +251,6 @@ class MonstersPartTwoFixtures extends Fixture implements DependentFixtureInterfa
             }
             if(isset($twoStar['element'])){
                 $mon->setElement($twoStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-        $threeStars = [
-            [
-                'name' => 'Lucasha',
-                'img' => 'lucasha',
-                'family' => $this->getReference("harpie"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Calicus',
-                'img' => 'calicus',
-                'family' => $this->getReference("requinCoursier"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Cassie',
-                'img' => 'cassie',
-                'family' => $this->getReference("cowgirl"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Gina',
-                'img' => 'gina',
-                'family' => $this->getReference("sorciereMystique"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-            [
-                'name' => 'Linda',
-                'img' => 'linda',
-                'family' => $this->getReference("sorciereMystique"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Silia',
-                'img' => 'silia',
-                'family' => $this->getReference("sorciereMystique"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Rebecca',
-                'img' => 'rebecca',
-                'family' => $this->getReference("sorciereMystique"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Prom',
-                'img' => 'prom',
-                'family' => $this->getReference("faucheuse"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Rumicus',
-                'img' => 'rumicus',
-                'family' => $this->getReference("requinCoursier"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Elpuria',
-                'img' => 'elpuria',
-                'family' => $this->getReference("serpent"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-            [
-                'name' => 'Kai\'en',
-                'img' => 'kaien',
-                'family' => $this->getReference("vagabond"),
-                'element' => $this->getReference("ELEM_FIRE")
-            ],
-            [
-                'name' => 'Michelle',
-                'img' => 'michelle',
-                'family' => $this->getReference("pretreEpikion"),
-                'element' => $this->getReference("ELEM_WIND")
-            ],
-            [
-                'name' => 'Rachid',
-                'img' => 'rachid',
-                'family' => $this->getReference("pretreEpikion"),
-                'element' => $this->getReference("ELEM_DARK")
-            ],
-        ];
-
-
-        foreach ($threeStars as $threeStar) {
-            $mon = new Monster();
-            $mon->setName($threeStar['name'])->setImage('/img/3nat/' . $threeStar['img'] . '.png')->setNaturalStars(3);
-            if(isset($threeStar['family'])){
-                $mon->setMonsterFamily($threeStar['family']);
-            }
-            if(isset($threeStar['element'])){
-                $mon->setElement($threeStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-
-        $fourStars = [
-            [
-                'name' => 'Iona',
-                'img' => 'iona',
-                'family' => $this->getReference("pretreEpikion"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-        ];
-
-        foreach ($fourStars as $fourStar) {
-            $mon = new Monster();
-            $mon->setName($fourStar['name'])->setImage('/img/4nat/' . $fourStar['img'] . '.png')->setNaturalStars(4);
-            if(isset($fourStar['family'])){
-                $mon->setMonsterFamily($fourStar['family']);
-            }
-            if(isset($fourStar['element'])){
-                $mon->setElement($fourStar['element']);
-            }
-            $manager->persist($mon);
-        }
-
-
-        $fiveStars = [
-            [
-                'name' => 'Elsharion',
-                'img' => 'elsharion',
-                'family' => $this->getReference("ifrit"),
-                'element' => $this->getReference("ELEM_LIGHT")
-            ],
-        ];
-
-        foreach ($fiveStars as $fiveStar) {
-            $mon = new Monster();
-            $mon->setName($fiveStar['name'])->setImage('/img/5nat/' . $fiveStar['img'] . '.png')->setNaturalStars(5);
-            if(isset($fiveStar['family'])){
-                $mon->setMonsterFamily($fiveStar['family']);
-            }
-            if(isset($fiveStar['element'])){
-                $mon->setElement($fiveStar['element']);
             }
             $manager->persist($mon);
         }
