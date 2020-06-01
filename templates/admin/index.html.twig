@@ -31,7 +31,7 @@
                             <td data-sort-value="{{ user.lastVisitAt ? user.lastVisitAt|date("U") : '0' }}">{{ user.lastVisitAt ? user.lastVisitAt|date("d/m/Y") : 'Jamais' }}</td>
                             <td>
                                 <a href="{{ path('admin_edit_account', {'id':user.id}) }}">Modifier</a><br>
-                                {% if "ROLE_ADMIN" not in user.roles or "ROLE_SUPERADMIN" not in user.roles %}
+                                {% if "ROLE_SUPERADMIN" not in user.roles and "ROLE_ADMIN" in app.user.roles and ("ROLE_ADMIN" not in user.roles or "ROLE_SUPERADMIN" in app.user.roles) %}
                                 <span class="like-a-link" data-toggle="modal" data-target="#deleteModal{{ user.id }}">Supprimer</span>
                                 {% endif %}
                             </td>
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                        {% if "ROLE_ADMIN" not in user.roles or "ROLE_SUPERADMIN" not in user.roles %}
+                                        {% if "ROLE_SUPERADMIN" not in user.roles and "ROLE_ADMIN" in app.user.roles and ("ROLE_ADMIN" not in user.roles or "ROLE_SUPERADMIN" in app.user.roles) %}
                                         <a href="{{ path('admin_delete_account', {'id':user.id}) }}"><button type="button" class="btn btn-primary">Supprimer</button></a>
                                         {% endif %}
                                     </div>
